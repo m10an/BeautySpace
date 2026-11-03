@@ -1344,3 +1344,14 @@ button:active:not(:disabled) {
     font-size: 0.72rem;
   }
 }
+
+/* Keep the calendar visible at first paint on wider screens. */
+@media (min-width: 601px) {
+  .calendar-intro {
+    min-height: 125px;
+    padding-block: 0.5rem;
+  }
+  .calendar-intro h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+}

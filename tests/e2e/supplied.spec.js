@@ -187,34 +187,23 @@ test.describe("Supplied scenarios adapted to v2", () => {
   test("font stylesheet is declared in head and fallbacks remain valid offline", async ({
     page,
   }) => {
-    const fonts = page.locator(
-      'head link[rel="stylesheet"][href*="fonts.googleapis.com"]',
-    );
-    await expect(fonts).toHaveCount(1);
-    expect(await fonts.getAttribute("href")).toContain("GFS+Didot");
+    await expect(
+      page.locator('head link[href*="fonts.googleapis.com"]'),
+    ).toHaveCount(0);
     expect(
       await page
         .locator("body")
         .evaluate((el) => getComputedStyle(el).fontFamily),
-    ).toContain("system-ui");
+    ).toContain("Montserrat");
     expect(
       await page
         .locator(".ingredient-hero h2")
         .evaluate((el) => getComputedStyle(el).fontFamily),
-    ).toContain("GFS Didot");
+    ).toContain("Montserrat");
+    await page.evaluate(() => document.fonts.ready);
     expect(
-      await page.evaluate(() =>
-        [...document.styleSheets].flatMap((sheet) => {
-          try {
-            return [...sheet.cssRules]
-              .filter((rule) => rule.type === CSSRule.IMPORT_RULE)
-              .map((rule) => rule.href);
-          } catch {
-            return [];
-          }
-        }),
-      ),
-    ).toEqual([]);
+      await page.evaluate(() => document.fonts.check("16px Montserrat")),
+    ).toBe(true);
   });
   for (const width of [320, 390, 768, 1440])
     test.describe(`${width}px`, () => {

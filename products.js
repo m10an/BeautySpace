@@ -4,7 +4,7 @@ import {
   referenceReady,
   analysisHtml,
   analyzeReference,
-} from "./ingredients.js?v=25";
+} from "./ingredients.js?v=26";
 const $ = (id) => document.getElementById(id);
 let products = [],
   editing = null,

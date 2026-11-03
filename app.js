@@ -235,6 +235,7 @@ function render() {
   syncDate();
   renderEditor();
   renderCustom();
+  window.dispatchEvent(new Event("beauty:date-selected"));
 }
 function syncDate() {
   $("dayPicker").value = selected;
@@ -1041,4 +1042,8 @@ export function getRoutineInterviewSummary(start) {
         .join("\n"),
     ]),
   );
+}
+
+export function getSelectedCalendarDate() {
+  return selected;
 }

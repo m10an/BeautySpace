@@ -1,4 +1,4 @@
-import { getRoutineInterviewSummary } from "./app.js?v=25";
+import { getRoutineInterviewSummary } from "./app.js?v=26";
 import { toolModal } from "./lib/dialog.js";
 import { validateAIPlan, reviewActives, aiSteps } from "./lib/ai-plan.js";
 import {
@@ -180,6 +180,7 @@ $("aiCopyProducts").onclick = () => {
   $("aiCurrent").value = text;
   updateLocal();
 };
+$("iplAIEntry").addEventListener("click", () => modal.close());
 $("aiManual").onclick = () => {
   modal.close();
   document.querySelector('[data-tab="ritual"]').click();

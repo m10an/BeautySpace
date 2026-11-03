@@ -97,3 +97,14 @@ test("invalid weekdays, dates and long labels fail before preview", () => {
   ])
     assert.throws(() => buildRoutineItem({ ...draft, ...change }));
 });
+test("duplicate schedule entries are rejected before writing", () => {
+  const storage = memory(),
+    item = buildRoutineItem(draft);
+  appendCalendarItems([item], { storage, confirmed: true });
+  const before = storage.getItem();
+  assert.throws(
+    () => appendCalendarItems([item], { storage, confirmed: true }),
+    /identical/,
+  );
+  assert.equal(storage.getItem(), before);
+});

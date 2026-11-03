@@ -13,6 +13,7 @@ const sections = [
   "prompts",
   "products",
   "ingredients",
+  "ipl",
   "settings",
 ];
 async function ready(page) {
@@ -72,7 +73,7 @@ for (const width of sizes)
         "aria-expanded",
         "true",
       );
-      await expect(page.locator("#nav .tab")).toHaveCount(10);
+      await expect(page.locator("#nav .tab")).toHaveCount(11);
       const menu = page.locator("#navigationDialog");
       await expect(menu).toHaveClass(/is-open/);
       const menuStyle = await menu.evaluate((el) => {

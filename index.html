@@ -13,7 +13,7 @@
     <meta content="Beautycalendar" name="apple-mobile-web-app-title" />
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
-    <link href="./style.css?v=20" rel="stylesheet" />
+    <link href="./style.css?v=21" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
@@ -29,77 +29,189 @@
       href="https://fonts.googleapis.com/css2?family=GFS+Didot&amp;display=swap"
       rel="stylesheet"
     />
-    <script src="./theme.js"></script>
+    <script src="./theme.js?v=21"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="app">
-      <div aria-hidden="true" class="aura-backdrop"></div>
-      <header>
-        <div class="brandline">
-          <span>THE BEAUTY JOURNAL</span
-          ><span>PRIVATE BEAUTY ARCHIVE · EST. 2026</span>
-        </div>
-        <div class="editorialhero" data-parallax-scene="">
-          <div class="hero-copy" data-parallax-copy="">
-            <span class="overline">YOUR DAILY BEAUTY RITUAL</span>
-            <h1>The art of<br /><em>being you.</em></h1>
-            <p>Your private journal for skin, hair and self-care.</p>
-            <div class="hero-mark">SKIN   /   HAIR   /   SELF-CARE</div>
-          </div>
-          <img
-            alt="Skincare editorial photography"
-            data-parallax-media=""
-            src="./skin-editorial.jpg"
-          />
-        </div>
-        <div class="utility-bar">
-          <span>Beautycalendar <strong>2.0</strong> · Saved on this device</span
-          ><label for="themeSelect"
-            >Theme
-            <select id="themeSelect">
-              <option value="system">System</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select></label
+      <div class="ambient-scene" aria-hidden="true">
+        <div class="ambient-layer ambient-far"></div>
+        <div class="ambient-layer ambient-near"></div>
+        <div class="ambient-texture"></div>
+      </div>
+      <header class="app-header">
+        <button
+          id="menuToggle"
+          class="icon-button"
+          type="button"
+          aria-label="Open navigation"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="navigationDialog"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            aria-hidden="true"
           >
-        </div>
+            <path d="M4 8h16M4 16h11" />
+          </svg>
+        </button>
+        <span class="wordmark">The Beauty <em>Journal</em></span>
+        <button
+          id="themeToggle"
+          class="icon-button"
+          type="button"
+          aria-label="Switch to dark theme"
+          aria-pressed="false"
+        >
+          <svg
+            class="theme-sun"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+            /></svg
+          ><svg
+            class="theme-moon"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5a8.7 8.7 0 1 0 10.7 10.7Z"
+            />
+          </svg>
+        </button>
       </header>
-      <nav id="nav" aria-label="Journal sections">
-        <button class="tab active" data-tab="calendar">Calendar</button
-        ><button class="tab" data-tab="hair">Hair</button
-        ><button class="tab" data-tab="ritual">Ritual</button
-        ><button class="tab" data-tab="journal">Journal</button
-        ><button class="tab" data-tab="insights">Insights</button
-        ><button class="tab" data-tab="inspiration">Inspiration</button
-        ><button class="tab" data-tab="prompts">Journal Prompts</button
-        ><button class="tab" data-tab="settings">More</button
-        ><button class="tab" data-tab="products">My products</button
-        ><button class="tab" data-tab="ingredients">Ingredient Check</button>
-      </nav>
+      <dialog id="navigationDialog" aria-labelledby="menuTitle">
+        <div class="menu-heading">
+          <h2 id="menuTitle">The journal.</h2>
+          <button
+            id="menuClose"
+            class="icon-button"
+            type="button"
+            aria-label="Close navigation"
+            autofocus
+          >
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+              aria-hidden="true"
+            >
+              <path d="m6 6 12 12M6 18 18 6" />
+            </svg>
+          </button>
+        </div>
+        <nav id="nav" aria-label="Journal sections">
+          <button type="button" class="tab active" data-tab="calendar">
+            <span class="menu-index" aria-hidden="true">01</span
+            ><span>Calendar</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="hair">
+            <span class="menu-index" aria-hidden="true">02</span
+            ><span>Hair</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="ritual">
+            <span class="menu-index" aria-hidden="true">03</span
+            ><span>Ritual</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="journal">
+            <span class="menu-index" aria-hidden="true">04</span
+            ><span>Journal</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="insights">
+            <span class="menu-index" aria-hidden="true">05</span
+            ><span>Insights</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="inspiration">
+            <span class="menu-index" aria-hidden="true">06</span
+            ><span>Inspiration</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="prompts">
+            <span class="menu-index" aria-hidden="true">07</span
+            ><span>Journal Prompts</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="products">
+            <span class="menu-index" aria-hidden="true">08</span
+            ><span>My Products</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="ingredients">
+            <span class="menu-index" aria-hidden="true">09</span
+            ><span>Ingredient Check</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="settings">
+            <span class="menu-index" aria-hidden="true">10</span
+            ><span>More</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+        </nav>
+        <p class="menu-note">A little time, just for you.</p>
+      </dialog>
       <main id="main" tabindex="-1">
-        <section class="screen" id="calendar">
-          <div class="monthbar">
-            <button aria-label="Previous month" id="prev">‹</button>
-            <h2 id="monthLabel"></h2>
-            <button aria-label="Next month" id="next">›</button>
-          </div>
-          <div class="weekdays">
-            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span
-            ><span>Fri</span><span>Sat</span><span>Sun</span>
-          </div>
-          <div class="monthgrid" id="monthGrid"></div>
-          <div class="legend">
-            <span><i class="dot adap"></i> Adapalene</span
-            ><span><i class="dot azel"></i> Azelaic acid</span
-            ><span><i class="dot nia"></i> Niacinamide</span>
-          </div>
-          <div class="panel">
-            <div class="panelhead">
-              <h3 id="selectedLabel"></h3>
-              <button class="small" id="jumpToday">Today</button>
+        <section class="screen" id="calendar" aria-label="Calendar">
+          <div class="calendar-intro">
+            <div>
+              <h1>Your daily <em>edit.</em></h1>
+              <p>Small rituals. A little time for you.</p>
             </div>
-            <div id="selectedRoutine"></div>
+            <div class="editorial-detail" aria-hidden="true">
+              <img src="./skin-editorial.jpg" alt="" data-depth-image="" />
+            </div>
+          </div>
+          <div class="calendar-layout">
+            <div class="calendar-sheet">
+              <div class="monthbar">
+                <button aria-label="Previous month" id="prev">‹</button>
+                <h2 id="monthLabel"></h2>
+                <button aria-label="Next month" id="next">›</button>
+              </div>
+              <div class="weekdays">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span
+                ><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+              <div class="monthgrid" id="monthGrid"></div>
+              <div class="legend">
+                <span><i class="dot adap"></i> Adapalene</span
+                ><span><i class="dot azel"></i> Azelaic acid</span
+                ><span><i class="dot nia"></i> Niacinamide</span>
+              </div>
+            </div>
+            <div class="panel day-panel">
+              <div class="panelhead">
+                <h3 id="selectedLabel"></h3>
+                <button class="small" id="jumpToday">Today</button>
+              </div>
+              <div id="selectedRoutine"></div>
+            </div>
           </div>
         </section>
         <section class="screen hidden" id="ritual">
@@ -607,11 +719,11 @@
       <p id="appStatus" class="app-status" role="status" aria-live="polite"></p>
       <footer>THE BEAUTY JOURNAL · A PRIVATE RITUAL</footer>
     </div>
-    <script type="module" src="./app.js?v=20"></script>
-    <script type="module" src="./ingredients.js?v=20"></script>
-    <script defer="" src="./motion.js?v=20"></script>
-    <script defer="" src="./prompts.js?v=20"></script>
-    <script type="module" src="./products.js"></script>
-    <script type="module" src="./shell.js"></script>
+    <script type="module" src="./app.js?v=21"></script>
+    <script type="module" src="./ingredients.js?v=21"></script>
+    <script defer="" src="./motion.js?v=21"></script>
+    <script defer="" src="./prompts.js?v=21"></script>
+    <script type="module" src="./products.js?v=21"></script>
+    <script type="module" src="./shell.js?v=21"></script>
   </body>
 </html>

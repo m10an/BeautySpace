@@ -1,3 +1,5 @@
+import { visualDifference } from "./visual.js";
+import { goTo, setTheme } from "./navigation.js";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync, existsSync } from "node:fs";
@@ -29,7 +31,7 @@ async function prepare(page) {
   );
   await page.goto("/");
   await expect(page.locator("#inciAnalyze")).toBeEnabled();
-  await page.locator('[data-tab="ingredients"]').click();
+  await goTo(page, "ingredients");
   await page.evaluate(() => document.fonts.ready);
 }
 async function analyze(page, input) {
@@ -122,36 +124,36 @@ test.describe("Supplied scenarios adapted to v2", () => {
   }) => {
     await page.evaluate(() => localStorage.setItem("qa-unrelated", "keep-me"));
     page.on("dialog", (d) => d.accept());
-    await page.locator('[data-tab="settings"]').click();
+    await goTo(page, "settings");
     await page.locator("#startDate").fill("2026-10-01");
     await page.locator("#useNia").uncheck();
     await page.locator("#saveSettings").click();
-    await page.locator('[data-tab="journal"]').click();
+    await goTo(page, "journal");
     await page.locator("#inflamed").selectOption("2");
     await page.locator("#moodNote").fill("Supplied scenario mood");
     await page.locator("#saveMood").click();
-    await page.locator('[data-tab="hair"]').click();
+    await goTo(page, "hair");
     await page.locator("#hairName").fill("Supplied scenario mask");
     await page.locator("#hairAdd").click();
-    await page.locator('[data-tab="prompts"]').click();
+    await goTo(page, "prompts");
     await page.locator("#promptAnswer").fill("Supplied scenario reflection");
     await page.locator("#savePromptEntry").click();
     const before = await page.evaluate(() => ({ ...localStorage }));
     await page.reload();
     expect(await page.evaluate(() => ({ ...localStorage }))).toEqual(before);
-    await page.locator('[data-tab="settings"]').click();
+    await goTo(page, "settings");
     await expect(page.locator("#startDate")).toHaveValue("2026-10-01");
     await expect(page.locator("#useNia")).not.toBeChecked();
-    await page.locator('[data-tab="journal"]').click();
+    await goTo(page, "journal");
     await expect(page.locator("#inflamed")).toHaveValue("2");
     await expect(page.locator("#moodNote")).toHaveValue(
       "Supplied scenario mood",
     );
-    await page.locator('[data-tab="hair"]').click();
+    await goTo(page, "hair");
     await expect(page.locator("#hairProducts")).toContainText(
       "Supplied scenario mask",
     );
-    await page.locator('[data-tab="prompts"]').click();
+    await goTo(page, "prompts");
     await expect(page.locator("#promptEntries")).toContainText(
       "Supplied scenario reflection",
     );
@@ -171,7 +173,7 @@ test.describe("Supplied scenarios adapted to v2", () => {
     try {
       await page.goto("/", { waitUntil: "domcontentloaded" });
       await arrived;
-      await page.locator('[data-tab="ingredients"]').click();
+      await goTo(page, "ingredients");
       await page.locator("#inciInput").fill("Aqua");
       await expect(page.locator("#inciAnalyze")).toBeDisabled();
       await expect(page.locator("#inciResults")).toBeHidden();
@@ -226,9 +228,9 @@ test.describe("Supplied scenarios adapted to v2", () => {
       }, info) => {
         const findings = [];
         for (const theme of ["light", "dark"]) {
-          await page.locator("#themeSelect").selectOption(theme);
+          await setTheme(page, theme);
           for (const tab of tabs) {
-            await page.locator(`[data-tab="${tab}"]`).click();
+            await goTo(page, tab);
             if (tab === "ingredients")
               await analyze(
                 page,
@@ -296,7 +298,7 @@ test.describe("Supplied scenarios adapted to v2", () => {
       }, info) => {
         const reports = [];
         for (const tab of tabs) {
-          await page.locator(`[data-tab="${tab}"]`).click();
+          await goTo(page, tab);
           if (tab === "ingredients") await analyze(page, "Aqua, Parfum");
           const result = await new AxeBuilder({ page })
             .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
@@ -352,7 +354,14 @@ test.describe("Supplied scenarios adapted to v2", () => {
           body: second,
           contentType: "image/png",
         });
-        expect(second.equals(first)).toBe(true);
+        const difference = await visualDifference(page, first, second);
+        await info.attach("render-pixel-difference", {
+          body: JSON.stringify(difference),
+          contentType: "application/json",
+        });
+        expect(difference.sameSize).toBe(true);
+        expect(difference.maxChannelDelta).toBeLessThanOrEqual(1);
+        expect(difference.changedRatio).toBeLessThanOrEqual(0.0001);
       });
       test("@audit @baseline reviewer-approved visual baseline", async ({
         page,

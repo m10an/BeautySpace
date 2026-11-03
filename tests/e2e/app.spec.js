@@ -1,4 +1,4 @@
-import { goTo, setTheme } from "./navigation.js";
+import { goTo, setTheme, openAdvanced } from "./navigation.js";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
@@ -87,6 +87,7 @@ test("skin procedure CRUD, date selection and completion survive reload", async 
   await tab(page, "ritual");
   await page.locator("#dayPicker").fill("2027-02-28");
   await page.locator("#dayPicker").dispatchEvent("change");
+  await openAdvanced(page);
   await page.locator("#customName").fill("<img src=x onerror=alert(1)> Mask");
   await page.locator("#customMode").selectOption("daily");
   await page.locator("#customFrom").fill("2027-02-01");
@@ -94,6 +95,7 @@ test("skin procedure CRUD, date selection and completion survive reload", async 
   await expect(page.locator("#customList")).toContainText("<img");
   await expect(page.locator("#customList img")).toHaveCount(0);
   await page.locator("#customList [data-edit]").click();
+  await openAdvanced(page);
   await page.locator("#customName").fill("Evening mask");
   await page.locator("#addCustom").click();
   await page
@@ -414,6 +416,7 @@ test("one-off skin care can be scheduled before the recurring start date", async
 }) => {
   await ready(page);
   await tab(page, "ritual");
+  await openAdvanced(page);
   await page.locator("#customName").fill("One-off care");
   await page.locator("#customMode").selectOption("once");
   await page.locator("#customOnce").fill("2025-12-31");
@@ -473,6 +476,7 @@ test("corrupt saved stores remain intact when edits are attempted", async ({
   page.on("dialog", (d) => d.accept());
   await ready(page);
   await tab(page, "ritual");
+  await openAdvanced(page);
   await page.locator("#customName").fill("Do not overwrite");
   await page.locator("#customMode").selectOption("daily");
   await page.locator("#addCustom").click();

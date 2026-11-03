@@ -364,6 +364,7 @@ function renderCustom() {
           updateCustomMode();
           $("addCustom").textContent = "Save changes";
           $("cancelCustomEdit").classList.remove("hidden");
+          if ($("advancedCare")) $("advancedCare").open = true;
           $("customName").focus();
         }),
     );
@@ -1003,3 +1004,17 @@ function cancelHairEdit() {
   $("cancelHairEdit").classList.add("hidden");
 }
 $("cancelHairEdit").onclick = cancelHairEdit;
+
+window.addEventListener("beauty:routines-added", () => {
+  try {
+    state = validateLegacyBackup(
+      JSON.parse(localStorage.getItem(KEY)),
+      defaults,
+    );
+    persistedState = structuredClone(state);
+    render();
+  } catch {
+    $("appStatus").textContent =
+      "The saved routine could not be refreshed. Export a backup before editing.";
+  }
+});

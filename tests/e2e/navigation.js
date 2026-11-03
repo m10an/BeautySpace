@@ -14,3 +14,8 @@ export async function setTheme(page, theme) {
     theme,
   );
 }
+
+export async function openAdvanced(page) {
+  if (!(await page.locator("#advancedCare").evaluate((el) => el.open)))
+    await page.locator("#advancedCare summary").click();
+}

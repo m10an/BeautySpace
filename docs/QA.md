@@ -16,16 +16,18 @@ npm audit --json
 
 - Syntax, JSON and ingredient evidence contract: passed.
 - Unit tests: **42 passed, 0 failed, 0 skipped**.
-- Completed browser suite: **57 passed, 0 failed, 4 skipped**, 0 flaky (61 discovered, no local retries). Includes 22 passing adapted browser scenarios from the supplied archives; four approved-baseline comparisons are skipped because no approved PNGs exist.
+- Completed browser suite: **82 passed, 0 failed, 4 skipped**, 0 flaky (86 discovered, no local retries). The full editorial redesign run includes all existing tests, 23 new navigation/theme/motion/visual scenarios and the additional 430 px layout cases. Four approved-baseline comparisons remain skipped because no approved PNGs exist.
 - Production build: **20 explicit static assets**; served under `/dist/` as a repository-subpath simulation and reloaded offline successfully.
 - `npm audit`: **0 reported vulnerabilities**, including development dependencies, at the time of this run. This is not a guarantee against undisclosed issues.
 - `git diff --check`: passed.
+
+The final redesign run used `CHROMIUM_PATH=/usr/bin/chromium npm run test:all`; syntax/integrity, unit tests, the 20-asset production build and browser tests completed successfully. Both existing workflows remain unchanged with Playwright jobs pinned to Ubuntu 24.04. Prettier checks on changed source files and `git diff --check` passed. See [EDITORIAL-REDESIGN.md](EDITORIAL-REDESIGN.md) for changed files and review screenshots.
 
 ## Browser coverage
 
 | Area                    | Executed checks                                                                                                                                                                        |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Responsive layouts      | All ten sections at 320, 375, 390, 768, 1024 and 1440 px in both themes; document overflow assertions; long unknown INCI string; screenshot artifacts                                  |
+| Responsive layouts      | All ten sections at 320, 375, 390, 430, 768, 1024 and 1440 px in both themes; document overflow assertions; long unknown INCI string; screenshot artifacts                             |
 | Automated accessibility | Axe WCAG A/AA rule tags over every section at 390/1440 px, light/dark; no violations reported                                                                                          |
 | Keyboard                | Skip link/main focus, routine completion focus retention, native navigation/buttons                                                                                                    |
 | Skincare                | Add/edit/delete, malicious procedure name treated as text, selected-date completion and reload, one-off date before recurring start                                                    |
@@ -50,3 +52,11 @@ The HTML report, JSON (`test-results/results.json`), JUnit XML (`test-results/re
 - The supplied archives were received in the follow-up. Unmodified compatibility probes fail (24 unit tests and one selected browser scenario); these are reported separately from adapted v2 tests. See [SUPPLIED-TESTS.md](SUPPLIED-TESTS.md) for the complete mapping and the original tests not executed.
 - Cross-store restore cannot be fully crash-atomic. Rollback is attempted and failures are disclosed; export a current archive before import.
 - No production Pages deploy, Telegram launch or remote Actions success is established by these local results. Repository publication status is recorded separately in the handoff.
+
+## Editorial-specific coverage
+
+Calendar is the initial screen; all other sections remain available only through the glass drawer. The seven-width/two-theme matrix checks default state, 44 px nonoverlapping header controls, menu visibility, Escape/button/outside closure and viewport bounds. Additional tests cover keyboard focus cycling, every destination, reload defaults, denied theme storage, legacy system preferences, scroll restoration, short landscape viewports, live reduced-motion changes and different layer scroll rates. Both open-drawer themes pass axe checks; incomplete findings remain attached for manual review.
+
+The first full redesign run identified two issues: permanently reserved scrollbar space shifted desktop centering, and raw PNG equality was unstable at sparse antialiased edges. Centering was corrected in production CSS/scroll-lock logic. The visual test now decodes pixels, requires identical dimensions, permits at most one channel level of rounding in at most 0.01% of pixels, and attaches the measured differences. A synthetic sentinel rejects a one-pixel geometry shift and a full-frame palette change. No current test is disabled to hide a failure; the archive originals remain byte-identical and the four existing missing-baseline skips are unchanged.
+
+Visual previews in `docs/previews/` were copied from the passing final run's fresh profiles. WebKit and Firefox executables were unavailable in this environment; no real iPhone Safari, VoiceOver or physical Android validation is claimed. The stylesheet includes safe-area, dynamic-viewport and backdrop-filter fallbacks, but device review remains a release check.

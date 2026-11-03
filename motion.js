@@ -1,37 +1,31 @@
-"use strict";
+/** Scroll-driven transforms only. No animation loop, layout reads or large blur filters. */
 (() => {
-  const scene = document.querySelector("[data-parallax-scene]");
-  if (!scene || !("requestAnimationFrame" in window)) return;
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let ticking = false;
+  const root = document.documentElement;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  let frame = 0;
   function update() {
-    ticking = false;
-    if (reduced.matches) {
-      scene.style.setProperty("--parallax-media", "0px");
-      scene.style.setProperty("--parallax-copy", "0px");
-      return;
-    }
-    const r = scene.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > window.innerHeight) return;
-    const delta = Math.max(
-      -1,
-      Math.min(
-        1,
-        (window.innerHeight * 0.5 - (r.top + r.height * 0.5)) /
-          window.innerHeight,
-      ),
+    frame = 0;
+    const y = reduced.matches ? 0 : Math.min(Math.max(scrollY, 0), 900);
+    root.style.setProperty("--depth-far", `${(-y * 0.025).toFixed(2)}px`);
+    root.style.setProperty("--depth-near", `${(-y * 0.055).toFixed(2)}px`);
+    root.style.setProperty(
+      "--depth-image",
+      `${(Math.min(y, 320) * 0.035).toFixed(2)}px`,
     );
-    scene.style.setProperty("--parallax-media", (delta * 22).toFixed(1) + "px");
-    scene.style.setProperty("--parallax-copy", (-delta * 11).toFixed(1) + "px");
   }
   function schedule() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
+    if (!frame && !reduced.matches && !document.hidden)
+      frame = requestAnimationFrame(update);
   }
-  window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", schedule, { passive: true });
-  reduced.addEventListener?.("change", schedule);
+  function preferenceChanged() {
+    if (frame) cancelAnimationFrame(frame);
+    frame = 0;
+    update();
+  }
+  addEventListener("scroll", schedule, { passive: true });
+  reduced.addEventListener("change", preferenceChanged);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) update();
+  });
   update();
 })();

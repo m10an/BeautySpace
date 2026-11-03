@@ -280,23 +280,25 @@ $("dayPicker").onchange = (e) => {
   );
   render();
 };
-document.querySelectorAll(".tab").forEach(
-  (btn) =>
-    (btn.onclick = () => {
-      document
-        .querySelectorAll(".tab")
-        .forEach((b) => b.classList.toggle("active", b === btn));
-      document
-        .querySelectorAll(".screen")
-        .forEach((s) => s.classList.toggle("hidden", s.id !== btn.dataset.tab));
-      if (btn.dataset.tab === "journal") {
-        loadMood();
-        renderPhotos();
-      }
-      if (btn.dataset.tab === "insights") renderStats();
-      render();
-    }),
-);
+// Section identities and legacy data are unchanged; the shell owns navigation UI.
+export function activateSection(id) {
+  const button = [...document.querySelectorAll(".tab")].find(
+    (btn) => btn.dataset.tab === id,
+  );
+  if (!button) return;
+  document
+    .querySelectorAll(".tab")
+    .forEach((btn) => btn.classList.toggle("active", btn === button));
+  document
+    .querySelectorAll(".screen")
+    .forEach((screen) => screen.classList.toggle("hidden", screen.id !== id));
+  if (id === "journal") {
+    loadMood();
+    renderPhotos();
+  }
+  if (id === "insights") renderStats();
+  render();
+}
 $("saveDay").onclick = () => {
   const a = [...$("activeEditor").querySelectorAll("input:checked")].map(
     (x) => x.value,

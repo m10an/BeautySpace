@@ -1,3 +1,4 @@
+import { goTo, setTheme } from "./navigation.js";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
@@ -14,21 +15,21 @@ const sections = [
   "products",
 ];
 async function tab(page, name) {
-  await page.locator(`[data-tab="${name}"]`).click();
+  await goTo(page, name);
   await expect(page.locator(`#${name}`)).toBeVisible();
 }
 async function ready(page) {
   await page.goto("/");
   await expect(page.locator("#inciAnalyze")).toBeEnabled();
 }
-for (const width of [320, 375, 390, 768, 1024, 1440])
+for (const width of [320, 375, 390, 430, 768, 1024, 1440])
   for (const theme of ["light", "dark"])
     test(`layout ${width}px ${theme}: all sections, long INCI`, async ({
       page,
     }, testInfo) => {
       await page.setViewportSize({ width, height: 900 });
       await ready(page);
-      await page.locator("#themeSelect").selectOption(theme);
+      await setTheme(page, theme);
       for (const section of sections) {
         await tab(page, section);
         if (section === "ingredients") {
@@ -66,7 +67,7 @@ for (const width of [390, 1440])
     }) => {
       await page.setViewportSize({ width, height: 900 });
       await ready(page);
-      await page.locator("#themeSelect").selectOption(theme);
+      await setTheme(page, theme);
       for (const section of sections) {
         await tab(page, section);
         if (section === "ingredients") {
@@ -295,7 +296,7 @@ test("backup export includes all stores; valid restore and invalid rejection", a
     mimeType: "application/json",
     buffer: Buffer.from(JSON.stringify(data)),
   });
-  await expect(page.locator('[data-tab="products"]')).toBeVisible();
+  await expect(page.locator("#menuToggle")).toBeVisible();
   await tab(page, "products");
   await expect(page.locator(".product-card")).toContainText("Restored product");
   await tab(page, "settings");
@@ -312,7 +313,7 @@ test("keyboard skip link, focus and theme persistence", async ({ page }) => {
   await expect(page.locator(".skip-link")).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("main")).toBeFocused();
-  await page.locator("#themeSelect").selectOption("dark");
+  await setTheme(page, "dark");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });

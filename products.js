@@ -1,6 +1,6 @@
 import { normalize, validateProduct, analyzeInci } from "./lib/domain.js";
 import { readCollection, writeCollection } from "./lib/storage.js";
-import { referenceReady, analysisHtml } from "./ingredients.js";
+import { referenceReady, analysisHtml } from "./ingredients.js?v=21";
 const $ = (id) => document.getElementById(id);
 let products = [],
   editing = null,

@@ -1,16 +1,16 @@
 /* Versioned same-origin shell. Never cache user data or third-party requests. */
-const CACHE = "beautycalendar-v2-1";
+const CACHE = "beautycalendar-v2-editorial-1";
 const ASSETS = [
   "./",
   "./index.html",
-  "./style.css?v=20",
-  "./app.js?v=20",
-  "./ingredients.js?v=20",
-  "./motion.js?v=20",
-  "./prompts.js?v=20",
-  "./theme.js",
-  "./shell.js",
-  "./products.js",
+  "./style.css?v=21",
+  "./app.js?v=21",
+  "./ingredients.js?v=21",
+  "./motion.js?v=21",
+  "./prompts.js?v=21",
+  "./theme.js?v=21",
+  "./shell.js?v=21",
+  "./products.js?v=21",
   "./archive.js",
   "./lib/domain.js",
   "./lib/storage.js",

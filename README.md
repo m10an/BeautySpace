@@ -29,6 +29,7 @@ Convenience commands: `npm run test:all` runs the complete current gate; `test:u
 
 ## Features
 
+- Calendar opens first, with a compact header, frosted off-canvas navigation and a round theme control.
 - Independent skin/hair calendars; create, edit, delete, schedule and complete care steps.
 - Personal product shelf: name, brand, category, INCI, compressed photo, edit/delete and local search.
 - Case-insensitive, whitespace-normalized partial INCI/synonym search in a curated 107-entry reference.
@@ -41,7 +42,7 @@ The product search covers **your own collection**, not a global catalog. See [ar
 
 ## Data and upgrades
 
-Export **everything, including photos** in **More → Backup & restore** before deploying an update or changing browser/origin. Version 4 exports include skin state, hair state, reflections, products and photos. Version 3 skincare/photo archives are still accepted. Missing stores in older archives are left unchanged. Restore validates before writing; included stores are replaced and progress photos merged by ID. Failed restore attempts rollback, with an explicit warning if rollback also fails. Avoid concurrent edits in other tabs while restoring.
+Export **everything, including photos** in **Menu → More → Backup & restore** before deploying an update or changing browser/origin. Version 4 exports include skin state, hair state, reflections, products and photos. Version 3 skincare/photo archives are still accepted. Missing stores in older archives are left unchanged. Restore validates before writing; included stores are replaced and progress photos merged by ID. Failed restore attempts rollback, with an explicit warning if rollback also fails. Avoid concurrent edits in other tabs while restoring.
 
 Existing storage keys are retained: `girly-skincare-v1`, `beautycalendar-hair-v1`, `beautyjournal-private-prompts-v1`, and IndexedDB `beautycalendar-private-photos`. The new product collection uses separate IndexedDB `beautycalendar-v2`. Corrupt skincare state is not silently overwritten by routine edits. Browser storage is not encrypted or cloud synced; backups are sensitive, unencrypted JSON files. Moving between GitHub Pages origins, Telegram and browsers requires explicit backup transfer.
 
@@ -57,6 +58,7 @@ Repository settings must enable **Pages → Source → GitHub Actions**. Feature
 
 - [Source and design audit](docs/AUDIT.md)
 - [Design tokens and accessibility](docs/DESIGN.md)
+- [Editorial UI redesign and QA scope](docs/EDITORIAL-REDESIGN.md)
 - [Architecture, catalog and Telegram plan](docs/ARCHITECTURE.md)
 - [Ingredient evidence audit and limitations](docs/INGREDIENTS.md)
 - [QA results and remaining checks](docs/QA.md)

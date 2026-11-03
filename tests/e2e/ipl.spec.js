@@ -88,3 +88,29 @@ test("unknown manufacturer guidance blocks IPL automation and AI entry opens loc
     ),
   ).toBe(0);
 });
+test("IPL remains local offline and corrupt records block planning without overwrite", async ({
+  page,
+  context,
+}) => {
+  await start(page);
+  await context.setOffline(true);
+  await page.locator("#iplarea").fill("Legs");
+  await page.locator("#ipldate").fill("2026-01-01");
+  await page
+    .getByRole("button", { name: "Preview session", exact: true })
+    .click();
+  await page.locator("#iplConfirm").click();
+  await expect(page.locator("#iplStatus")).toContainText("saved");
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.evaluate(() =>
+    localStorage.setItem("beautyspace-ipl-v1", "{corrupt"),
+  );
+  await page.locator("#iplPlanning summary").click();
+  await page.locator("#iplPlan").click();
+  await expect(page.locator("#iplPlanningStatus")).toContainText("JSON");
+  expect(
+    await page.evaluate(() => localStorage.getItem("beautyspace-ipl-v1")),
+  ).toBe("{corrupt");
+  expect(errors).toEqual([]);
+});

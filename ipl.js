@@ -180,8 +180,8 @@ $("iplNew").onclick = () => {
   $("iplConfirm").hidden = true;
 };
 $("iplPlan").onclick = () => {
-  const state = read();
   try {
+    const state = read();
     planIPL({ brand: state.device.brand, model: state.device.model });
   } catch (e) {
     $("iplPlanningStatus").textContent =

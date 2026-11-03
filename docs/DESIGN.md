@@ -17,7 +17,7 @@ The editorial concept remains: warm paper, quiet botanical accents, high-contras
 | Error `--danger`           | `#9c2736` | `#ffb5bb` |
 | Focus `--focus`            | `#145fb5` | `#9ecaff` |
 
-Headings use `GFS Didot, Didot, Bodoni MT, Georgia, Times New Roman, serif`. Body and form controls use `system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif`, 16 px base, 1.6 line height. Headings scale with `clamp`; ordinary labels are at least 14 px except calendar metadata/eyebrows at 12 px. Google Fonts links precede body rendering; the core application never depends on an external font response.
+Headings, body and controls use self-hosted variable Montserrat with system sans-serif fallbacks. SIL OFL files and licenses ship offline. The historical `--serif` token now resolves to the same family. An original skincare still life, subtle grain, glass and bounded parallax support the calendar. Reduced motion disables movement.
 
 Spacing scale: 4, 8, 12, 16, 24 and 32 px. Cards use 12 px radii; inputs/buttons use 6 px. Content max width: 1280 px shell, 1140 px header/main including gutters. Gutter/card padding is 24 px, reducing to 16 px below 600 px. Grids use `minmax(0,1fr)`; product/form grids collapse to one column below 600 px. The calendar and selected day share two columns above 900 px and stack below that breakpoint. Seven calendar columns persist on mobile. Long strings wrap anywhere instead of widening the document.
 

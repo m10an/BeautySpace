@@ -1,5 +1,5 @@
 /* Versioned same-origin shell. Never cache user data or third-party requests. */
-const CACHE = "beautycalendar-v2-builder-1";
+const CACHE = "beautycalendar-v2-ai-1";
 const ASSETS = [
   "./assets/serum-editorial.jpg",
   "./assets/Montserrat.ttf",
@@ -7,19 +7,22 @@ const ASSETS = [
   "./data/ingredient-names.json",
   "./data/comedogenicity.json",
   "./lib/inci-reference.js",
-  "./builder.js?v=24",
+  "./builder.js?v=25",
   "./lib/routine-plan.js",
   "./lib/dialog.js",
+  "./ai-client.js?v=25",
+  "./lib/ai-plan.js",
+  "./runtime-config.json",
   "./",
   "./index.html",
-  "./style.css?v=24",
-  "./app.js?v=24",
-  "./ingredients.js?v=24",
-  "./motion.js?v=24",
-  "./prompts.js?v=24",
-  "./theme.js?v=24",
-  "./shell.js?v=24",
-  "./products.js?v=24",
+  "./style.css?v=25",
+  "./app.js?v=25",
+  "./ingredients.js?v=25",
+  "./motion.js?v=25",
+  "./prompts.js?v=25",
+  "./theme.js?v=25",
+  "./shell.js?v=25",
+  "./products.js?v=25",
   "./archive.js",
   "./lib/domain.js",
   "./lib/storage.js",
@@ -60,6 +63,14 @@ self.addEventListener("fetch", (event) => {
     new URL(event.request.url).origin !== self.location.origin
   )
     return;
+  if (new URL(event.request.url).pathname.endsWith("/runtime-config.json")) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" }).catch(() =>
+        caches.open(CACHE).then((cache) => cache.match(event.request)),
+      ),
+    );
+    return;
+  }
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request).catch(() =>

@@ -1,7 +1,14 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { validateDatabase } from "../lib/domain.js";
-for (const folder of [".", "lib", "scripts", "tests/unit", "tests/e2e"]) {
+for (const folder of [
+  ".",
+  "lib",
+  "scripts",
+  "tests/unit",
+  "tests/e2e",
+  "server",
+]) {
   for (const file of readdirSync(folder).filter((f) => f.endsWith(".js"))) {
     const r = spawnSync(process.execPath, ["--check", `${folder}/${file}`], {
       stdio: "inherit",

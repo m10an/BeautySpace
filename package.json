@@ -18,7 +18,8 @@
     "test:audit": "npm run test:e2e -- --grep @audit",
     "test:visual": "npm run test:e2e -- --grep @baseline",
     "test:all": "npm run check && npm test && npm run test:e2e",
-    "test:legacy-probe": "npm run build && node scripts/probe-supplied.js"
+    "test:legacy-probe": "npm run build && node scripts/probe-supplied.js",
+    "ai:server": "node server/index.js"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",

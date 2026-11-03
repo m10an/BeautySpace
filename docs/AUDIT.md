@@ -27,4 +27,4 @@ Original skincare task IDs and custom procedure IDs, localStorage keys, photo da
 
 ## Scope limits
 
-The supplied task text ends at section 5, item 3. Three previously downloaded ZIP test archives were mentioned but were not attached or available. The committed tests were created for this implementation; no claim is made about running those archives.
+The supplied task text ends at section 5, item 3. The three ZIP test archives were unavailable during the first implementation pass, then supplied in the follow-up. Their originals, compatibility failures and adapted executable coverage are now documented in [SUPPLIED-TESTS.md](SUPPLIED-TESTS.md).

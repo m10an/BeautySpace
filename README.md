@@ -25,6 +25,8 @@ npm run build
 
 For a preinstalled system Chromium: `CHROMIUM_PATH=/usr/bin/chromium npm run test:e2e`. The browser suite builds its production artifact first. Test results, screenshots, failure traces and JUnit XML are in ignored `test-results/` and `playwright-report/`. `dist/` contains only the deployable application.
 
+Convenience commands: `npm run test:all` runs the complete current gate; `test:unit`, `test:supplied`, `test:audit` and `test:visual` select subsets. Four screenshot-baseline checks remain explicitly skipped until reviewer-approved PNGs are provided. The optional `test:legacy-probe` reproduces known failing compatibility checks for the untouched old tests; it is separate from the v2 gate.
+
 ## Features
 
 - Independent skin/hair calendars; create, edit, delete, schedule and complete care steps.
@@ -58,5 +60,6 @@ Repository settings must enable **Pages → Source → GitHub Actions**. Feature
 - [Architecture, catalog and Telegram plan](docs/ARCHITECTURE.md)
 - [Ingredient evidence audit and limitations](docs/INGREDIENTS.md)
 - [QA results and remaining checks](docs/QA.md)
+- [Supplied test archives, compatibility results and migration](docs/SUPPLIED-TESTS.md)
 
 No license was present in the inspected source; this change does not invent or grant new rights to the source, imagery or reference content.

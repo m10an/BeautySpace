@@ -1,0 +1,9 @@
+[
+  {"name":"Aqua","category":"Solvent","note":"Neutral fixture."},
+  {"name":"Glycerin","category":"Humectant","note":"Neutral fixture."},
+  {"name":"Niacinamide","category":"Skin conditioning","note":"Neutral fixture."},
+  {"name":"Parfum","category":"Fragrance","note":"Fragrance fixture."},
+  {"name":"Limonene","category":"Allergen","note":"Allergen fixture."},
+  {"name":"Cocos Nucifera Oil","category":"Emollient","note":"Mentioned in comedogenicity lists."},
+  {"name":"Isopropyl Myristate","category":"Emollient","note":"Mentioned in comedogenicity tests."}
+]

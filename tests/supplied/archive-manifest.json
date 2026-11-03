@@ -1,0 +1,34 @@
+{
+  "1-beautycalendar-github-actions.zip": {
+    "sha256": "9dc512facb92512ba736c83a9b5ec0dec70d9395c63e10a1ca90fbf27b215931",
+    "bytes": 1211,
+    "files": {
+      "1-beautycalendar-github-actions/.github/workflows/ci.yml": "408db7a21b2203fa44eb52dbbdd3e81d287919859610e1c18362fcf641527b98"
+    }
+  },
+  "2-beautycalendar-playwright.zip": {
+    "sha256": "a388ead6a62661f2c833e6fc4005008c9b045722588f084c274bd0981b486cc6",
+    "bytes": 2475,
+    "files": {
+      "2-beautycalendar-playwright/package.json": "48943e2de4b7ee987734a5b370417430c30820427e033ec302e3361daba6d2a7",
+      "2-beautycalendar-playwright/package-lock.json": "b65af2a8c62508d91301f6a6b843bfe0636caa4434402d3d21dcb643da5021fc",
+      "2-beautycalendar-playwright/playwright.config.cjs": "7f20ada9a5c2342711761814be75bead917d84006bd9ec762c84e43c1b0a824a",
+      "2-beautycalendar-playwright/.gitignore": "b4ef1d092be7d9d2a24151413c5aaa64e48c5109e1a93b4eb056865c6e12c03b"
+    }
+  },
+  "3-beautycalendar-tests.zip": {
+    "sha256": "255f2f9f3df55f82cfd05b811973c61fca2ab744e0d76a72f239ccaf4db45433",
+    "bytes": 20550,
+    "files": {
+      "3-beautycalendar-tests/tests/e2e/audit.spec.cjs": "0cc4774bec7cee4e836c0d1fc815353192fe45a012bcd97c42cc674f3db2c5d5",
+      "3-beautycalendar-tests/tests/e2e/functional.spec.cjs": "b89101056b3a413b73044624e3b9ac75be09744447b47d85066f6f200eba9e97",
+      "3-beautycalendar-tests/tests/e2e/helpers.cjs": "94004196fc5062026ef5abf4433e926584fe6ee293d0067e28d56b5d62773c26",
+      "3-beautycalendar-tests/tests/fixtures/ingredients.json": "a4acfe0d684d44869b2de5eb11dc1d9269baa44d24081b23c4a3ce705cf3b179",
+      "3-beautycalendar-tests/tests/server.cjs": "ac84970c76bea642c6892758ca9d385dc4ca0a881131b421b8c662df3bdd4757",
+      "3-beautycalendar-tests/tests/unit/ingredients.test.cjs": "6127605d3f50d789f97eea1440989c91753db64ada0f4e120ee12be91b2ad0fb",
+      "3-beautycalendar-tests/docs/PR-MANUAL.md": "e8cccf40128aefa66123e8e9391b33b5d802922336efd05810dca183bd98b0be",
+      "3-beautycalendar-tests/docs/QA-RESULTS.md": "ad2a57430b089a8d444824593a1de2205170b3e718fae08bec3d6b893a6eb704",
+      "3-beautycalendar-tests/docs/QA.md": "a368d49255afc45eec29e49be9abe022da6eb678f27154ebbda5f2b346cf9d5b"
+    }
+  }
+}

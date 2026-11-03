@@ -21,7 +21,11 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run check
-      - run: npm test
+      - name: Unit tests with retained output
+        shell: bash
+        run: |
+          set -o pipefail
+          npm test | tee unit-test-results.txt
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
@@ -30,6 +34,7 @@ jobs:
         with:
           name: qa-results
           path: |
+            unit-test-results.txt
             playwright-report/
             test-results/
           retention-days: 14

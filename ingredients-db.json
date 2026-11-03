@@ -1,1 +1,1294 @@
-[{"name":"Aqua","category":"Solvent","note":"Water; common base for cosmetic formulations."},{"name":"Glycerin","category":"Humectant","note":"Helps draw water into the outer skin layers."},{"name":"Niacinamide","category":"Skin conditioning","note":"Supports the skin barrier; may help with uneven tone and visible oiliness."},{"name":"Panthenol","category":"Humectant","note":"Moisturizing and skin-conditioning ingredient."},{"name":"Hyaluronic Acid","category":"Humectant","note":"Helps bind water at the skin surface."},{"name":"Sodium Hyaluronate","category":"Humectant","note":"A salt of hyaluronic acid used for hydration."},{"name":"Butylene Glycol","category":"Humectant","note":"Solvent and humectant used in many formulas."},{"name":"Propanediol","category":"Humectant","note":"Solvent and moisturizing ingredient."},{"name":"Pentylene Glycol","category":"Humectant","note":"Solvent and humectant."},{"name":"Betaine","category":"Humectant","note":"Helps maintain skin hydration."},{"name":"Squalane","category":"Emollient","note":"Lightweight skin-softening ingredient; individual tolerance varies."},{"name":"Dimethicone","category":"Emollient","note":"Silicone that reduces moisture loss and improves slip."},{"name":"Cyclopentasiloxane","category":"Silicone","note":"Volatile silicone used for smooth application."},{"name":"Caprylic/Capric Triglyceride","category":"Emollient","note":"Fatty-acid-derived emollient; performance depends on the full formula."},{"name":"Ceramide NP","category":"Barrier support","note":"Skin-identical lipid used to support the moisture barrier."},{"name":"Ceramide AP","category":"Barrier support","note":"Skin-identical lipid."},{"name":"Ceramide EOP","category":"Barrier support","note":"Skin-identical lipid."},{"name":"Cholesterol","category":"Barrier support","note":"Skin lipid often paired with ceramides."},{"name":"Phytosphingosine","category":"Barrier support","note":"Lipid-related skin-conditioning ingredient."},{"name":"Allantoin","category":"Skin conditioning","note":"Often included in soothing formulations."},{"name":"Centella Asiatica Extract","category":"Botanical","note":"Plant extract used in skin-conditioning products; allergies are possible."},{"name":"Madecassoside","category":"Skin conditioning","note":"Centella-derived ingredient used in soothing formulas."},{"name":"Aloe Barbadensis Leaf Juice","category":"Botanical","note":"Aloe-derived ingredient; reactions are possible."},{"name":"Green Tea Extract","category":"Antioxidant","note":"Plant extract containing antioxidant compounds."},{"name":"Camellia Sinensis Leaf Extract","category":"Antioxidant","note":"Tea-derived extract."},{"name":"Tocopherol","category":"Antioxidant","note":"Vitamin E; protects formula oils and conditions skin."},{"name":"Ascorbic Acid","category":"Active","note":"Vitamin C; formulation and concentration affect tolerance."},{"name":"Ascorbyl Glucoside","category":"Antioxidant","note":"Vitamin C derivative used in skin-care formulas."},{"name":"Azelaic Acid","category":"Active","note":"Used for acne-prone skin and uneven tone; may cause stinging or dryness."},{"name":"Salicylic Acid","category":"Exfoliant","note":"Beta-hydroxy acid; concentration and frequency affect irritation."},{"name":"Glycolic Acid","category":"Exfoliant","note":"Alpha-hydroxy acid; can increase irritation and sun sensitivity."},{"name":"Lactic Acid","category":"Exfoliant","note":"Alpha-hydroxy acid with exfoliating and humectant roles."},{"name":"Mandelic Acid","category":"Exfoliant","note":"Alpha-hydroxy acid; still may irritate sensitive skin."},{"name":"Retinol","category":"Retinoid","note":"Vitamin A derivative; can cause dryness and irritation."},{"name":"Retinal","category":"Retinoid","note":"Vitamin A derivative; can cause irritation."},{"name":"Adapalene","category":"Retinoid","note":"Acne-treatment retinoid; may cause dryness or irritation."},{"name":"Zinc PCA","category":"Skin conditioning","note":"Zinc salt used in oil-control and skin-conditioning formulas."},{"name":"Zinc Oxide","category":"UV filter","note":"Mineral UV filter; SPF protection depends on finished product testing."},{"name":"Titanium Dioxide","category":"UV filter","note":"Mineral UV filter; SPF protection depends on finished product testing."},{"name":"Avobenzone","category":"UV filter","note":"Organic UVA filter."},{"name":"Octocrylene","category":"UV filter","note":"Organic UV filter; some users may be sensitive."},{"name":"Ethylhexyl Triazone","category":"UV filter","note":"UVB filter used in sunscreen formulas."},{"name":"Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine","category":"UV filter","note":"Broad-spectrum UV filter."},{"name":"Uvinul A Plus","category":"UV filter","note":"Trade name for Diethylamino Hydroxybenzoyl Hexyl Benzoate."},{"name":"Diethylamino Hydroxybenzoyl Hexyl Benzoate","category":"UV filter","note":"UVA filter."},{"name":"Phenoxyethanol","category":"Preservative","note":"Preservative; sensitivity is possible."},{"name":"Ethylhexylglycerin","category":"Preservative booster","note":"Common preservative-supporting and conditioning ingredient."},{"name":"Sodium Benzoate","category":"Preservative","note":"Preservative used in cosmetic formulas."},{"name":"Potassium Sorbate","category":"Preservative","note":"Preservative used in cosmetic formulas."},{"name":"Disodium EDTA","category":"Chelating agent","note":"Helps stabilize formulas by binding metal ions."},{"name":"Citric Acid","category":"pH adjuster","note":"Often used to adjust product pH."},{"name":"Sodium Hydroxide","category":"pH adjuster","note":"Used to adjust formula pH; not equivalent to applying it neat."},{"name":"Carbomer","category":"Thickener","note":"Polymer that helps create gel textures."},{"name":"Xanthan Gum","category":"Thickener","note":"Polysaccharide used to stabilize formulas."},{"name":"Cetearyl Alcohol","category":"Fatty alcohol","note":"Fatty alcohol used for texture and emollience; not the same as ethanol."},{"name":"Cetyl Alcohol","category":"Fatty alcohol","note":"Emollient and thickener; not the same as drying alcohol."},{"name":"Stearyl Alcohol","category":"Fatty alcohol","note":"Fatty alcohol used for texture and emollience."},{"name":"Alcohol Denat.","category":"Solvent","note":"Can increase dryness or stinging for some skin types, depending on formula."},{"name":"Ethanol","category":"Solvent","note":"Alcohol used as solvent; may be drying in some formulas."},{"name":"Parfum","category":"Fragrance","note":"Fragrance mixture; relevant if you are fragrance-sensitive."},{"name":"Fragrance","category":"Fragrance","note":"Fragrance mixture; relevant if you are fragrance-sensitive."},{"name":"Limonene","category":"Fragrance allergen","note":"Fragrance component that may cause contact allergy in some people."},{"name":"Linalool","category":"Fragrance allergen","note":"Fragrance component that may cause contact allergy in some people."},{"name":"Citral","category":"Fragrance allergen","note":"Fragrance component that may cause contact allergy in some people."},{"name":"Geraniol","category":"Fragrance allergen","note":"Fragrance component that may cause contact allergy in some people."},{"name":"Citronellol","category":"Fragrance allergen","note":"Fragrance component that may cause contact allergy in some people."},{"name":"Benzyl Alcohol","category":"Fragrance/preservative","note":"Can function as fragrance component or preservative."},{"name":"Isopropyl Myristate","category":"Emollient","note":"Historically flagged in some laboratory comedogenicity tests; these do not reliably predict finished-product behavior."},{"name":"Isopropyl Palmitate","category":"Emollient","note":"Historically flagged in some laboratory comedogenicity tests; finished-formula response varies."},{"name":"Myristyl Myristate","category":"Emollient","note":"Often mentioned in comedogenicity lists, but such lists cannot predict personal breakouts."},{"name":"Ethylhexyl Palmitate","category":"Emollient","note":"Emollient sometimes discussed in comedogenicity lists; formulation matters."},{"name":"Coconut Oil","category":"Plant oil","note":"Occlusive plant oil; some acne-prone users prefer alternatives, but individual reactions vary."},{"name":"Cocos Nucifera Oil","category":"Plant oil","note":"Coconut oil; individual tolerance varies."},{"name":"Shea Butter","category":"Emollient","note":"Rich emollient; not inherently acne-causing in all formulas."},{"name":"Butyrospermum Parkii Butter","category":"Emollient","note":"Shea butter INCI name."},{"name":"Petrolatum","category":"Occlusive","note":"Reduces water loss; purified cosmetic petrolatum is generally well tolerated."},{"name":"Mineral Oil","category":"Emollient","note":"Highly refined cosmetic mineral oil helps reduce moisture loss."},{"name":"Lanolin","category":"Emollient","note":"Wool-derived emollient; can trigger contact allergy in some people."},{"name":"Beeswax","category":"Wax","note":"Thickener and occlusive; individual reactions vary."},{"name":"Jojoba Seed Oil","category":"Plant oil","note":"Wax ester-rich emollient; personal tolerance varies."},{"name":"Simmondsia Chinensis Seed Oil","category":"Plant oil","note":"Jojoba oil INCI name."},{"name":"Sunflower Seed Oil","category":"Plant oil","note":"Emollient rich in fatty acids."},{"name":"Helianthus Annuus Seed Oil","category":"Plant oil","note":"Sunflower seed oil INCI name."},{"name":"Argania Spinosa Kernel Oil","category":"Plant oil","note":"Argan oil used for skin and hair conditioning."},{"name":"Ricinus Communis Seed Oil","category":"Plant oil","note":"Castor oil; rich texture, individual tolerance varies."},{"name":"Polysorbate 20","category":"Solubilizer","note":"Helps mix oils and water."},{"name":"Polysorbate 80","category":"Emulsifier","note":"Helps stabilize mixtures of oil and water."},{"name":"PEG-40 Hydrogenated Castor Oil","category":"Solubilizer","note":"Helps disperse fragrance or oils in water-based products."},{"name":"Sodium Laureth Sulfate","category":"Surfactant","note":"Cleansing agent; some formulations may feel drying."},{"name":"Sodium Lauryl Sulfate","category":"Surfactant","note":"Cleansing agent that may irritate sensitive skin."},{"name":"Cocamidopropyl Betaine","category":"Surfactant","note":"Cleansing ingredient; contact allergy is possible."},{"name":"Decyl Glucoside","category":"Surfactant","note":"Mild cleansing surfactant; individual sensitivity is possible."},{"name":"Gluconolactone","category":"PHA","note":"Polyhydroxy acid used for gentle exfoliation and conditioning."},{"name":"Urea","category":"Humectant","note":"Hydrating at some concentrations; higher concentrations can be keratolytic."},{"name":"Tranexamic Acid","category":"Skin conditioning","note":"Used in products targeting uneven tone."},{"name":"Arbutin","category":"Skin conditioning","note":"Used in products targeting uneven tone."},{"name":"Alpha-Arbutin","category":"Skin conditioning","note":"Used in products targeting uneven tone."},{"name":"Bakuchiol","category":"Skin conditioning","note":"Plant-derived ingredient marketed for skin appearance; not the same as a retinoid."},{"name":"Bifida Ferment Lysate","category":"Ferment","note":"Ferment-derived skin-conditioning ingredient."},{"name":"Saccharomyces Ferment Filtrate","category":"Ferment","note":"Ferment-derived conditioning ingredient."},{"name":"Beta-Glucan","category":"Humectant","note":"Polysaccharide used for hydration and skin conditioning."},{"name":"Oat Kernel Extract","category":"Botanical","note":"Oat-derived conditioning ingredient; individual allergies are possible."},{"name":"Colloidal Oatmeal","category":"Skin protectant","note":"Used to help soothe and protect skin."},{"name":"PVP","category":"Film former","note":"Polymer used to create a film or improve texture."},{"name":"Silica","category":"Absorbent","note":"Used for texture and oil absorption."},{"name":"Mica","category":"Colorant","note":"Mineral used to add shimmer or texture."},{"name":"Iron Oxides","category":"Colorant","note":"Pigments used to color cosmetic products."}]
+[
+  {
+    "name": "Aqua",
+    "category": "Solvent",
+    "note": "Water; common base for cosmetic formulations.",
+    "synonyms": ["Water"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Glycerin",
+    "category": "Humectant",
+    "note": "Helps draw water into the outer skin layers.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Niacinamide",
+    "category": "Skin conditioning",
+    "note": "Supports the skin barrier; may help with uneven tone and visible oiliness.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Panthenol",
+    "category": "Humectant",
+    "note": "Moisturizing and skin-conditioning ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Hyaluronic Acid",
+    "category": "Humectant",
+    "note": "Helps bind water at the skin surface.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sodium Hyaluronate",
+    "category": "Humectant",
+    "note": "A salt of hyaluronic acid used for hydration.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Butylene Glycol",
+    "category": "Humectant",
+    "note": "Solvent and humectant used in many formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Propanediol",
+    "category": "Humectant",
+    "note": "Solvent and moisturizing ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Pentylene Glycol",
+    "category": "Humectant",
+    "note": "Solvent and humectant.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Betaine",
+    "category": "Humectant",
+    "note": "Helps maintain skin hydration.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Squalane",
+    "category": "Emollient",
+    "note": "Lightweight skin-softening ingredient; individual tolerance varies.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Dimethicone",
+    "category": "Emollient",
+    "note": "Silicone that reduces moisture loss and improves slip.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cyclopentasiloxane",
+    "category": "Silicone",
+    "note": "Volatile silicone used for smooth application.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Caprylic/Capric Triglyceride",
+    "category": "Emollient",
+    "note": "Fatty-acid-derived emollient; performance depends on the full formula.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ceramide NP",
+    "category": "Barrier support",
+    "note": "Skin-identical lipid used to support the moisture barrier.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ceramide AP",
+    "category": "Barrier support",
+    "note": "Skin-identical lipid.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ceramide EOP",
+    "category": "Barrier support",
+    "note": "Skin-identical lipid.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cholesterol",
+    "category": "Barrier support",
+    "note": "Skin lipid often paired with ceramides.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Phytosphingosine",
+    "category": "Barrier support",
+    "note": "Lipid-related skin-conditioning ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Allantoin",
+    "category": "Skin conditioning",
+    "note": "Often included in soothing formulations.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Centella Asiatica Extract",
+    "category": "Botanical",
+    "note": "Plant extract used in skin-conditioning products; allergies are possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Madecassoside",
+    "category": "Skin conditioning",
+    "note": "Centella-derived ingredient used in soothing formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Aloe Barbadensis Leaf Juice",
+    "category": "Botanical",
+    "note": "Aloe-derived ingredient; reactions are possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Green Tea Extract",
+    "category": "Antioxidant",
+    "note": "Plant extract containing antioxidant compounds.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Camellia Sinensis Leaf Extract",
+    "category": "Antioxidant",
+    "note": "Tea-derived extract.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Tocopherol",
+    "category": "Antioxidant",
+    "note": "Vitamin E; protects formula oils and conditions skin.",
+    "synonyms": ["Vitamin E"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ascorbic Acid",
+    "category": "Active",
+    "note": "Vitamin C; formulation and concentration affect tolerance.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ascorbyl Glucoside",
+    "category": "Antioxidant",
+    "note": "Vitamin C derivative used in skin-care formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Azelaic Acid",
+    "category": "Active",
+    "note": "Used for acne-prone skin and uneven tone; may cause stinging or dryness.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Salicylic Acid",
+    "category": "Exfoliant",
+    "note": "Beta-hydroxy acid; concentration and frequency affect irritation.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Glycolic Acid",
+    "category": "Exfoliant",
+    "note": "Alpha-hydroxy acid; can increase irritation and sun sensitivity.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Lactic Acid",
+    "category": "Exfoliant",
+    "note": "Alpha-hydroxy acid with exfoliating and humectant roles.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Mandelic Acid",
+    "category": "Exfoliant",
+    "note": "Alpha-hydroxy acid; still may irritate sensitive skin.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Retinol",
+    "category": "Retinoid",
+    "note": "Vitamin A derivative; can cause dryness and irritation.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Retinal",
+    "category": "Retinoid",
+    "note": "Vitamin A derivative; can cause irritation.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Adapalene",
+    "category": "Retinoid",
+    "note": "Acne-treatment retinoid; may cause dryness or irritation.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Zinc PCA",
+    "category": "Skin conditioning",
+    "note": "Zinc salt used in oil-control and skin-conditioning formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Zinc Oxide",
+    "category": "UV filter",
+    "note": "Mineral UV filter; SPF protection depends on finished product testing.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Titanium Dioxide",
+    "category": "UV filter",
+    "note": "Mineral UV filter; SPF protection depends on finished product testing.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Avobenzone",
+    "category": "UV filter",
+    "note": "Organic UVA filter.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Octocrylene",
+    "category": "UV filter",
+    "note": "Organic UV filter; some users may be sensitive.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ethylhexyl Triazone",
+    "category": "UV filter",
+    "note": "UVB filter used in sunscreen formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine",
+    "category": "UV filter",
+    "note": "Broad-spectrum UV filter.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Uvinul A Plus",
+    "category": "UV filter",
+    "note": "Trade name for Diethylamino Hydroxybenzoyl Hexyl Benzoate.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Diethylamino Hydroxybenzoyl Hexyl Benzoate",
+    "category": "UV filter",
+    "note": "UVA filter.",
+    "synonyms": ["Uvinul A Plus"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Phenoxyethanol",
+    "category": "Preservative",
+    "note": "Preservative; sensitivity is possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ethylhexylglycerin",
+    "category": "Preservative booster",
+    "note": "Common preservative-supporting and conditioning ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sodium Benzoate",
+    "category": "Preservative",
+    "note": "Preservative used in cosmetic formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Potassium Sorbate",
+    "category": "Preservative",
+    "note": "Preservative used in cosmetic formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Disodium EDTA",
+    "category": "Chelating agent",
+    "note": "Helps stabilize formulas by binding metal ions.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Citric Acid",
+    "category": "pH adjuster",
+    "note": "Often used to adjust product pH.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sodium Hydroxide",
+    "category": "pH adjuster",
+    "note": "Used to adjust formula pH; not equivalent to applying it neat.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Carbomer",
+    "category": "Thickener",
+    "note": "Polymer that helps create gel textures.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Xanthan Gum",
+    "category": "Thickener",
+    "note": "Polysaccharide used to stabilize formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cetearyl Alcohol",
+    "category": "Fatty alcohol",
+    "note": "Fatty alcohol used for texture and emollience; not the same as ethanol.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cetyl Alcohol",
+    "category": "Fatty alcohol",
+    "note": "Emollient and thickener; not the same as drying alcohol.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Stearyl Alcohol",
+    "category": "Fatty alcohol",
+    "note": "Fatty alcohol used for texture and emollience.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Alcohol Denat.",
+    "category": "Solvent",
+    "note": "Can increase dryness or stinging for some skin types, depending on formula.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ethanol",
+    "category": "Solvent",
+    "note": "Alcohol used as solvent; may be drying in some formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Parfum",
+    "category": "Fragrance",
+    "note": "Fragrance mixture; relevant if you are fragrance-sensitive.",
+    "synonyms": ["Perfume", "Fragrance"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Fragrance",
+    "category": "Fragrance",
+    "note": "Fragrance mixture; relevant if you are fragrance-sensitive.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Limonene",
+    "category": "Fragrance allergen",
+    "note": "Fragrance component that may cause contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Linalool",
+    "category": "Fragrance allergen",
+    "note": "Fragrance component that may cause contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Citral",
+    "category": "Fragrance allergen",
+    "note": "Fragrance component that may cause contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Geraniol",
+    "category": "Fragrance allergen",
+    "note": "Fragrance component that may cause contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Citronellol",
+    "category": "Fragrance allergen",
+    "note": "Fragrance component that may cause contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Benzyl Alcohol",
+    "category": "Fragrance/preservative",
+    "note": "Can function as fragrance component or preservative.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Isopropyl Myristate",
+    "category": "Emollient",
+    "note": "Historically flagged in some laboratory comedogenicity tests; these do not reliably predict finished-product behavior.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": [
+      "Mentioned in the legacy guide as a historical laboratory signal; no attributable study or numeric rating is provided."
+    ]
+  },
+  {
+    "name": "Isopropyl Palmitate",
+    "category": "Emollient",
+    "note": "Historically flagged in some laboratory comedogenicity tests; finished-formula response varies.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": [
+      "Mentioned in the legacy guide as a historical laboratory signal; no attributable study or numeric rating is provided."
+    ]
+  },
+  {
+    "name": "Myristyl Myristate",
+    "category": "Emollient",
+    "note": "Often mentioned in comedogenicity lists, but such lists cannot predict personal breakouts.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": [
+      "Mentioned in the legacy guide as a historical laboratory signal; no attributable study or numeric rating is provided."
+    ]
+  },
+  {
+    "name": "Ethylhexyl Palmitate",
+    "category": "Emollient",
+    "note": "Emollient sometimes discussed in comedogenicity lists; formulation matters.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": [
+      "Mentioned in the legacy guide as a historical laboratory signal; no attributable study or numeric rating is provided."
+    ]
+  },
+  {
+    "name": "Coconut Oil",
+    "category": "Plant oil",
+    "note": "Occlusive plant oil; some acne-prone users prefer alternatives, but individual reactions vary.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cocos Nucifera Oil",
+    "category": "Plant oil",
+    "note": "Coconut oil; individual tolerance varies.",
+    "synonyms": ["Coconut oil"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Shea Butter",
+    "category": "Emollient",
+    "note": "Rich emollient; not inherently acne-causing in all formulas.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Butyrospermum Parkii Butter",
+    "category": "Emollient",
+    "note": "Shea butter INCI name.",
+    "synonyms": ["Shea butter"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Petrolatum",
+    "category": "Occlusive",
+    "note": "Reduces water loss; purified cosmetic petrolatum is generally well tolerated.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Mineral Oil",
+    "category": "Emollient",
+    "note": "Highly refined cosmetic mineral oil helps reduce moisture loss.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Lanolin",
+    "category": "Emollient",
+    "note": "Wool-derived emollient; can trigger contact allergy in some people.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Beeswax",
+    "category": "Wax",
+    "note": "Thickener and occlusive; individual reactions vary.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Jojoba Seed Oil",
+    "category": "Plant oil",
+    "note": "Wax ester-rich emollient; personal tolerance varies.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Simmondsia Chinensis Seed Oil",
+    "category": "Plant oil",
+    "note": "Jojoba oil INCI name.",
+    "synonyms": ["Jojoba oil", "Jojoba seed oil"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sunflower Seed Oil",
+    "category": "Plant oil",
+    "note": "Emollient rich in fatty acids.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Helianthus Annuus Seed Oil",
+    "category": "Plant oil",
+    "note": "Sunflower seed oil INCI name.",
+    "synonyms": ["Sunflower oil", "Sunflower seed oil"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Argania Spinosa Kernel Oil",
+    "category": "Plant oil",
+    "note": "Argan oil used for skin and hair conditioning.",
+    "synonyms": ["Argan oil"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Ricinus Communis Seed Oil",
+    "category": "Plant oil",
+    "note": "Castor oil; rich texture, individual tolerance varies.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Polysorbate 20",
+    "category": "Solubilizer",
+    "note": "Helps mix oils and water.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Polysorbate 80",
+    "category": "Emulsifier",
+    "note": "Helps stabilize mixtures of oil and water.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "PEG-40 Hydrogenated Castor Oil",
+    "category": "Solubilizer",
+    "note": "Helps disperse fragrance or oils in water-based products.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sodium Laureth Sulfate",
+    "category": "Surfactant",
+    "note": "Cleansing agent; some formulations may feel drying.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Sodium Lauryl Sulfate",
+    "category": "Surfactant",
+    "note": "Cleansing agent that may irritate sensitive skin.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Cocamidopropyl Betaine",
+    "category": "Surfactant",
+    "note": "Cleansing ingredient; contact allergy is possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Decyl Glucoside",
+    "category": "Surfactant",
+    "note": "Mild cleansing surfactant; individual sensitivity is possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Gluconolactone",
+    "category": "PHA",
+    "note": "Polyhydroxy acid used for gentle exfoliation and conditioning.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Urea",
+    "category": "Humectant",
+    "note": "Hydrating at some concentrations; higher concentrations can be keratolytic.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Tranexamic Acid",
+    "category": "Skin conditioning",
+    "note": "Used in products targeting uneven tone.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Arbutin",
+    "category": "Skin conditioning",
+    "note": "Used in products targeting uneven tone.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Alpha-Arbutin",
+    "category": "Skin conditioning",
+    "note": "Used in products targeting uneven tone.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Bakuchiol",
+    "category": "Skin conditioning",
+    "note": "Plant-derived ingredient marketed for skin appearance; not the same as a retinoid.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Bifida Ferment Lysate",
+    "category": "Ferment",
+    "note": "Ferment-derived skin-conditioning ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Saccharomyces Ferment Filtrate",
+    "category": "Ferment",
+    "note": "Ferment-derived conditioning ingredient.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Beta-Glucan",
+    "category": "Humectant",
+    "note": "Polysaccharide used for hydration and skin conditioning.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Oat Kernel Extract",
+    "category": "Botanical",
+    "note": "Oat-derived conditioning ingredient; individual allergies are possible.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Colloidal Oatmeal",
+    "category": "Skin protectant",
+    "note": "Used to help soothe and protect skin.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "PVP",
+    "category": "Film former",
+    "note": "Polymer used to create a film or improve texture.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Silica",
+    "category": "Absorbent",
+    "note": "Used for texture and oil absorption.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Mica",
+    "category": "Colorant",
+    "note": "Mineral used to add shimmer or texture.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Iron Oxides",
+    "category": "Colorant",
+    "note": "Pigments used to color cosmetic products.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  }
+]

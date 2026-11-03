@@ -1,3 +1,617 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><meta content="#d8d0c7" name="theme-color"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="default" name="apple-mobile-web-app-status-bar-style"/><meta content="Beautycalendar" name="apple-mobile-web-app-title"/><link href="./manifest.webmanifest" rel="manifest"/><link href="./icon-192.png" rel="apple-touch-icon"/><link href="./style.css?v=12" rel="stylesheet"/><title>THE BEAUTY JOURNAL · Skin &amp; Hair</title></head><body><div class="app"><div aria-hidden="true" class="aura-backdrop"></div><header><div class="brandline"><span>THE BEAUTY JOURNAL</span><span>PRIVATE BEAUTY ARCHIVE · EST. 2026</span></div><div class="editorialhero" data-parallax-scene=""><div class="hero-copy" data-parallax-copy=""><span class="overline">YOUR DAILY BEAUTY RITUAL</span><h1>The art of<br/><em>being you.</em></h1><p>Your private journal for skin, hair and self-care.</p><div class="hero-mark">SKIN   /   HAIR   /   SELF-CARE</div></div><img alt="Skincare editorial photography" data-parallax-media="" src="./skin-editorial.jpg"/></div></header><nav id="nav"><button class="tab active" data-tab="calendar">Calendar</button><button class="tab" data-tab="hair">Hair</button><button class="tab" data-tab="ritual">Ritual</button><button class="tab" data-tab="journal">Journal</button><button class="tab" data-tab="insights">Insights</button><button class="tab" data-tab="inspiration">Inspiration</button><button class="tab" data-tab="prompts">Journal Prompts</button><button class="tab" data-tab="settings">More</button><button class="tab" data-tab="ingredients">Ingredient Check</button></nav><main><section class="screen" id="calendar"><div class="monthbar"><button aria-label="Previous month" id="prev">‹</button><h2 id="monthLabel"></h2><button aria-label="Next month" id="next">›</button></div><div class="weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="monthgrid" id="monthGrid"></div><div class="legend"><span><i class="dot adap"></i> Adapalene</span><span><i class="dot azel"></i> Azelaic acid</span><span><i class="dot nia"></i> Niacinamide</span></div><div class="panel"><div class="panelhead"><h3 id="selectedLabel"></h3><button class="small" id="jumpToday">Today</button></div><div id="selectedRoutine"></div></div></section><section class="screen hidden" id="ritual"><div class="panel"><div class="eyebrow">DAILY RITUAL</div><h2>My daily edit</h2><label class="field">Date <input id="dayPicker" type="date"/></label><div id="todayRoutine"></div></div><div class="panel"><div class="eyebrow">YOUR PERSONAL COLLECTION</div><h2>My products &amp; treatments</h2><p class="muted">Add any skincare steps and choose when they appear in your calendar. New products are never scheduled automatically.</p><div id="customList"></div><h3>Add a care step</h3><label class="field">Name <input id="customName" maxlength="90" placeholder="e.g. Hydrating mask"/></label><label class="field">When to use <select id="customTime"><option value="am">Morning</option><option value="pm">Evening</option></select></label><label class="field">Schedule <select id="customMode"><option value="weekdays">By weekday</option><option value="once">On a specific date</option><option value="daily">Every day</option></select></label><div class="weekdaychoices" id="customWeekdays"><label><input type="checkbox" value="0"/> Mon</label><label><input type="checkbox" value="1"/> Tue</label><label><input type="checkbox" value="2"/> Wed</label><label><input type="checkbox" value="3"/> Thu</label><label><input type="checkbox" value="4"/> Fri</label><label><input type="checkbox" value="5"/> Sat</label><label><input type="checkbox" value="6"/> Sun</label></div><label class="field hidden" id="customOnceWrap">Date <input id="customOnce" type="date"/></label><label class="field">Start date (recurring steps) <input id="customFrom" type="date"/></label><label class="field">End date (optional) <input id="customUntil" type="date"/></label><button class="primary" id="addCustom">Add to calendar</button><p class="muted">You can edit a single day without changing the rest of the schedule.</p></div><div class="panel"><h3>Extra care for the selected date</h3><p class="muted" id="customDateLabel"></p><div id="customDayEditor"></div><button class="primary" id="saveCustomDay">Save for this day</button><button class="subtle" id="resetCustomDay">Restore schedule</button></div><div class="panel"><h3>Customize this day</h3><p class="muted">Adjust actives for this date only. This is not medical advice.</p><div id="activeEditor"></div><button class="primary" id="saveDay">Save day</button><button class="subtle" id="clearDay">Restore plan</button></div></section><section class="screen hidden" id="journal"><div class="panel"><div class="eyebrow">SKIN MOOD</div><h2>How does your skin feel?</h2><label class="field">Date <input id="moodDate" type="date"/></label><label class="field">Inflammation <select id="inflamed"><option value="0">None</option><option value="1">A little</option><option value="2">Moderate</option><option value="3">A lot</option></select></label><label class="field">Comedones <select id="comedones"><option value="0">None</option><option value="1">A little</option><option value="2">Moderate</option><option value="3">A lot</option></select></label><label class="field">Dryness <select id="dryness"><option value="0">None</option><option value="1">Mild</option><option value="2">Moderate</option><option value="3">Severe</option></select></label><label class="field">Irritation <select id="irritation"><option value="0">None</option><option value="1">Mild</option><option value="2">Moderate</option><option value="3">Severe</option></select></label><label class="field">Notes <textarea id="moodNote" placeholder="What did you notice today?" rows="3"></textarea></label><button class="primary" id="saveMood">Save observation</button></div><div class="panel"><div class="eyebrow">SKIN PROGRESS</div><h2>Progress photos</h2><p class="muted">Photos stay on this device in IndexedDB and are not uploaded to GitHub. Use similar lighting for comparisons.</p><label class="filelabel">Add photo <input accept="image/*" id="photoInput" type="file"/></label><div class="gallery" id="photoGallery"></div></div></section><section class="screen hidden" id="insights"><div class="panel"><div class="eyebrow">THE SKIN REPORT</div><h2>Your progress</h2><label class="field">Period <select id="insightPeriod"><option value="30">Last 30 days</option><option value="90">Last 90 days</option><option value="all">All time</option></select></label><div id="stats"></div><p class="muted">These statistics track consistency, not medical treatment effectiveness.</p></div></section><section class="screen hidden" id="settings"><div class="panel"><div class="eyebrow">PERSONAL EDIT</div><h2>Your routine</h2><label class="field">Routine start date <input id="startDate" type="date"/></label><label class="toggle"><input id="useNia" type="checkbox"/> Niacinamide on Fridays</label><label class="toggle"><input id="useBep" type="checkbox"/> Bepanthen Baby on Sundays if skin is dry</label><label class="toggle"><input id="dailyAz" type="checkbox"/> After week 8, use azelaic acid more often (if tolerated)</label><button class="primary" id="saveSettings">Save settings</button><p class="muted">The sample routine schedules adapalene and azelaic acid on separate evenings. Increase frequency only if tolerated and recommended by your dermatologist. Avoid adapalene during pregnancy or when planning pregnancy.</p></div><div class="panel"><div class="eyebrow">PRIVATE BY DESIGN</div><h2>Backup &amp; restore</h2><p class="muted">Your data and photos stay on this device. Export a backup before updates and save it regularly to Files.</p><button class="primary" id="exportBtn">Export everything, including photos</button><label class="filelabel">Import backup <input accept=".json,application/json" id="importFile" type="file"/></label><button class="danger" id="resetBtn">Clear routine checkmarks</button><p class="muted">To install: Safari → Share → Add to Home Screen. Back up your data before clearing Safari storage.</p></div></section><section class="screen hidden" id="hair"><div class="hair-hero"><img alt="Haircare editorial photography" src="./hair-editorial.jpg"/><div class="hair-overlay"><span class="overline">THE HAIR EDIT</span><h2>Good hair,<br/><em>good rituals.</em></h2></div></div><div class="hair-body"><p class="muted">A separate hair calendar. All entries stay on this device.</p><div class="monthbar"><button aria-label="Previous month" id="hairPrev">‹</button><h3 id="hairMonth"></h3><button aria-label="Next month" id="hairNext">›</button></div><div class="hair-grid" id="hairGrid"></div><div class="hair-card"><span class="overline">YOUR HAIR ROUTINE</span><h3 id="hairDateTitle">Selected day</h3><div id="hairTasks"></div></div><div class="hair-card"><span class="overline">PERSONAL COLLECTION</span><h3>Add product or treatment</h3><label>Name<input id="hairName" maxlength="90" placeholder="e.g. Nourishing mask"/></label><label>Time<select id="hairTime"><option value="am">Morning</option><option value="pm">Evening</option></select></label><label>Schedule<select id="hairFreq"><option value="once">Selected date only</option><option value="daily">Every day</option><option value="weekly">By weekday</option></select></label><div class="hidden" id="hairWeekWrap"><span class="muted">Weekdays</span><div class="weekchoices" id="hairWeekChoices"></div></div><button class="primary" id="hairAdd">Add to calendar</button><div id="hairProducts"></div></div></div></section><section class="screen hidden" id="inspiration"><div class="inspiration-cover"><div class="inspiration-kicker">THE INNER EDIT · VOL. 01</div><h2>Stillness is<br/><em>a luxury.</em></h2><p>A PRIVATE COLLECTION OF THOUGHTS</p></div><div class="inspiration-content"><div class="eyebrow">A MOMENT FOR YOURSELF</div><h2>Something to<br/><em>think about.</em></h2><div class="quote-filter"><label for="quoteCategory">Explore reflections</label><select id="quoteCategory"><option value="all">All reflections</option><option value="calm">Calm &amp; stillness</option><option value="boundaries">Boundaries &amp; confidence</option><option value="self">Self-worth &amp; self-care</option><option value="growth">Growth &amp; renewal</option></select></div><div class="quote-paper"><div class="quote-index" id="quoteIndex">REFLECTION 001 / 1000</div><blockquote aria-live="polite" id="inspirationQuote">You are allowed to move at your own pace.</blockquote><div class="quote-signature">THE BEAUTY JOURNAL</div></div><button class="primary inspiration-next" id="nextInspiration">Something to think about ↗</button><button class="subtle" id="copyInspiration">Copy reflection</button><p class="muted">1000 short reflections on calm, boundaries, self-care and inner strength. Available offline.</p></div></section><section class="screen hidden" id="ingredients"><div class="ingredient-hero"><div class="eyebrow">THE BEAUTY JOURNAL · THE FORMULA EDIT ✧</div><h2>Ingredient <em>Check.</em></h2><p>Understand your formula, not just a rating.</p></div><div class="panel ingredient-panel"><div class="eyebrow">YOUR INCI LIST</div><label class="field" for="inciInput">Paste ingredients, separated by commas</label><textarea id="inciInput" placeholder="Aqua, Glycerin, Niacinamide, Panthenol, ..." rows="6" spellcheck="false"></textarea><div class="ingredient-actions"><button class="primary" id="inciAnalyze">Analyze ingredients ✧</button><button class="subtle" id="inciClear">Clear</button></div><p class="muted">Your list stays on this device. No formula is sent to a server.</p></div><div aria-live="polite" class="panel hidden" id="inciResults"></div><div class="panel"><div class="eyebrow">A NOTE ON COMEDOGENICITY</div><h3>Formulas are more than ingredients.</h3><p class="muted">No INCI-only checker can reliably predict whether a finished product will clog your pores. Concentration, formulation, skin type and individual reactions matter. We flag ingredients worth investigating, not diagnose acne or assign a definitive comedogenic score.</p><div class="ingredient-links"><a href="https://cosmileeurope.eu/" rel="noopener noreferrer" target="_blank">COSMILE Europe ↗</a><a href="https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en" rel="noopener noreferrer" target="_blank">EU CosIng ↗</a><a href="https://incidecoder.com/" rel="noopener noreferrer" target="_blank">INCIDecoder ↗</a></div><p class="muted">External sites are optional references. This offline reference is a curated, limited guide, not a live integration or official database.</p></div></section><section class="screen hidden" id="prompts"><div class="prompts-hero"><div class="eyebrow">THE INNER JOURNAL ✧</div><h2>Come home <em>to yourself.</em></h2><p>Gentle writing prompts for feminine energy, self-connection and reflection.</p></div><div class="panel"><label class="field">Choose your intention<select id="promptCategory"><option value="all">Surprise me ✧</option><option value="self">Self-connection</option><option value="feminine">Feminine energy</option><option value="confidence">Confidence &amp; boundaries</option><option value="softness">Softness &amp; rest</option><option value="growth">Growth &amp; dreams</option></select></label><div class="prompt-card"><span class="eyebrow" id="promptTag">A MOMENT FOR YOU</span><blockquote aria-live="polite" id="promptText">What would feeling at home in yourself look like today?</blockquote></div><button class="primary" id="nextPrompt">Another journal prompt ✧</button><button class="subtle" id="copyPrompt">Copy prompt</button></div><div class="panel"><h3>Your private reflection</h3><p class="muted">Your writing stays in this browser on this device.</p><textarea id="promptAnswer" placeholder="Begin wherever you are…" rows="7"></textarea><button class="primary" id="savePromptEntry">Save reflection</button><p class="muted" id="promptSaveStatus" role="status"></p><div id="promptEntries"></div></div></section></main><footer>THE BEAUTY JOURNAL · A PRIVATE RITUAL</footer></div><script defer="" src="./app.js?v=12"></script><script defer="" src="./ingredients.js?v=12"></script><script defer="" src="./motion.js?v=12"></script><script defer="" src="./prompts.js?v=12"></script></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+      name="viewport"
+    />
+    <meta content="#d8d0c7" name="theme-color" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="Beautycalendar" name="apple-mobile-web-app-title" />
+    <link href="./manifest.webmanifest" rel="manifest" />
+    <link href="./icon-192.png" rel="apple-touch-icon" />
+    <link href="./style.css?v=20" rel="stylesheet" />
+    <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
+    <meta
+      name="description"
+      content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=GFS+Didot&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="./theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="app">
+      <div aria-hidden="true" class="aura-backdrop"></div>
+      <header>
+        <div class="brandline">
+          <span>THE BEAUTY JOURNAL</span
+          ><span>PRIVATE BEAUTY ARCHIVE · EST. 2026</span>
+        </div>
+        <div class="editorialhero" data-parallax-scene="">
+          <div class="hero-copy" data-parallax-copy="">
+            <span class="overline">YOUR DAILY BEAUTY RITUAL</span>
+            <h1>The art of<br /><em>being you.</em></h1>
+            <p>Your private journal for skin, hair and self-care.</p>
+            <div class="hero-mark">SKIN   /   HAIR   /   SELF-CARE</div>
+          </div>
+          <img
+            alt="Skincare editorial photography"
+            data-parallax-media=""
+            src="./skin-editorial.jpg"
+          />
+        </div>
+        <div class="utility-bar">
+          <span>Beautycalendar <strong>2.0</strong> · Saved on this device</span
+          ><label for="themeSelect"
+            >Theme
+            <select id="themeSelect">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select></label
+          >
+        </div>
+      </header>
+      <nav id="nav" aria-label="Journal sections">
+        <button class="tab active" data-tab="calendar">Calendar</button
+        ><button class="tab" data-tab="hair">Hair</button
+        ><button class="tab" data-tab="ritual">Ritual</button
+        ><button class="tab" data-tab="journal">Journal</button
+        ><button class="tab" data-tab="insights">Insights</button
+        ><button class="tab" data-tab="inspiration">Inspiration</button
+        ><button class="tab" data-tab="prompts">Journal Prompts</button
+        ><button class="tab" data-tab="settings">More</button
+        ><button class="tab" data-tab="products">My products</button
+        ><button class="tab" data-tab="ingredients">Ingredient Check</button>
+      </nav>
+      <main id="main" tabindex="-1">
+        <section class="screen" id="calendar">
+          <div class="monthbar">
+            <button aria-label="Previous month" id="prev">‹</button>
+            <h2 id="monthLabel"></h2>
+            <button aria-label="Next month" id="next">›</button>
+          </div>
+          <div class="weekdays">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span
+            ><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+          <div class="monthgrid" id="monthGrid"></div>
+          <div class="legend">
+            <span><i class="dot adap"></i> Adapalene</span
+            ><span><i class="dot azel"></i> Azelaic acid</span
+            ><span><i class="dot nia"></i> Niacinamide</span>
+          </div>
+          <div class="panel">
+            <div class="panelhead">
+              <h3 id="selectedLabel"></h3>
+              <button class="small" id="jumpToday">Today</button>
+            </div>
+            <div id="selectedRoutine"></div>
+          </div>
+        </section>
+        <section class="screen hidden" id="ritual">
+          <div class="panel">
+            <div class="eyebrow">DAILY RITUAL</div>
+            <h2>My daily edit</h2>
+            <label class="field"
+              >Date <input id="dayPicker" type="date"
+            /></label>
+            <div id="todayRoutine"></div>
+          </div>
+          <div class="panel">
+            <div class="eyebrow">YOUR PERSONAL COLLECTION</div>
+            <h2>My products &amp; treatments</h2>
+            <p class="muted">
+              Add any skincare steps and choose when they appear in your
+              calendar. New products are never scheduled automatically.
+            </p>
+            <div id="customList"></div>
+            <h3>Add a care step</h3>
+            <label class="field"
+              >Name
+              <input
+                id="customName"
+                maxlength="90"
+                placeholder="e.g. Hydrating mask" /></label
+            ><label class="field"
+              >When to use
+              <select id="customTime">
+                <option value="am">Morning</option>
+                <option value="pm">Evening</option>
+              </select></label
+            ><label class="field"
+              >Schedule
+              <select id="customMode">
+                <option value="weekdays">By weekday</option>
+                <option value="once">On a specific date</option>
+                <option value="daily">Every day</option>
+              </select></label
+            >
+            <div class="weekdaychoices" id="customWeekdays">
+              <label><input type="checkbox" value="0" /> Mon</label
+              ><label><input type="checkbox" value="1" /> Tue</label
+              ><label><input type="checkbox" value="2" /> Wed</label
+              ><label><input type="checkbox" value="3" /> Thu</label
+              ><label><input type="checkbox" value="4" /> Fri</label
+              ><label><input type="checkbox" value="5" /> Sat</label
+              ><label><input type="checkbox" value="6" /> Sun</label>
+            </div>
+            <label class="field hidden" id="customOnceWrap"
+              >Date <input id="customOnce" type="date" /></label
+            ><label class="field"
+              >Start date (recurring steps)
+              <input id="customFrom" type="date" /></label
+            ><label class="field"
+              >End date (optional) <input id="customUntil" type="date" /></label
+            ><button class="primary" id="addCustom">Add to calendar</button
+            ><button class="subtle hidden" id="cancelCustomEdit">
+              Cancel edit
+            </button>
+            <p class="muted">
+              You can edit a single day without changing the rest of the
+              schedule.
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Extra care for the selected date</h3>
+            <p class="muted" id="customDateLabel"></p>
+            <div id="customDayEditor"></div>
+            <button class="primary" id="saveCustomDay">Save for this day</button
+            ><button class="subtle" id="resetCustomDay">
+              Restore schedule
+            </button>
+          </div>
+          <div class="panel">
+            <h3>Customize this day</h3>
+            <p class="muted">
+              Adjust actives for this date only. This is not medical advice.
+            </p>
+            <div id="activeEditor"></div>
+            <button class="primary" id="saveDay">Save day</button
+            ><button class="subtle" id="clearDay">Restore plan</button>
+          </div>
+        </section>
+        <section class="screen hidden" id="journal">
+          <div class="panel">
+            <div class="eyebrow">SKIN MOOD</div>
+            <h2>How does your skin feel?</h2>
+            <label class="field">Date <input id="moodDate" type="date" /></label
+            ><label class="field"
+              >Inflammation
+              <select id="inflamed">
+                <option value="0">None</option>
+                <option value="1">A little</option>
+                <option value="2">Moderate</option>
+                <option value="3">A lot</option>
+              </select></label
+            ><label class="field"
+              >Comedones
+              <select id="comedones">
+                <option value="0">None</option>
+                <option value="1">A little</option>
+                <option value="2">Moderate</option>
+                <option value="3">A lot</option>
+              </select></label
+            ><label class="field"
+              >Dryness
+              <select id="dryness">
+                <option value="0">None</option>
+                <option value="1">Mild</option>
+                <option value="2">Moderate</option>
+                <option value="3">Severe</option>
+              </select></label
+            ><label class="field"
+              >Irritation
+              <select id="irritation">
+                <option value="0">None</option>
+                <option value="1">Mild</option>
+                <option value="2">Moderate</option>
+                <option value="3">Severe</option>
+              </select></label
+            ><label class="field"
+              >Notes
+              <textarea
+                id="moodNote"
+                placeholder="What did you notice today?"
+                rows="3"
+              ></textarea></label
+            ><button class="primary" id="saveMood">Save observation</button>
+          </div>
+          <div class="panel">
+            <div class="eyebrow">SKIN PROGRESS</div>
+            <h2>Progress photos</h2>
+            <p class="muted">
+              Photos stay on this device in IndexedDB and are not uploaded to
+              GitHub. Use similar lighting for comparisons.
+            </p>
+            <label class="filelabel"
+              >Add photo <input accept="image/*" id="photoInput" type="file"
+            /></label>
+            <div class="gallery" id="photoGallery"></div>
+          </div>
+        </section>
+        <section class="screen hidden" id="insights">
+          <div class="panel">
+            <div class="eyebrow">THE SKIN REPORT</div>
+            <h2>Your progress</h2>
+            <label class="field"
+              >Period
+              <select id="insightPeriod">
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+                <option value="all">All time</option>
+              </select></label
+            >
+            <div id="stats"></div>
+            <p class="muted">
+              These statistics track consistency, not medical treatment
+              effectiveness.
+            </p>
+          </div>
+        </section>
+        <section class="screen hidden" id="settings">
+          <div class="panel">
+            <div class="eyebrow">PERSONAL EDIT</div>
+            <h2>Your routine</h2>
+            <label class="field"
+              >Routine start date <input id="startDate" type="date" /></label
+            ><label class="toggle"
+              ><input id="useNia" type="checkbox" /> Niacinamide on
+              Fridays</label
+            ><label class="toggle"
+              ><input id="useBep" type="checkbox" /> Bepanthen Baby on Sundays
+              if skin is dry</label
+            ><label class="toggle"
+              ><input id="dailyAz" type="checkbox" /> After week 8, use azelaic
+              acid more often (if tolerated)</label
+            ><button class="primary" id="saveSettings">Save settings</button>
+            <p class="muted">
+              The sample routine schedules adapalene and azelaic acid on
+              separate evenings. Increase frequency only if tolerated and
+              recommended by your dermatologist. Avoid adapalene during
+              pregnancy or when planning pregnancy.
+            </p>
+          </div>
+          <div class="panel">
+            <div class="eyebrow">PRIVATE BY DESIGN</div>
+            <h2>Backup &amp; restore</h2>
+            <p class="muted">
+              Your data and photos stay on this device. Export a backup before
+              updates and save it regularly to Files.
+            </p>
+            <button class="primary" id="exportBtn">
+              Export everything, including photos</button
+            ><label class="filelabel"
+              >Import backup
+              <input
+                accept=".json,application/json"
+                id="importFile"
+                type="file" /></label
+            ><button class="danger" id="resetBtn">
+              Clear routine checkmarks
+            </button>
+            <p class="muted">
+              To install: Safari → Share → Add to Home Screen. Back up your data
+              before clearing Safari storage.
+            </p>
+          </div>
+        </section>
+        <section class="screen hidden" id="hair">
+          <div class="hair-hero">
+            <img
+              alt="Haircare editorial photography"
+              src="./hair-editorial.jpg"
+            />
+            <div class="hair-overlay">
+              <span class="overline">THE HAIR EDIT</span>
+              <h2>Good hair,<br /><em>good rituals.</em></h2>
+            </div>
+          </div>
+          <div class="hair-body">
+            <p class="muted">
+              A separate hair calendar. All entries stay on this device.
+            </p>
+            <div class="monthbar">
+              <button aria-label="Previous month" id="hairPrev">‹</button>
+              <h3 id="hairMonth"></h3>
+              <button aria-label="Next month" id="hairNext">›</button>
+            </div>
+            <div class="hair-grid" id="hairGrid"></div>
+            <div class="hair-card">
+              <span class="overline">YOUR HAIR ROUTINE</span>
+              <h3 id="hairDateTitle">Selected day</h3>
+              <label class="field"
+                >Date<input id="hairDayPicker" type="date"
+              /></label>
+              <div id="hairTasks"></div>
+            </div>
+            <div class="hair-card">
+              <span class="overline">PERSONAL COLLECTION</span>
+              <h3>Add product or treatment</h3>
+              <label
+                >Name<input
+                  id="hairName"
+                  maxlength="90"
+                  placeholder="e.g. Nourishing mask" /></label
+              ><label
+                >Time<select id="hairTime">
+                  <option value="am">Morning</option>
+                  <option value="pm">Evening</option>
+                </select></label
+              ><label
+                >Schedule<select id="hairFreq">
+                  <option value="once">Selected date only</option>
+                  <option value="daily">Every day</option>
+                  <option value="weekly">By weekday</option>
+                </select></label
+              >
+              <div class="hidden" id="hairWeekWrap">
+                <span class="muted">Weekdays</span>
+                <div class="weekchoices" id="hairWeekChoices"></div>
+              </div>
+              <button class="primary" id="hairAdd">Add to calendar</button
+              ><button class="subtle hidden" id="cancelHairEdit">
+                Cancel edit
+              </button>
+              <div id="hairProducts"></div>
+            </div>
+          </div>
+        </section>
+        <section class="screen hidden" id="inspiration">
+          <div class="inspiration-cover">
+            <div class="inspiration-kicker">THE INNER EDIT · VOL. 01</div>
+            <h2>Stillness is<br /><em>a luxury.</em></h2>
+            <p>A PRIVATE COLLECTION OF THOUGHTS</p>
+          </div>
+          <div class="inspiration-content">
+            <div class="eyebrow">A MOMENT FOR YOURSELF</div>
+            <h2>Something to<br /><em>think about.</em></h2>
+            <div class="quote-filter">
+              <label for="quoteCategory">Explore reflections</label
+              ><select id="quoteCategory">
+                <option value="all">All reflections</option>
+                <option value="calm">Calm &amp; stillness</option>
+                <option value="boundaries">Boundaries &amp; confidence</option>
+                <option value="self">Self-worth &amp; self-care</option>
+                <option value="growth">Growth &amp; renewal</option>
+              </select>
+            </div>
+            <div class="quote-paper">
+              <div class="quote-index" id="quoteIndex">
+                REFLECTION 001 / 1000
+              </div>
+              <blockquote aria-live="polite" id="inspirationQuote">
+                You are allowed to move at your own pace.
+              </blockquote>
+              <div class="quote-signature">THE BEAUTY JOURNAL</div>
+            </div>
+            <button class="primary inspiration-next" id="nextInspiration">
+              Something to think about ↗</button
+            ><button class="subtle" id="copyInspiration">
+              Copy reflection
+            </button>
+            <p class="muted">
+              1000 short reflections on calm, boundaries, self-care and inner
+              strength. Available offline.
+            </p>
+          </div>
+        </section>
+        <section
+          class="screen hidden"
+          id="ingredients"
+          aria-label="Ingredient reference"
+        >
+          <div class="ingredient-hero">
+            <div class="eyebrow">THE BEAUTY JOURNAL · THE FORMULA EDIT ✧</div>
+            <h2>Ingredient <em>Check.</em></h2>
+            <p>Understand your formula, not just a rating.</p>
+          </div>
+          <div class="panel">
+            <h3>Search the ingredient reference</h3>
+            <label class="field" for="ingredientSearch"
+              >INCI name or synonym<input
+                id="ingredientSearch"
+                type="search"
+                maxlength="200"
+                placeholder="e.g. water or hyaluron"
+            /></label>
+            <p class="muted">
+              A curated offline reference, not a complete ingredient catalog.
+            </p>
+            <p id="ingredientStatus" role="status">Loading reference…</p>
+            <div id="ingredientMatches"></div>
+          </div>
+          <div class="panel ingredient-panel">
+            <div class="eyebrow">YOUR INCI LIST</div>
+            <label class="field" for="inciInput"
+              >Paste ingredients, separated by commas</label
+            ><textarea
+              maxlength="20000"
+              id="inciInput"
+              placeholder="Aqua, Glycerin, Niacinamide, Panthenol, ..."
+              rows="6"
+              spellcheck="false"
+            ></textarea>
+            <div class="ingredient-actions">
+              <button class="primary" id="inciAnalyze">
+                Analyze ingredients ✧</button
+              ><button class="subtle" id="inciClear">Clear</button>
+            </div>
+            <p class="muted">
+              Your list stays on this device. No formula is sent to a server.
+            </p>
+          </div>
+          <div aria-live="polite" class="panel hidden" id="inciResults"></div>
+          <div class="panel">
+            <div class="eyebrow">A NOTE ON COMEDOGENICITY</div>
+            <h3>Formulas are more than ingredients.</h3>
+            <p class="muted">
+              No INCI-only checker can reliably predict whether a finished
+              product will clog your pores. Concentration, formulation, skin
+              type and individual reactions matter. We flag ingredients worth
+              investigating, not diagnose acne or assign a definitive
+              comedogenic score.
+            </p>
+            <div class="ingredient-links">
+              <a
+                href="https://cosmileeurope.eu/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >COSMILE Europe ↗</a
+              ><a
+                href="https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en"
+                rel="noopener noreferrer"
+                target="_blank"
+                >EU CosIng ↗</a
+              ><a
+                href="https://incidecoder.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >INCIDecoder ↗</a
+              >
+            </div>
+            <p class="muted">
+              External sites are optional references. This offline reference is
+              a curated, limited guide, not a live integration or official
+              database.
+            </p>
+          </div>
+        </section>
+        <section class="screen hidden" id="prompts">
+          <div class="prompts-hero">
+            <div class="eyebrow">THE INNER JOURNAL ✧</div>
+            <h2>Come home <em>to yourself.</em></h2>
+            <p>
+              Gentle writing prompts for feminine energy, self-connection and
+              reflection.
+            </p>
+          </div>
+          <div class="panel">
+            <label class="field"
+              >Choose your intention<label for="promptCategory"
+                >Prompt category</label
+              ><select id="promptCategory">
+                <option value="all">Surprise me ✧</option>
+                <option value="self">Self-connection</option>
+                <option value="feminine">Feminine energy</option>
+                <option value="confidence">Confidence &amp; boundaries</option>
+                <option value="softness">Softness &amp; rest</option>
+                <option value="growth">Growth &amp; dreams</option>
+              </select></label
+            >
+            <div class="prompt-card">
+              <span class="eyebrow" id="promptTag">A MOMENT FOR YOU</span>
+              <blockquote aria-live="polite" id="promptText">
+                What would feeling at home in yourself look like today?
+              </blockquote>
+            </div>
+            <button class="primary" id="nextPrompt">
+              Another journal prompt ✧</button
+            ><button class="subtle" id="copyPrompt">Copy prompt</button>
+          </div>
+          <div class="panel">
+            <h3>Your private reflection</h3>
+            <p class="muted">
+              Your writing stays in this browser on this device.
+            </p>
+            <textarea
+              maxlength="10000"
+              id="promptAnswer"
+              placeholder="Begin wherever you are…"
+              rows="7"
+            ></textarea
+            ><button class="primary" id="savePromptEntry">
+              Save reflection
+            </button>
+            <p class="muted" id="promptSaveStatus" role="status"></p>
+            <div id="promptEntries"></div>
+          </div>
+        </section>
+        <section class="screen hidden" id="products" aria-label="My products">
+          <div class="section-intro">
+            <div class="eyebrow">YOUR PERSONAL SHELF</div>
+            <h2>Care, collected.</h2>
+            <p>
+              Only your saved products are searched. No global catalog or
+              external product API is connected.
+            </p>
+          </div>
+          <div class="panel">
+            <h3 id="productFormTitle">Add a product</h3>
+            <form id="productForm">
+              <div class="form-grid">
+                <label class="field"
+                  >Product name<input
+                    id="productName"
+                    required
+                    maxlength="120"
+                    autocomplete="off" /></label
+                ><label class="field"
+                  >Brand<input id="productBrand" maxlength="120" /></label
+                ><label class="field"
+                  >Category<select id="productCategory">
+                    <option value="skin">Skin</option>
+                    <option value="hair">Hair</option>
+                    <option value="body">Body</option>
+                    <option value="other">Other</option>
+                  </select></label
+                ><label class="field"
+                  >Photo (JPEG, PNG or WebP, up to 10 MB)<input
+                    id="productPhoto"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                /></label>
+              </div>
+              <label class="field"
+                >INCI ingredients<textarea
+                  id="productInci"
+                  rows="4"
+                  maxlength="20000"
+                  placeholder="Aqua, Glycerin, …"
+                ></textarea></label
+              ><label class="toggle"
+                ><input id="productRemovePhoto" type="checkbox" /> Remove saved
+                photo</label
+              ><button class="primary" type="submit" id="productSave">
+                Save product</button
+              ><button class="subtle hidden" type="button" id="productCancel">
+                Cancel edit
+              </button>
+              <p id="productFormStatus" role="status"></p>
+            </form>
+          </div>
+          <label class="field"
+            >Search my saved products<input
+              id="productSearch"
+              type="search"
+              maxlength="200"
+              placeholder="Name, brand, category or ingredient"
+          /></label>
+          <p id="productCount" role="status"></p>
+          <div id="productList" class="product-grid"></div>
+        </section>
+      </main>
+      <p id="appStatus" class="app-status" role="status" aria-live="polite"></p>
+      <footer>THE BEAUTY JOURNAL · A PRIVATE RITUAL</footer>
+    </div>
+    <script type="module" src="./app.js?v=20"></script>
+    <script type="module" src="./ingredients.js?v=20"></script>
+    <script defer="" src="./motion.js?v=20"></script>
+    <script defer="" src="./prompts.js?v=20"></script>
+    <script type="module" src="./products.js"></script>
+    <script type="module" src="./shell.js"></script>
+  </body>
+</html>

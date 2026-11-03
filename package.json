@@ -1,0 +1,28 @@
+{
+  "name": "beautycalendar",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "python3 -m http.server 8000 --bind 127.0.0.1",
+    "test": "node --test tests/unit/*.test.js",
+    "test:e2e": "npm run build && playwright test",
+    "check": "node scripts/check.js",
+    "build": "node scripts/build.js",
+    "format": "prettier --write '**/*.{js,css,html,json,md,yml}'",
+    "test:unit": "npm test",
+    "test:supplied": "npm run test:e2e -- --grep \"Supplied scenarios\"",
+    "test:audit": "npm run test:e2e -- --grep @audit",
+    "test:visual": "npm run test:e2e -- --grep @baseline",
+    "test:all": "npm run check && npm test && npm run test:e2e",
+    "test:legacy-probe": "npm run build && node scripts/probe-supplied.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@playwright/test": "1.58.2",
+    "prettier": "3.8.1"
+  }
+}

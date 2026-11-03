@@ -1,13 +1,13 @@
 {
-  "name": "The Beauty Journal — Skin, Hair & Self-Care",
-  "short_name": "Beauty Journal",
-  "description": "Личный офлайн-журнал ухода за кожей и волосами",
+  "name": "Beautycalendar \u2014 The Beauty Journal",
+  "short_name": "Beautycalendar",
+  "description": "Private skin, hair and self-care journal with an offline ingredient reference.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#d8d0c7",
-  "theme_color": "#d8d0c7",
-  "lang": "ru",
+  "background_color": "#efe9e1",
+  "theme_color": "#fffaf4",
+  "lang": "en",
   "icons": [
     {
       "src": "./icon-192.png",
@@ -21,5 +21,6 @@
       "type": "image/png",
       "purpose": "any"
     }
-  ]
+  ],
+  "id": "./"
 }

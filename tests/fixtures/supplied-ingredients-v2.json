@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Aqua",
+    "category": "Solvent",
+    "note": "Neutral fixture.",
+    "synonyms": ["Water"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Glycerin",
+    "category": "Humectant",
+    "note": "Neutral fixture.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Niacinamide",
+    "category": "Skin conditioning",
+    "note": "Neutral fixture.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Parfum",
+    "category": "Fragrance",
+    "note": "Fragrance fixture.",
+    "synonyms": ["Fragrance", "Perfume"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Limonene",
+    "category": "Allergen",
+    "note": "Allergen fixture.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": ["Fragrance sensitivity; this is not a comedogenicity rating."]
+  },
+  {
+    "name": "Cocos Nucifera Oil",
+    "category": "Emollient",
+    "note": "Mentioned in comedogenicity lists.",
+    "synonyms": ["Coconut oil"],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  },
+  {
+    "name": "Isopropyl Myristate",
+    "category": "Emollient",
+    "note": "Mentioned in comedogenicity tests.",
+    "synonyms": [],
+    "comedogenicity": {
+      "rating": null,
+      "evidence": "not-established",
+      "sourceIds": []
+    },
+    "cautions": []
+  }
+]

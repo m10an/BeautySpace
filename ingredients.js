@@ -1,7 +1,79 @@
-(()=>{'use strict';const $=id=>document.getElementById(id),input=$('inciInput'),output=$('inciResults');if(!input||!output)return;let db=[];fetch('./ingredients-db.json').then(r=>{if(!r.ok)throw Error('db');return r.json()}).then(d=>db=d).catch(()=>{output.classList.remove('hidden');output.textContent='Offline ingredient reference is not available. Try reopening the app after it has fully loaded once online.'});
-const normalize=s=>s.toLowerCase().replace(/\s+/g,' ').replace(/[.]/g,'').trim();
-const aliases={'water':'aqua','vitamin e':'tocopherol','shea butter':'butyrospermum parkii butter','jojoba oil':'simmondsia chinensis seed oil','argan oil':'argania spinosa kernel oil','coconut oil':'cocos nucifera oil','sunflower oil':'helianthus annuus seed oil','perfume':'parfum','fragrance':'parfum'};
-const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function parse(text){return text.replace(/^ingredients\s*[:：]/i,'').split(/[,;\n]+/).map(s=>s.replace(/^\s*\d+[.)]\s*/,'').trim()).filter(Boolean).slice(0,200)}
-function analyze(){const list=parse(input.value);output.classList.remove('hidden');if(!list.length){output.innerHTML='<p>Please paste an INCI list first.</p>';return}const map=new Map(db.map(d=>[normalize(d.name),d]));let recognized=0,flags=0;const cards=list.map(name=>{const key=normalize(name),d=map.get(key)||map.get(normalize(aliases[key]||''));if(d)recognized++;const concern=d&&(/fragrance|allergen/i.test(d.category)||/comedogenicity tests|comedogenicity lists/i.test(d.note));if(concern)flags++;return `<article class="inci-item"><div class="inci-item-head"><strong>${escape(name)}</strong><span>${escape(d?.category||'Not in offline reference')}</span></div><p>${escape(d?.note||'Not classified in this limited local database. Unknown does not mean unsafe.')}</p></article>`}).join('');const signal=recognized?Math.round(flags/recognized*100):0;const level=flags===0?'No flagged matches':flags<=2?'A few flagged matches':'Several flagged matches';const chart=`<div class="risk-visual"><h4>Potential pore-clogging signals</h4><div class="risk-track"><div class="risk-fill" style="width:${signal}%"></div></div><p><strong>${level}</strong> · ${flags} flagged / ${recognized} recognized ingredients</p><p class="muted">This bar shows the share of recognized ingredients flagged for further reading, NOT the probability that the product will clog pores. An INCI list cannot establish that probability.</p></div>`;output.innerHTML=`<div class="eyebrow">YOUR FORMULA · ${list.length} INGREDIENTS</div><h3>Ingredient overview ✧</h3><p class="muted">${recognized} of ${list.length} matched our offline guide · ${flags} flagged for further reading. These are not safety or pore-clogging scores.</p>${chart}${cards}<p class="muted">Ingredient order usually reflects descending concentration above 1%, but exact percentages are unknown. Patch-test new products if appropriate and consult a dermatologist for persistent acne or reactions.</p>`}
-$('inciAnalyze').addEventListener('click',analyze);$('inciClear').addEventListener('click',()=>{input.value='';output.classList.add('hidden')});})();
+import {
+  analyzeInci,
+  searchIngredients,
+  validateDatabase,
+  escapeHtml as esc,
+} from "./lib/domain.js";
+const $ = (id) => document.getElementById(id);
+export const referenceReady = fetch("./ingredients-db.json")
+  .then((r) => {
+    if (!r.ok) throw Error("Reference unavailable");
+    return r.json();
+  })
+  .then(validateDatabase);
+export function analysisHtml(result) {
+  if (!result.total) return "<p>Paste an INCI list to begin.</p>";
+  return `<h3>Ingredient overview</h3><p>${result.matched} of ${result.total} names matched the local reference.</p>
+    <figure class="analysis-chart"><figcaption>Reference coverage — counts, not a risk score</figcaption><div class="coverage-track" role="img" aria-label="${result.matched} matched and ${result.unknown} unrecognized ingredients"><span style="width:${(100 * result.matched) / result.total}%"></span></div><dl class="analysis-counts"><div><dt>Matched</dt><dd>${result.matched}</dd></div><div><dt>Unrecognized</dt><dd>${result.unknown}</dd></div><div><dt>With verified numeric rating</dt><dd>0</dd></div></dl></figure>
+    <p class="evidence-note"><strong>Comedogenicity: not established.</strong> This reference contains no attributable numeric ratings. Missing evidence does not mean zero risk. Ingredient lists cannot predict a finished product’s effect on your skin. Concentrations, formula, exposure and individual response matter. Fragrance sensitivity is a separate concern.</p>
+    ${result.entries.map(({ name, ingredient: d }) => `<article class="inci-item"><div class="inci-item-head"><strong>${esc(name)}</strong><span>${esc(d?.category || "Unrecognized")}</span></div><p>${esc(d?.note || "Not in this limited reference. Unknown does not mean unsafe or safe.")}</p><p class="muted">Comedogenicity: no verified rating</p>${d?.cautions.map((text) => `<p class="caution">${esc(text)}</p>`).join("") || ""}</article>`).join("")}`;
+}
+const input = $("inciInput"),
+  output = $("inciResults");
+let db = [],
+  loaded = false;
+$("inciAnalyze").disabled = true;
+referenceReady
+  .then((data) => {
+    db = data;
+    loaded = true;
+    $("inciAnalyze").disabled = false;
+    $("ingredientStatus").textContent =
+      `${db.length} entries available. Enter a name to search.`;
+  })
+  .catch(() => {
+    $("ingredientStatus").textContent =
+      "Ingredient reference unavailable. Reconnect and reload to try again.";
+    output.classList.remove("hidden");
+    output.textContent =
+      "Analysis unavailable: the local reference could not be loaded.";
+  });
+$("inciAnalyze").addEventListener("click", () => {
+  output.classList.remove("hidden");
+  try {
+    if (!loaded) throw Error("Wait for the ingredient reference.");
+    output.innerHTML = analysisHtml(analyzeInci(input.value, db));
+  } catch (e) {
+    output.textContent = e.message;
+  }
+});
+$("inciClear").addEventListener("click", () => {
+  input.value = "";
+  output.classList.add("hidden");
+  input.focus();
+});
+$("ingredientSearch").addEventListener("input", (e) => {
+  const results = searchIngredients(e.target.value, db);
+  const root = $("ingredientMatches");
+  root.replaceChildren();
+  $("ingredientStatus").textContent = !loaded
+    ? "Reference unavailable."
+    : !e.target.value.trim()
+      ? "Enter a name to search."
+      : results.length
+        ? `${results.length} matching ingredients`
+        : "No ingredients found. Try an INCI name or synonym.";
+  for (const d of results) {
+    const article = document.createElement("article");
+    article.className = "inci-item";
+    const heading = document.createElement("h4");
+    heading.textContent = d.name;
+    const text = document.createElement("p");
+    text.textContent = d.note;
+    const rating = document.createElement("p");
+    rating.className = "muted";
+    rating.textContent = "Comedogenicity: no verified rating";
+    article.append(heading, text, rating);
+    root.append(article);
+  }
+});

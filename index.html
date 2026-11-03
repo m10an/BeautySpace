@@ -13,13 +13,14 @@
     <meta content="Beautycalendar" name="apple-mobile-web-app-title" />
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
-    <link href="./style.css?v=22" rel="stylesheet" />
+    <link href="./icon-192.png" rel="icon" type="image/png" />
+    <link href="./style.css?v=23" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
       content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
     />
-    <script src="./theme.js?v=22"></script>
+    <script src="./theme.js?v=23"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -525,25 +526,11 @@
             <h2>Ingredient <em>Check.</em></h2>
             <p>Understand your formula, not just a rating.</p>
           </div>
-          <div class="panel">
-            <h3>Search the ingredient reference</h3>
-            <label class="field" for="ingredientSearch"
-              >INCI name or synonym<input
-                id="ingredientSearch"
-                type="search"
-                maxlength="200"
-                placeholder="e.g. water or hyaluron"
-            /></label>
-            <p class="muted">
-              A curated offline reference, not a complete ingredient catalog.
-            </p>
-            <p id="ingredientStatus" role="status">Loading reference…</p>
-            <div id="ingredientMatches"></div>
-          </div>
           <div class="panel ingredient-panel">
             <div class="eyebrow">YOUR INCI LIST</div>
+            <p id="ingredientStatus" role="status">Loading ingredient names…</p>
             <label class="field" for="inciInput"
-              >Paste ingredients, separated by commas</label
+              >Full INCI list or ingredient name</label
             ><textarea
               maxlength="20000"
               id="inciInput"
@@ -551,6 +538,7 @@
               rows="6"
               spellcheck="false"
             ></textarea>
+            <div id="ingredientMatches" aria-label="Name suggestions"></div>
             <div class="ingredient-actions">
               <button class="primary" id="inciAnalyze">
                 Analyze ingredients ✧</button
@@ -590,9 +578,16 @@
               >
             </div>
             <p class="muted">
-              External sites are optional references. This offline reference is
-              a curated, limited guide, not a live integration or official
-              database.
+              Name catalog:
+              <a
+                href="https://github.com/beauteeru/cosmetic-ingredients-dataset"
+                target="_blank"
+                rel="noopener noreferrer"
+                >BEAUTEE</a
+              >
+              (MIT). Publisher-supplied CosIng identifiers are not regulatory
+              approval. Numeric evidence is maintained separately.
+              <a href="./data/BEAUTEE-LICENSE.txt">License</a>.
             </p>
           </div>
         </section>
@@ -713,11 +708,11 @@
       <p id="appStatus" class="app-status" role="status" aria-live="polite"></p>
       <footer>THE BEAUTY JOURNAL · A PRIVATE RITUAL</footer>
     </div>
-    <script type="module" src="./app.js?v=22"></script>
-    <script type="module" src="./ingredients.js?v=22"></script>
-    <script defer="" src="./motion.js?v=22"></script>
-    <script defer="" src="./prompts.js?v=22"></script>
-    <script type="module" src="./products.js?v=22"></script>
-    <script type="module" src="./shell.js?v=22"></script>
+    <script type="module" src="./app.js?v=23"></script>
+    <script type="module" src="./ingredients.js?v=23"></script>
+    <script defer="" src="./motion.js?v=23"></script>
+    <script defer="" src="./prompts.js?v=23"></script>
+    <script type="module" src="./products.js?v=23"></script>
+    <script type="module" src="./shell.js?v=23"></script>
   </body>
 </html>

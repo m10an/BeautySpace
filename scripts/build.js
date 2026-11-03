@@ -20,11 +20,13 @@ const files = [
   "icon-512.png",
   "lib/domain.js",
   "lib/storage.js",
+  "lib/inci-reference.js",
 ];
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist/lib", { recursive: true });
 for (const name of files) copyFileSync(name, `dist/${name}`);
 cpSync("assets", "dist/assets", { recursive: true });
+cpSync("data", "dist/data", { recursive: true });
 console.log(
   `Built ${files.length} static assets in dist/; no runtime dependencies.`,
 );

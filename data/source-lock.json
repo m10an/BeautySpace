@@ -1,0 +1,10 @@
+{
+  "publisher": "BEAUTEE",
+  "license": "MIT",
+  "attribution": "Copyright (c) 2025 BEAUTEE \u2014 https://beautee.ru",
+  "repository": "https://github.com/beauteeru/cosmetic-ingredients-dataset",
+  "commit": "ad1d9afad3f1a721873878b83fbd9f674d628c9e",
+  "sha256": "4362c178430b9f4defc1d2388b45411d0a2db5cf0270dadb8127dfa9a80e618a",
+  "retrieved": "2026-11-03",
+  "limitations": "Publisher-curated ingredient/common names with supplied CosIng IDs; not independently confirmed against the current official glossary, not approval or clinical evidence."
+}

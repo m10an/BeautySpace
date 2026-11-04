@@ -44,3 +44,29 @@ export async function visualDifference(page, first, second) {
     { a: first.toString("base64"), b: second.toString("base64") },
   );
 }
+
+/**
+ * A full-page capture can prime/rebuild Chromium's raster cache. Wait for four
+ * consecutive identical captures before measuring repeat-render stability, as screenshot
+ * assertions do. Keep this bounded: genuine continuous motion must still fail.
+ * The measured pair and its pixel tolerances are unchanged by this readiness step.
+ */
+export async function settleScreenshotPaint(page, options, maxCaptures = 12) {
+  let previous = await page.screenshot(options);
+  let identical = 0;
+  for (let capture = 1; capture < maxCaptures; capture++) {
+    await page.evaluate(
+      () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
+    const current = await page.screenshot(options);
+    identical = previous.equals(current) ? identical + 1 : 0;
+    if (identical === 3) return;
+    previous = current;
+  }
+  throw new Error(
+    `Page rendering did not settle after ${maxCaptures} captures.`,
+  );
+}

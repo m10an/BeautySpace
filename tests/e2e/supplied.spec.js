@@ -1,8 +1,19 @@
-import { visualDifference } from "./visual.js";
+import { visualDifference, settleScreenshotPaint } from "./visual.js";
 import { goTo, setTheme } from "./navigation.js";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync, existsSync } from "node:fs";
+test.use({
+  // Trace screencast frames compete with exact full-page captures. Keep the
+  // action/DOM/network trace and explicit failure PNGs, but let this visual
+  // suite own its screenshot timing instead of recording a parallel filmstrip.
+  trace: {
+    mode: "retain-on-failure",
+    screenshots: false,
+    snapshots: true,
+    sources: true,
+  },
+});
 const fixture = JSON.parse(
   readFileSync(
     new URL("../fixtures/supplied-ingredients-v2.json", import.meta.url),
@@ -327,6 +338,7 @@ test.describe("Supplied scenarios adapted to v2", () => {
           caret: "hide",
           fullPage: true,
         };
+        await settleScreenshotPaint(page, options);
         const first = await page.screenshot(options);
         await info.attach("first-render", {
           body: first,

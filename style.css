@@ -1344,8 +1344,94 @@ button:active:not(:disabled) {
     font-size: 0.72rem;
   }
 }
+html.tool-open {
+  overflow: hidden;
+}
+html.tool-open body {
+  position: fixed;
+  top: var(--tool-scroll, 0px);
+  width: 100%;
+}
+.tool-dialog {
+  width: min(92vw, 680px);
+  max-width: none;
+  max-height: calc(
+    100dvh - max(2rem, env(safe-area-inset-top)) -
+      max(2rem, env(safe-area-inset-bottom))
+  );
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--paper);
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  color: var(--ink);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 80px #17120f40;
+  overflow: auto;
+}
+.tool-dialog::backdrop {
+  background: #17120f55;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.tool-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.tool-heading h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+.tool-dialog fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+.tool-dialog legend {
+  font-size: 1.1rem;
+  font-weight: 550;
+  margin: 1rem 0;
+}
+.wizard-actions,
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.wizard-actions {
+  position: sticky;
+  bottom: -1.5rem;
+  padding: 0.75rem 0;
+  background: var(--paper);
+  margin-top: 1rem;
+}
+.tool-dialog [hidden] {
+  display: none !important;
+}
+#advancedCare {
+  margin-top: 1rem;
+}
+#rbStatus:empty {
+  display: none;
+}
+@media (max-width: 430px) {
+  .tool-dialog {
+    padding: 1rem;
+  }
+  .tool-heading h2 {
+    font-size: 1.15rem;
+  }
+  .wizard-actions {
+    bottom: -1rem;
+  }
+  .tool-dialog legend {
+    font-size: 1rem;
+  }
+}
 
-/* Keep the calendar visible at first paint on wider screens. */
 @media (min-width: 601px) {
   .calendar-intro {
     min-height: 125px;
@@ -1354,4 +1440,7 @@ button:active:not(:disabled) {
   .calendar-intro h1 {
     font-size: clamp(1.5rem, 3vw, 2rem);
   }
+}
+details:not([open]) > :not(summary) {
+  display: none !important;
 }

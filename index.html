@@ -14,13 +14,13 @@
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
     <link href="./icon-192.png" rel="icon" type="image/png" />
-    <link href="./style.css?v=23" rel="stylesheet" />
+    <link href="./style.css?v=24" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
       content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
     />
-    <script src="./theme.js?v=23"></script>
+    <script src="./theme.js?v=24"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -226,51 +226,58 @@
               calendar. New products are never scheduled automatically.
             </p>
             <div id="customList"></div>
-            <h3>Add a care step</h3>
-            <label class="field"
-              >Name
-              <input
-                id="customName"
-                maxlength="90"
-                placeholder="e.g. Hydrating mask" /></label
-            ><label class="field"
-              >When to use
-              <select id="customTime">
-                <option value="am">Morning</option>
-                <option value="pm">Evening</option>
-              </select></label
-            ><label class="field"
-              >Schedule
-              <select id="customMode">
-                <option value="weekdays">By weekday</option>
-                <option value="once">On a specific date</option>
-                <option value="daily">Every day</option>
-              </select></label
-            >
-            <div class="weekdaychoices" id="customWeekdays">
-              <label><input type="checkbox" value="0" /> Mon</label
-              ><label><input type="checkbox" value="1" /> Tue</label
-              ><label><input type="checkbox" value="2" /> Wed</label
-              ><label><input type="checkbox" value="3" /> Thu</label
-              ><label><input type="checkbox" value="4" /> Fri</label
-              ><label><input type="checkbox" value="5" /> Sat</label
-              ><label><input type="checkbox" value="6" /> Sun</label>
-            </div>
-            <label class="field hidden" id="customOnceWrap"
-              >Date <input id="customOnce" type="date" /></label
-            ><label class="field"
-              >Start date (recurring steps)
-              <input id="customFrom" type="date" /></label
-            ><label class="field"
-              >End date (optional) <input id="customUntil" type="date" /></label
-            ><button class="primary" id="addCustom">Add to calendar</button
-            ><button class="subtle hidden" id="cancelCustomEdit">
-              Cancel edit
+            <button class="primary" id="openBuilder" type="button">
+              Build a routine, step by step
             </button>
-            <p class="muted">
-              You can edit a single day without changing the rest of the
-              schedule.
-            </p>
+            <details id="advancedCare">
+              <summary>Advanced add / edit options</summary>
+              <h3>Add a care step</h3>
+              <label class="field"
+                >Name
+                <input
+                  id="customName"
+                  maxlength="90"
+                  placeholder="e.g. Hydrating mask" /></label
+              ><label class="field"
+                >When to use
+                <select id="customTime">
+                  <option value="am">Morning</option>
+                  <option value="pm">Evening</option>
+                </select></label
+              ><label class="field"
+                >Schedule
+                <select id="customMode">
+                  <option value="weekdays">By weekday</option>
+                  <option value="once">On a specific date</option>
+                  <option value="daily">Every day</option>
+                </select></label
+              >
+              <div class="weekdaychoices" id="customWeekdays">
+                <label><input type="checkbox" value="0" /> Mon</label
+                ><label><input type="checkbox" value="1" /> Tue</label
+                ><label><input type="checkbox" value="2" /> Wed</label
+                ><label><input type="checkbox" value="3" /> Thu</label
+                ><label><input type="checkbox" value="4" /> Fri</label
+                ><label><input type="checkbox" value="5" /> Sat</label
+                ><label><input type="checkbox" value="6" /> Sun</label>
+              </div>
+              <label class="field hidden" id="customOnceWrap"
+                >Date <input id="customOnce" type="date" /></label
+              ><label class="field"
+                >Start date (recurring steps)
+                <input id="customFrom" type="date" /></label
+              ><label class="field"
+                >End date (optional)
+                <input id="customUntil" type="date" /></label
+              ><button class="primary" id="addCustom">Add to calendar</button
+              ><button class="subtle hidden" id="cancelCustomEdit">
+                Cancel edit
+              </button>
+              <p class="muted">
+                You can edit a single day without changing the rest of the
+                schedule.
+              </p>
+            </details>
           </div>
           <div class="panel">
             <h3>Extra care for the selected date</h3>
@@ -712,11 +719,113 @@
       <p id="appStatus" class="app-status" role="status" aria-live="polite"></p>
       <footer>THE BEAUTY JOURNAL · A PRIVATE RITUAL</footer>
     </div>
-    <script type="module" src="./app.js?v=23"></script>
-    <script type="module" src="./ingredients.js?v=23"></script>
-    <script defer="" src="./motion.js?v=23"></script>
-    <script defer="" src="./prompts.js?v=23"></script>
-    <script type="module" src="./products.js?v=23"></script>
-    <script type="module" src="./shell.js?v=23"></script>
+    <dialog id="routineBuilder" class="tool-dialog" aria-labelledby="rbTitle">
+      <div class="tool-heading">
+        <h2 id="rbTitle">A routine, made yours.</h2>
+        <button
+          class="icon-button"
+          type="button"
+          data-close
+          aria-label="Close routine builder"
+        >
+          ×
+        </button>
+      </div>
+      <p id="rbProgress" role="status">Step 1 of 5</p>
+      <fieldset data-step>
+        <legend>1 · Choose your product</legend>
+        <div class="preset-row">
+          <button class="subtle" type="button" data-preset="moisture">
+            Daily moisture</button
+          ><button class="subtle" type="button" data-preset="spf">
+            Morning SPF</button
+          ><button class="subtle" type="button" data-preset="gentle">
+            Gentle treatment
+          </button>
+        </div>
+        <label class="field"
+          >Saved collection<select id="rbCollection">
+            <option value="">Choose a saved product…</option>
+          </select></label
+        ><label class="field"
+          >Product name<input id="rbProduct" maxlength="70" required /></label
+        ><label class="field"
+          >Reuse a schedule<select id="rbCopy">
+            <option value="">Copy a recurring schedule…</option>
+          </select></label
+        >
+      </fieldset>
+      <fieldset data-step hidden>
+        <legend>2 · Choose the care step</legend>
+        <label class="field"
+          >Care step<select id="rbStep">
+            <option value="cleanse">Cleanse</option>
+            <option value="tone">Tone</option>
+            <option value="hydrate">Moisturize</option>
+            <option value="treat">Treatment</option>
+            <option value="protect">SPF</option>
+
+            <option value="other">Other care</option>
+          </select></label
+        >
+        <p class="muted">
+          This builder adds to your skin calendar. The independent Hair calendar
+          is unchanged.
+        </p>
+      </fieldset>
+      <fieldset data-step hidden>
+        <legend>3 · Choose your days</legend>
+        <div id="rbDays" class="weekdaychoices">
+          <label><input type="checkbox" value="0" />Mon</label
+          ><label><input type="checkbox" value="1" />Tue</label
+          ><label><input type="checkbox" value="2" />Wed</label
+          ><label><input type="checkbox" value="3" />Thu</label
+          ><label><input type="checkbox" value="4" />Fri</label
+          ><label><input type="checkbox" value="5" />Sat</label
+          ><label><input type="checkbox" value="6" />Sun</label>
+        </div>
+        <label class="field"
+          >Start date<input id="rbFrom" type="date" required /></label
+        ><label class="field"
+          >End date (optional)<input id="rbUntil" type="date"
+        /></label>
+      </fieldset>
+      <fieldset data-step hidden>
+        <legend>4 · Choose the time</legend>
+        <label class="field"
+          >Time of day<select id="rbTime">
+            <option value="am">Morning</option>
+            <option value="pm">Evening</option>
+          </select></label
+        >
+      </fieldset>
+      <fieldset data-step hidden>
+        <legend>5 · Review before saving</legend>
+        <h3 id="rbPreviewName"></h3>
+        <p id="rbPreviewSchedule"></p>
+        <p class="muted">
+          Adds one new routine. Existing procedures and completion history stay
+          in place.
+        </p>
+        <button id="rbEdit" class="subtle" type="button">
+          Edit this draft
+        </button>
+      </fieldset>
+      <p id="rbStatus" role="status"></p>
+      <div class="wizard-actions">
+        <button id="rbBack" class="subtle" type="button">Back</button
+        ><button id="rbNext" class="primary" type="button">Next</button
+        ><button id="rbConfirm" class="primary" type="button" hidden>
+          Add routine to calendar
+        </button>
+      </div>
+    </dialog>
+    <script type="module" src="./builder.js?v=24"></script>
+    <script type="module" src="./app.js?v=24"></script>
+    <script type="module" src="./ingredients.js?v=24"></script>
+    <script defer="" src="./motion.js?v=24"></script>
+    <script defer="" src="./prompts.js?v=24"></script>
+    <script type="module" src="./products.js?v=24"></script>
+    <script type="module" src="./shell.js?v=24"></script>
   </body>
 </html>

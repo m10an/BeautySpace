@@ -1,5 +1,8 @@
 import { mkdirSync, copyFileSync, rmSync, cpSync } from "node:fs";
 const files = [
+  "builder.js",
+  "lib/routine-plan.js",
+  "lib/dialog.js",
   "index.html",
   "style.css",
   "app.js",

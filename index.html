@@ -14,13 +14,13 @@
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
     <link href="./icon-192.png" rel="icon" type="image/png" />
-    <link href="./style.css?v=24" rel="stylesheet" />
+    <link href="./style.css?v=26" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
       content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
     />
-    <script src="./theme.js?v=24"></script>
+    <script src="./theme.js?v=26"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -159,6 +159,11 @@
             ><span>Ingredient Check</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
+          <button type="button" class="tab" data-tab="ipl">
+            <span class="menu-index" aria-hidden="true">10</span
+            ><span>IPL Tracker</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
           <button type="button" class="tab" data-tab="settings">
             <span class="menu-index" aria-hidden="true">10</span
             ><span>More</span
@@ -206,7 +211,129 @@
                 <button class="small" id="jumpToday">Today</button>
               </div>
               <div id="selectedRoutine"></div>
+              <div id="iplCalendar" aria-live="polite"></div>
             </div>
+          </div>
+        </section>
+        <section class="screen hidden" id="ipl">
+          <div class="panel">
+            <h2>IPL Tracker</h2>
+            <p>
+              Private device and session journal. Follow your exact manufacturer
+              instructions. This tracker does not recommend treatment settings
+              or universal intervals.
+            </p>
+            <form id="iplDevice">
+              <label class="field"
+                >Device brand<input
+                  id="iplbrand"
+                  maxlength="1000"
+                  required /></label
+              ><label class="field"
+                >Exact model<input
+                  id="iplmodel"
+                  maxlength="1000"
+                  required /></label
+              ><label class="field"
+                >Manufacturer instructions URL / edition<input
+                  id="iplinstructions"
+                  maxlength="1000" /></label
+              ><button class="primary">Save device locally</button>
+            </form>
+          </div>
+          <div class="panel">
+            <h3>Session log</h3>
+            <button id="iplNew" type="button">New session</button>
+            <form id="iplForm">
+              <label class="field"
+                >Date<input type="date" id="ipldate" required /></label
+              ><label class="field"
+                >Treatment area<input
+                  id="iplarea"
+                  maxlength="2000"
+                  required
+                  placeholder="e.g. Lower legs" /></label
+              ><label class="field"
+                >Settings used (record only)<input
+                  id="iplsettings"
+                  maxlength="2000" /></label
+              ><label class="field"
+                >Skin reactions<textarea
+                  id="iplreaction"
+                  maxlength="2000"
+                ></textarea></label
+              ><label class="field"
+                >Notes<textarea
+                  id="iplnotes"
+                  maxlength="2000"
+                ></textarea></label
+              ><label class="field"
+                >Status<select id="iplstatus">
+                  <option value="planned">Planned</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select></label
+              ><button class="primary">Preview session</button>
+            </form>
+            <p id="iplPreview"></p>
+            <button id="iplConfirm" class="primary" hidden>
+              Confirm &amp; Add to Calendar
+            </button>
+            <p id="iplStatus" role="status"></p>
+          </div>
+          <div class="panel">
+            <h3>Progress by area</h3>
+            <div id="iplProgress"></div>
+          </div>
+          <div id="iplSessions"></div>
+          <details id="iplPlanning" class="panel">
+            <summary>Plan my IPL routine</summary>
+            <p>
+              Automated IPL planning is unavailable until exact-model
+              manufacturer guidance and restrictions have been independently
+              reviewed. A URL or AI-generated interval is not verification.
+            </p>
+            <label class="field"
+              >Areas, session history and last treatment date<textarea
+                maxlength="2000"
+              ></textarea></label
+            ><label class="field"
+              >Relevant skin / hair characteristics<textarea
+                maxlength="2000"
+              ></textarea></label
+            ><label class="field"
+              >Recent tanning, irritation, photosensitizing products /
+              medications and possible contraindications<textarea
+                maxlength="2000"
+              ></textarea></label
+            ><label class="field"
+              >Manufacturer restrictions and existing skincare routine<textarea
+                maxlength="2000"
+              ></textarea>
+            </label>
+            <p>
+              Do not enter identifying details. Nothing in this IPL interview is
+              transmitted. If restrictions or suitability are unclear, consult
+              the manufacturer or a qualified clinician; use manual logging.
+            </p>
+            <button id="iplPlan" type="button">
+              Check device planning availability
+            </button>
+            <p id="iplPlanningStatus" role="status"></p>
+          </details>
+          <div class="panel">
+            <h3>IPL backup</h3>
+            <p>
+              IPL has its own versioned local archive. Export it alongside your
+              existing journal backup.
+            </p>
+            <button id="iplExport" type="button">Export IPL records</button
+            ><label class="field"
+              >Restore IPL archive<input
+                id="iplImport"
+                type="file"
+                accept="application/json,.json"
+            /></label>
           </div>
         </section>
         <section class="screen hidden" id="ritual">
@@ -820,12 +947,185 @@
         </button>
       </div>
     </dialog>
-    <script type="module" src="./builder.js?v=24"></script>
-    <script type="module" src="./app.js?v=24"></script>
-    <script type="module" src="./ingredients.js?v=24"></script>
-    <script defer="" src="./motion.js?v=24"></script>
-    <script defer="" src="./prompts.js?v=24"></script>
-    <script type="module" src="./products.js?v=24"></script>
-    <script type="module" src="./shell.js?v=24"></script>
+    <button
+      id="aiLauncher"
+      class="ai-launcher"
+      type="button"
+      aria-label="Open Beauty AI consultant"
+    >
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path
+          d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"
+        /></svg
+      ><span aria-hidden="true">AI</span>
+    </button>
+    <dialog
+      id="aiDialog"
+      class="tool-dialog ai-dialog"
+      aria-labelledby="aiTitle"
+    >
+      <div class="tool-heading">
+        <h2 id="aiTitle">Beauty AI consultant</h2>
+        <button
+          type="button"
+          class="icon-button"
+          data-close
+          aria-label="Close AI consultant"
+        >
+          ×
+        </button>
+      </div>
+      <p class="muted">
+        Cosmetic planning support, not a diagnosis or a dermatologist. No
+        calendar changes happen until you review and confirm a proposal.
+      </p>
+      <p id="aiStatus" role="status"></p>
+      <button id="aiManual" class="subtle" type="button">
+        Use manual Routine Builder
+      </button>
+      <button id="iplAIEntry" type="button" class="subtle">
+        Plan my IPL routine
+      </button>
+      <form id="aiForm">
+        <div class="form-grid">
+          <label class="field"
+            >Skin type<select id="aiSkin">
+              <option value="unsure">Unsure</option>
+              <option value="dry">Dry</option>
+              <option value="oily">Oily</option>
+              <option value="combination">Combination</option>
+              <option value="normal">Normal</option>
+            </select></label
+          ><label class="field"
+            >Sensitivity<select id="aiSensitivity">
+              <option value="moderate">Moderate</option>
+              <option value="low">Low</option>
+              <option value="high">High</option>
+            </select></label
+          >
+        </div>
+        <fieldset>
+          <legend>Your goals</legend>
+          <div id="aiGoals" class="weekdaychoices">
+            <label><input type="checkbox" value="hydration" />Hydration</label
+            ><label
+              ><input type="checkbox" value="barrier" />Barrier comfort</label
+            ><label><input type="checkbox" value="texture" />Texture</label
+            ><label><input type="checkbox" value="tone" />Even tone</label
+            ><label
+              ><input type="checkbox" value="breakouts" />Breakout
+              support</label
+            >
+          </div>
+        </fieldset>
+        <details>
+          <summary>Choose text from your saved products</summary>
+          <div id="aiCollection"></div>
+          <button id="aiCopyProducts" type="button" class="subtle">
+            Copy selected names and INCI
+          </button>
+        </details>
+        <label class="field"
+          >Current products and full INCI<textarea
+            id="aiCurrent"
+            maxlength="8000"
+            rows="4"
+          ></textarea></label
+        ><label class="field"
+          >Other active ingredients you use<textarea
+            id="aiActives"
+            maxlength="1000"
+            rows="2"
+          ></textarea>
+        </label>
+        <h3 class="local-review-title">
+          Local active overlap check · rule-based, not AI
+        </h3>
+        <div id="aiLocal" class="muted" aria-live="polite"></div>
+        <button id="aiCopySchedule" class="subtle" type="button">
+          Copy this week’s routine into the interview
+        </button>
+        <div class="form-grid">
+          <label class="field"
+            >Morning habits<textarea
+              id="aiMorning"
+              maxlength="1600"
+              rows="2"
+            ></textarea></label
+          ><label class="field"
+            >Evening habits<textarea
+              id="aiEvening"
+              maxlength="1600"
+              rows="2"
+            ></textarea>
+          </label>
+        </div>
+        <label class="field"
+          >Relevant limitations<textarea
+            id="aiConstraints"
+            maxlength="1200"
+            rows="2"
+            placeholder="Relevant sensitivities or products you need to avoid; omit personal identifiers."
+          ></textarea></label
+        ><label class="field"
+          >Preferences<textarea
+            id="aiPreferences"
+            maxlength="1200"
+            rows="2"
+          ></textarea></label
+        ><label class="field"
+          >Plan start date<input id="aiStart" type="date"
+        /></label>
+        <label class="toggle"
+          ><input id="aiAlarm" type="checkbox" />I have severe or worsening
+          symptoms, such as swelling, blistering, severe pain or breathing
+          trouble.</label
+        >
+        <p id="aiMedical" role="alert" hidden>
+          For breathing trouble or sudden swelling, seek urgent medical care.
+          For blistering, severe pain or rapidly worsening irritation, contact a
+          clinician. AI planning is paused.
+        </p>
+        <label class="toggle"
+          ><input id="aiConsent" type="checkbox" />I consent to sending the
+          interview text shown here to OpenAI through the configured backend and
+          using Cloudflare human verification. Photos, journal entries and
+          contact details are not included.</label
+        >
+        <p class="muted">
+          One request per click, no automatic retries; server limits and a 2,000
+          output-token cap apply. Avoid names, addresses and full medical
+          histories.
+        </p>
+        <div id="aiChallenge"></div>
+        <button id="aiSend" type="button" class="primary" disabled>
+          Request an AI proposal
+        </button>
+      </form>
+      <div id="aiPreview"></div>
+      <label class="toggle"
+        ><input id="aiReview" type="checkbox" />I reviewed the edited proposal.
+        Add these steps without deleting existing care.</label
+      ><button id="aiSave" type="button" class="primary" disabled>
+        Add reviewed proposal to calendar
+      </button>
+    </dialog>
+    <script type="module" src="./ai-client.js?v=26"></script>
+    <script type="module" src="./builder.js?v=26"></script>
+    <script type="module" src="./app.js?v=26"></script>
+    <script type="module" src="./ingredients.js?v=26"></script>
+    <script defer="" src="./motion.js?v=26"></script>
+    <script defer="" src="./prompts.js?v=26"></script>
+    <script type="module" src="./products.js?v=26"></script>
+    <script type="module" src="./shell.js?v=26"></script>
+    <script type="module" src="./ipl.js?v=26"></script>
   </body>
 </html>

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "summary": "Synthetic test proposal. Not a live AI or clinical recommendation.",
+  "limitations": ["Synthetic fixture used only by automated tests."],
+  "concerns": [],
+  "recommendMedical": false,
+  "items": [
+    {
+      "name": "Test moisturizer",
+      "step": "hydrate",
+      "time": "pm",
+      "weekdays": [0, 1, 2, 3, 4, 5, 6],
+      "from": "2026-01-01",
+      "until": null,
+      "reason": "Test-only reason."
+    }
+  ]
+}

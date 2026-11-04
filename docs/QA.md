@@ -1,3 +1,7 @@
+# Current release verification
+
+See [the current delivery report](releases/DELIVERY.md) for the luxury/INCI/builder/AI/IPL changes and actual results. The following report is retained as the historical editorial-redesign run. Its counts and original imagery description do not describe the current build.
+
 # QA report — 3 November 2026
 
 ## Environment and commands

@@ -10,6 +10,7 @@ const sections = [
   "insights",
   "inspiration",
   "prompts",
+  "ipl",
   "settings",
   "ingredients",
   "products",

@@ -2,7 +2,7 @@
 
 ## Current application
 
-Static HTML, CSS and browser ES modules, without a bundler or runtime dependency. A small explicit-allowlist build copies 20 production assets to `dist/`, preserving relative paths so GitHub Pages repository subpaths work.
+Static HTML, CSS and browser ES modules, without a bundler or runtime dependency. A small explicit-allowlist build copies allowlisted frontend files and the licensed assets/data directories to `dist/`, preserving relative paths so GitHub Pages repository subpaths work.
 
 | Module                     | Responsibility                                                                                                                            |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -52,4 +52,8 @@ A release as a Mini App needs an HTTPS URL configured in BotFather, an official 
 
 `Quality` runs on branch pushes and pull requests. `Deploy Pages` runs all checks and creates an artifact, then deploys only `main` with minimal Pages/OIDC permissions. Enable GitHub Actions as the Pages source in repository settings. CI needs normal npm/Playwright/Ubuntu package-download access. No application secret is required. The remote Actions run and production URL must be checked after push; local tests alone are not a deployment result.
 
-Google Fonts is optional (`fonts.googleapis.com`, `fonts.gstatic.com`); a blocked font does not block the app. No network policy change is necessary for core functionality. Keep TLS and artifact verification enabled. For rollback, redeploy a prior known-good commit; never clear browser data or downgrade/import backups blindly. Bump the service-worker cache name and asset query version together when shipping new shell files, then close all app tabs to activate the waiting worker.
+Montserrat is self-hosted; no external font request is required. No network policy change is necessary for core functionality. Keep TLS and artifact verification enabled. For rollback, redeploy a prior known-good commit; never clear browser data or downgrade/import backups blindly. Bump the service-worker cache name and asset query version together when shipping new shell files, then close all app tabs to activate the waiting worker.
+
+## Optional AI backend
+
+`server/` is excluded from the Pages build. See [server setup](../server/README.md). `runtime-config.json` contains public endpoint/site-key settings only. The shared `lib/ai-plan.js` schema rejects unknown keys and malformed schedules. Confirmed proposals append through `lib/routine-plan.js`, preserving old IDs and rejecting identical schedule entries. Existing data formats remain unchanged.

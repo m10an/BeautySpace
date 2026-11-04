@@ -1,3 +1,7 @@
+# Current Ingredient Check v2
+
+See [INCI v2 provenance and evidence contract](releases/INCI-V2.md). The live catalog contains 28,353 distinct MIT-licensed names plus retained legacy descriptions. Numeric evidence is stored separately and currently has no attributable ratings. The following audit records the original 107-entry source, not the current search catalog.
+
 # Ingredient data and comedogenicity audit
 
 ## What is actually in the source

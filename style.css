@@ -1431,16 +1431,75 @@ html.tool-open body {
     font-size: 1rem;
   }
 }
+.ai-launcher {
+  position: fixed;
+  right: max(1.2rem, env(safe-area-inset-right));
+  bottom: max(1.2rem, env(safe-area-inset-bottom));
+  z-index: 14;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 8px 28px #17120f30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  font-size: 0.6rem;
+  line-height: 1;
+}
+main {
+  padding-bottom: max(6rem, env(safe-area-inset-bottom));
+}
+.ai-dialog {
+  width: min(94vw, 760px);
+}
+.local-review-title {
+  font-size: 0.95rem;
+  margin: 1rem 0;
+}
+.proposed-step {
+  padding: 1rem !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 10px;
+  margin: 1rem 0 !important;
+}
+.ai-dialog details {
+  margin: 1rem 0;
+}
+#aiMedical {
+  border-left: 3px solid var(--danger);
+  padding: 1rem;
+  background: var(--surface);
+}
+#aiMedical[hidden] {
+  display: none;
+}
+.ai-dialog fieldset {
+  margin: 1rem 0;
+}
+.ai-dialog #aiStatus {
+  font-weight: 500;
+}
+
+/* Keep the calendar above the fold and collapsed editors out of layout. */
+.calendar-intro {
+  min-height: 150px;
+  padding-block: 1rem;
+}
+.calendar-intro h1 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+details:not([open]) > :not(summary) {
+  display: none !important;
+}
 
 @media (min-width: 601px) {
   .calendar-intro {
     min-height: 125px;
     padding-block: 0.5rem;
   }
-  .calendar-intro h1 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-  }
-}
-details:not([open]) > :not(summary) {
-  display: none !important;
 }

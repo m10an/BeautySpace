@@ -1,8 +1,13 @@
 import { mkdirSync, copyFileSync, rmSync, cpSync } from "node:fs";
 const files = [
+  "ipl.js",
+  "lib/ipl.js",
   "builder.js",
   "lib/routine-plan.js",
   "lib/dialog.js",
+  "ai-client.js",
+  "runtime-config.json",
+  "lib/ai-plan.js",
   "index.html",
   "style.css",
   "app.js",

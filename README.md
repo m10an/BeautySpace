@@ -4,14 +4,14 @@ A private, offline-first skin, hair and self-care journal. Built from the real B
 
 ## Run locally
 
-Use Node.js 24+ and Python 3. There are **no production npm dependencies, backend services, API keys or database servers**.
+Use Node.js 24+ and Python 3. The offline app requires no backend or API keys. The optional AI consultant requires a separate server; see [server setup](server/README.md).
 
 ```sh
 npm ci
 npm run dev
 ```
 
-The HTTP server binds to `127.0.0.1:8000`. Open it in a local browser. Serve over HTTPS for production PWA installation; do not open `index.html` as a file. Google GFS Didot is an optional enhancement loaded from `<head>`; documented system serif fallbacks work offline.
+The HTTP server binds to `127.0.0.1:8000`. Open it in a local browser. Serve over HTTPS for production PWA installation; do not open `index.html` as a file. Montserrat is self-hosted under SIL OFL; see [asset provenance](assets/ASSETS.md).
 
 ## Checks and production build
 
@@ -32,11 +32,11 @@ Convenience commands: `npm run test:all` runs the complete current gate; `test:u
 - Calendar opens first, with a compact header, frosted off-canvas navigation and a round theme control.
 - Independent skin/hair calendars; create, edit, delete, schedule and complete care steps.
 - Personal product shelf: name, brand, category, INCI, compressed photo, edit/delete and local search.
-- Case-insensitive, whitespace-normalized partial INCI/synonym search in a curated 107-entry reference.
+- Case-insensitive, whitespace-normalized partial INCI/synonym search in a pinned MIT-licensed catalog of 28,353 distinct ingredient/common names.
 - INCI recognition and accessible reference-coverage charts. **No verified numeric comedogenicity ratings are present in the source data.** Unknown evidence is displayed explicitly, never as a zero score. Fragrance sensitivity is separate from comedogenicity.
 - Device-local observations, progress photos, reflections, insights and a versioned backup covering all stores.
 - Responsive light, dark and system themes, keyboard focus and reduced-motion support.
-- Same-origin PWA shell and offline ingredient reference. No private data is uploaded.
+- Same-origin PWA shell and offline ingredient reference. Only explicitly consented AI interview text leaves the device. Photos and journal records are excluded.
 
 The product search covers **your own collection**, not a global catalog. See [architecture](docs/ARCHITECTURE.md) for an external-catalog and Telegram Mini App integration plan and current limits.
 
@@ -65,3 +65,7 @@ Repository settings must enable **Pages → Source → GitHub Actions**. Feature
 - [Supplied test archives, compatibility results and migration](docs/SUPPLIED-TESTS.md)
 
 No license was present in the inspected source; this change does not invent or grant new rights to the source, imagery or reference content.
+
+## Current additions
+
+Original skincare photography, one-input INCI analysis, five-step manual routine builder and an optional AI interview with strict server/client validation and editable confirmation. Numeric comedogenicity evidence is intentionally empty: ungraded ingredients show «Недостаточно данных». See [delivery](docs/releases/DELIVERY.md) and [AI configuration](server/README.md).

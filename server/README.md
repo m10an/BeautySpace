@@ -1,0 +1,17 @@
+# Optional Beauty AI server
+
+GitHub Pages serves only the static application. Deploy this separate Node.js 24 backend behind HTTPS; no server or provider account has been deployed by this change.
+
+1. Provision an OpenAI project/key with billing, model access and a project spend cap. Provision a Cloudflare Turnstile widget restricted to your frontend hostname.
+2. Configure server-only `AI_PROVIDER_KEY`, `TURNSTILE_SECRET`, exact comma-separated `AI_ALLOWED_ORIGINS` (for Pages: `https://m10an.github.io`, without a path), optional `AI_MODEL` (default `gpt-4.1-mini`) and `AI_DAILY_REQUEST_LIMIT` (default 40, maximum 100). See `.env.example`; never commit real values.
+3. Run `node --env-file=/secure/path/beauty.env server/index.js`. Default bind is `127.0.0.1:8787`; terminate TLS with your hosting proxy. For a container, set `AI_HOST=0.0.0.0` and expose only through the HTTPS proxy. Forward the entire path without rewriting.
+4. Set public `runtime-config.json` to `{"aiEndpoint":"https://your-server.example/v1/routine-plan","turnstileSiteKey":"your-public-site-key"}` and rebuild the Pages artifact. These are public settings, not secrets. Leave both blank to disable AI. Health is `GET /health` with an allowed `Origin` header.
+5. Verify allowed/disallowed origins, Turnstile action `beauty-routine`, hostname, rate limits, failure UI and a real consented request using disposable text before release. A health response establishes configuration presence, not provider validity.
+
+The web-standard handler can be adapted to a serverless platform, but the included executable is a Node server. There is no claimed serverless deployment. Rate limits are five attempts per peer address per minute and a process-wide daily paid-request cap. Counters are in memory and reset on restart; multiple replicas need a shared durable limiter. Behind a proxy the peer can be shared, reducing availability; the code intentionally does not trust arbitrary forwarded IP headers. Use edge request/body limits and provider spend caps. Provider calls cap output at 2,000 tokens, time out at 25 seconds, use `store:false` and never retry automatically. Budget reservations include failed paid attempts.
+
+Explicit consent precedes uploading editable interview text to OpenAI through this server and loading Cloudflare verification. Product labels/INCI and a seven-day care summary are copied only by user action. No photos, mood entries, checkmarks, names, account IDs or backups are included automatically. Request bodies/keys are not logged by the application. Review your hosting/proxy logs and current provider retention terms; `store:false` is not a zero-retention guarantee.
+
+The backend validates interview shape/length, origin, verification action/hostname and strict JSON plan output. The frontend validates again before preview and save. All calendar additions require review and explicit confirmation; duplicates and overwrite/delete fields are rejected. Medical symptoms stop planning and direct users to medical care. Local active-overlap notices are labeled rule-based, not AI. No model can establish clinical safety from INCI; clinician review and individual tolerance remain necessary.
+
+No real provider request was made in this environment: credentials are absent. Tests inject synthetic responses only in test code to exercise contract/error/confirmation behavior. Production code uses the real Responses API and never substitutes a canned plan.

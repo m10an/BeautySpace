@@ -235,6 +235,7 @@ function render() {
   syncDate();
   renderEditor();
   renderCustom();
+  window.dispatchEvent(new Event("beauty:date-selected"));
 }
 function syncDate() {
   $("dayPicker").value = selected;
@@ -1018,3 +1019,31 @@ window.addEventListener("beauty:routines-added", () => {
       "The saved routine could not be refreshed. Export a backup before editing.";
   }
 });
+
+// Text-only, explicitly requested interview summary. No notes, photos or checks.
+export function getRoutineInterviewSummary(start) {
+  if (!validDate(start)) throw Error("Choose a valid start date.");
+  const groups = { am: new Map(), pm: new Map() };
+  for (let i = 0; i < 7; i++) {
+    const date = add(start, i),
+      day = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][dow(date)];
+    for (const time of ["am", "pm"])
+      for (const [, label] of tasks(date)[time]) {
+        const days = groups[time].get(label) || [];
+        days.push(day);
+        groups[time].set(label, days);
+      }
+  }
+  return Object.fromEntries(
+    ["am", "pm"].map((time) => [
+      time,
+      [...groups[time]]
+        .map(([name, days]) => `${name}: ${days.join(", ")}`)
+        .join("\n"),
+    ]),
+  );
+}
+
+export function getSelectedCalendarDate() {
+  return selected;
+}

@@ -1,25 +1,30 @@
 /* Versioned same-origin shell. Never cache user data or third-party requests. */
-const CACHE = "beautycalendar-v2-builder-1";
+const CACHE = "beautycalendar-v2-ipl-1";
 const ASSETS = [
+  "./ipl.js?v=26",
+  "./lib/ipl.js",
   "./assets/serum-editorial.jpg",
   "./assets/Montserrat.ttf",
   "./assets/Montserrat-Italic.ttf",
   "./data/ingredient-names.json",
   "./data/comedogenicity.json",
   "./lib/inci-reference.js",
-  "./builder.js?v=24",
+  "./builder.js?v=26",
   "./lib/routine-plan.js",
   "./lib/dialog.js",
+  "./ai-client.js?v=26",
+  "./lib/ai-plan.js",
+  "./runtime-config.json",
   "./",
   "./index.html",
-  "./style.css?v=24",
-  "./app.js?v=24",
-  "./ingredients.js?v=24",
-  "./motion.js?v=24",
-  "./prompts.js?v=24",
-  "./theme.js?v=24",
-  "./shell.js?v=24",
-  "./products.js?v=24",
+  "./style.css?v=26",
+  "./app.js?v=26",
+  "./ingredients.js?v=26",
+  "./motion.js?v=26",
+  "./prompts.js?v=26",
+  "./theme.js?v=26",
+  "./shell.js?v=26",
+  "./products.js?v=26",
   "./archive.js",
   "./lib/domain.js",
   "./lib/storage.js",
@@ -60,6 +65,14 @@ self.addEventListener("fetch", (event) => {
     new URL(event.request.url).origin !== self.location.origin
   )
     return;
+  if (new URL(event.request.url).pathname.endsWith("/runtime-config.json")) {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" }).catch(() =>
+        caches.open(CACHE).then((cache) => cache.match(event.request)),
+      ),
+    );
+    return;
+  }
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request).catch(() =>

@@ -41,3 +41,9 @@ Disposable browser, clock set to 1 November 2026 to display the longest approved
 ## Main changed files
 
 `inspiration.json`, `data/inspiration-selection.json`, `inspiration.js`, `lib/inspiration.js`, `scripts/curate-inspirations.py`, `index.html`, `style.css`, `sw.js`, source/asset/journey documentation, new unit/E2E tests and screenshots. Original reference photos/PDF are not added as product assets. Existing CI and package dependencies are unchanged.
+
+## Publication
+
+The source/data implementation was pushed as commit `c907e9b` to `feature/pdf-inspirations-editorial-references`. Creating a PR against main was attempted; GitHub API returned `Post "https://api.github.com/graphql": Forbidden`. No PR or merge is claimed completed.
+
+[Create the PR manually](https://github.com/m10an/BeautySpace/compare/main...feature/pdf-inspirations-editorial-references?expand=1). Suggested title: **Add source-checked daily readings from the supplied PDF**.

@@ -1,15 +1,25 @@
 @font-face {
-  font-family: Montserrat;
-  src: url("./assets/Montserrat.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 100 900;
+  font-family: Poppins;
+  src: url("./assets/Poppins-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-display: swap;
 }
 @font-face {
-  font-family: Montserrat;
-  src: url("./assets/Montserrat-Italic.ttf") format("truetype");
-  font-style: italic;
-  font-weight: 100 900;
+  font-family: Poppins;
+  src: url("./assets/Poppins-SemiBold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("./assets/CormorantGaramond.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pinyon Script";
+  src: url("./assets/PinyonScript-Regular.woff2") format("woff2");
+  font-weight: 400;
   font-display: swap;
 }
 /* Beautycalendar 2.0 — one token system; see docs/DESIGN.md. */
@@ -26,8 +36,8 @@
   --danger: #9c2736;
   --focus: #145fb5;
   --hero: #e6d9ca;
-  --serif: Montserrat, system-ui, sans-serif;
-  --sans: Montserrat, system-ui, sans-serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: Poppins, system-ui, sans-serif;
   --s1: 0.25rem;
   --s2: 0.5rem;
   --s3: 0.75rem;
@@ -1284,9 +1294,7 @@ button:active:not(:disabled) {
   transform: scale(0.96);
 }
 .ingredient-hero {
-  background:
-    linear-gradient(90deg, var(--paper), transparent),
-    url("./assets/serum-editorial.jpg") right center/cover;
+  background: linear-gradient(90deg, var(--paper), transparent), none;
   min-height: 180px;
 }
 @media (max-width: 600px) {
@@ -1502,4 +1510,209 @@ details:not([open]) > :not(summary) {
     min-height: 125px;
     padding-block: 0.5rem;
   }
+}
+
+/* Quiet editorial layout while licensed reference photographs are unavailable. */
+.ambient-texture {
+  display: none;
+}
+.ambient-far,
+.ambient-near {
+  background: none;
+}
+.calendar-intro,
+.ingredient-hero,
+.hair-cover {
+  background: var(--paper);
+  border-block: 1px solid var(--line);
+  box-shadow: none;
+}
+.calendar-intro > div:first-child {
+  width: 100%;
+  max-width: none;
+}
+.calendar-intro {
+  min-height: 125px;
+  padding: 1rem 0;
+  border-radius: 0;
+}
+.calendar-intro h1 {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  letter-spacing: -0.025em;
+}
+.calendar-intro h1 em,
+.inspiration-cover h2 em {
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+}
+.calendar-intro p {
+  font-size: 0.85rem;
+  max-width: none;
+}
+#nav .tab {
+  font-family: var(--sans);
+  font-weight: 400;
+}
+#nav .tab.active span:nth-child(2) {
+  font-weight: 600;
+}
+.wordmark {
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  line-height: 1.1;
+  justify-self: center;
+  text-align: center;
+  padding-block: 0.4rem;
+}
+.wordmark em {
+  font-family: var(--serif);
+}
+#inspirationQuote {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+}
+#quoteAttribution,
+.quote-index {
+  font-family: var(--sans);
+}
+.help-launcher {
+  position: fixed;
+  left: max(1rem, env(safe-area-inset-left));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 15;
+  border-radius: 30px;
+  background: var(--paper);
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 12px #0001;
+}
+#helpDialog {
+  max-width: 580px;
+}
+#helpContent {
+  line-height: 1.8;
+  margin-block: 1rem;
+}
+.required-mark,
+.field-error {
+  color: var(--danger);
+}
+.field-error {
+  display: block;
+  font: 400 0.85rem/1.5 var(--sans);
+  margin-top: 0.3rem;
+}
+.field-error:empty {
+  display: none;
+}
+[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+.required-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.ai-dialog {
+  position: fixed;
+  inset: auto;
+  left: 50%;
+  top: calc(var(--visual-top, 0px) + max(0.75rem, env(safe-area-inset-top)));
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(94vw, 720px);
+  height: min(
+    900px,
+    calc(
+      var(--visual-height, 100svh) - max(1.5rem, env(safe-area-inset-top)) -
+        max(1rem, env(safe-area-inset-bottom))
+    )
+  );
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+.ai-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.ai-dialog .tool-heading {
+  flex: none;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  gap: 0.5rem;
+}
+.ai-dialog .tool-heading h2 {
+  font-size: 1.5rem;
+  flex: 1;
+}
+.dialog-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  overscroll-behavior-y: contain;
+  scroll-padding-block: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+.ai-dialog input,
+.ai-dialog textarea,
+.ai-dialog select {
+  font-size: 16px;
+}
+.ai-dialog .tool-heading a {
+  font-size: 0.9rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 430px) {
+  .wordmark {
+    font-size: 1.35rem;
+  }
+  .app-header {
+    gap: 0.4rem;
+  }
+  .ai-dialog .tool-heading h2 {
+    font-size: 1.3rem;
+  }
+  .calendar-intro h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Help stays in the header so it cannot cover calendar content. */
+.app-header {
+  grid-template-columns: 44px minmax(0, 1fr) 44px 44px;
+  gap: 0.5rem;
+}
+.help-launcher {
+  position: static;
+  width: 44px;
+  min-height: 44px;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  box-shadow: none;
+  justify-self: center;
+}
+@media (max-width: 375px) {
+  .app-header {
+    gap: 0.35rem;
+  }
+  .wordmark {
+    font-size: 1.15rem;
+  }
+}
+.help-launcher {
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+#aiPreview {
+  padding-top: 1rem;
 }

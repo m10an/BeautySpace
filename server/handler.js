@@ -18,6 +18,7 @@ export function readConfig(env = process.env) {
       );
   }
   return {
+    enabled: env.AI_ENABLE_PAID_PROVIDER === "true",
     apiKey: env.AI_PROVIDER_KEY || "",
     turnstileSecret: env.TURNSTILE_SECRET || "",
     origins,
@@ -186,7 +187,10 @@ export function createHandler({
       return new Response(null, { status: 204, headers });
     const path = new URL(request.url).pathname;
     const available = Boolean(
-      config.apiKey && config.turnstileSecret && config.origins.length,
+      config.enabled === true &&
+      config.apiKey &&
+      config.turnstileSecret &&
+      config.origins.length,
     );
     if (path === "/health" && request.method === "GET")
       return json(200, { available, version: 1, maxOutputTokens: 2000 });

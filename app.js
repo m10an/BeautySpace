@@ -1,3 +1,5 @@
+import { showFieldError } from "./forms.js?v=27";
+import { duplicateSchedule } from "./lib/form-rules.js";
 import {
   escapeHtml as safeHtml,
   validateLegacyBackup,
@@ -421,12 +423,29 @@ $("addCustom").onclick = () => {
     once = $("customOnce").value,
     from = $("customFrom").value || selected,
     until = $("customUntil").value;
-  if (!name) return alert("Enter a product or procedure name.");
-  if (mode === "weekdays" && !weekdays.length)
-    return alert("Choose at least one weekday.");
-  if (mode === "once" && !once) return alert("Choose a date.");
-  if (mode !== "once" && until && until < from)
-    return alert("The end date is before the start date.");
+  if (!name) {
+    showFieldError($("customName"), "Enter a product or procedure name.");
+    $("customName").focus();
+    return;
+  }
+  if (mode === "weekdays" && !weekdays.length) {
+    showFieldError($("customMode"), "Choose at least one weekday.");
+    $("customMode").focus();
+    return;
+  }
+  if (mode === "once" && !once) {
+    showFieldError($("customOnce"), "Choose a date.");
+    $("customOnce").focus();
+    return;
+  }
+  if (mode !== "once" && until && until < from) {
+    showFieldError(
+      $("customUntil"),
+      "The end date must be after the start date.",
+    );
+    $("customUntil").focus();
+    return;
+  }
   const item = {
     id: editingCustom || crypto.randomUUID(),
     name: name.slice(0, 90),
@@ -440,7 +459,17 @@ $("addCustom").onclick = () => {
   try {
     validateProcedure(item);
   } catch (e) {
-    return alert(e.message);
+    showFieldError($("customName"), e.message);
+    $("customName").focus();
+    return;
+  }
+  if (duplicateSchedule(state.customItems, item, editingCustom)) {
+    showFieldError(
+      $("customName"),
+      "This care step already exists on an overlapping date.",
+    );
+    $("customName").focus();
+    return;
   }
   if (editingCustom)
     state.customItems = state.customItems.map((x) =>
@@ -916,11 +945,13 @@ $("hairAdd").onclick = () => {
       Number(x.value),
     );
   if (!name) {
-    alert("Enter a procedure name.");
+    showFieldError($("hairName"), "Enter a procedure name.");
+    $("hairName").focus();
     return;
   }
   if (freq === "weekly" && !days.length) {
-    alert("Choose at least one weekday.");
+    showFieldError($("hairFreq"), "Choose at least one weekday.");
+    $("hairFreq").focus();
     return;
   }
   const item = {
@@ -931,6 +962,25 @@ $("hairAdd").onclick = () => {
     date: hairSelected,
     days,
   };
+  if (
+    hairState.items.some(
+      (x) =>
+        x.id !== editingHair &&
+        x.name.trim().toLowerCase() === name.toLowerCase() &&
+        x.time === item.time &&
+        x.freq === item.freq &&
+        (item.freq === "once"
+          ? x.date === item.date
+          : item.days.some((d) => x.days.includes(d))),
+    )
+  ) {
+    showFieldError(
+      $("hairName"),
+      "An overlapping hair-care entry already exists.",
+    );
+    $("hairName").focus();
+    return;
+  }
   if (editingHair)
     hairState.items = hairState.items.map((x) =>
       x.id === editingHair ? item : x,
@@ -941,62 +991,6 @@ $("hairAdd").onclick = () => {
   renderHair();
 };
 renderHair();
-
-// Inspiration: independent of skincare state; does not modify saved checkmarks.
-(function () {
-  let thoughts = [];
-  let last = -1;
-  const quote = document.getElementById("inspirationQuote"),
-    idx = document.getElementById("quoteIndex"),
-    cat = document.getElementById("quoteCategory");
-  if (!quote) return;
-  function next() {
-    if (!thoughts.length) return;
-    const groups = {
-      calm: [0, 2, 11, 12, 13, 14, 17, 29, 37],
-      boundaries: [3, 4, 8, 23, 26, 33, 36, 39],
-      self: [5, 9, 10, 15, 18, 20, 30, 35, 38],
-      growth: [1, 6, 7, 16, 19, 21, 22, 24, 25, 27, 28, 31, 32, 34],
-    };
-    let pool = thoughts
-      .map((_, i) => i)
-      .filter(
-        (i) =>
-          !cat ||
-          cat.value === "all" ||
-          (groups[cat.value] || []).includes(i % 40),
-      );
-    if (!pool.length) pool = thoughts.map((_, i) => i);
-    let i = pool[Math.floor(Math.random() * pool.length)];
-    if (i === last && pool.length > 1)
-      i = pool[(pool.indexOf(i) + 1) % pool.length];
-    last = i;
-    quote.textContent = thoughts[i];
-    idx.textContent =
-      "REFLECTION " + String(i + 1).padStart(3, "0") + " / " + thoughts.length;
-  }
-  document.getElementById("nextInspiration").addEventListener("click", next);
-  cat?.addEventListener("change", next);
-  document
-    .getElementById("copyInspiration")
-    .addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(quote.textContent);
-      } catch {}
-    });
-  fetch("./inspiration.json")
-    .then((r) => {
-      if (!r.ok) throw Error("offline");
-      return r.json();
-    })
-    .then((data) => {
-      thoughts = data;
-      next();
-    })
-    .catch(() => {
-      quote.textContent = "Your peace deserves space in every day.";
-    });
-})();
 
 function cancelHairEdit() {
   editingHair = null;

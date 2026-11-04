@@ -11,6 +11,7 @@ import {
 import { createNodeServer } from "../../server/index.js";
 const origin = "https://m10an.github.io";
 const config = {
+  enabled: true,
   origins: [origin],
   apiKey: "test-only-not-live",
   turnstileSecret: "test-only-secret",
@@ -258,4 +259,17 @@ test("concurrent verified requests cannot overshoot the daily paid-call budget",
   );
   assert.equal(calls, 2);
   assert.equal(responses.filter((r) => r.status === 429).length, 3);
+});
+
+test("configured keys alone cannot activate a paid provider", async () => {
+  let called = 0;
+  const handler = createHandler({
+    config: { ...config, enabled: false },
+    provider: async () => {
+      called++;
+      return fixture;
+    },
+  });
+  assert.equal((await handler(request())).status, 503);
+  assert.equal(called, 0);
 });

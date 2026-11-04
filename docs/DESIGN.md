@@ -17,7 +17,7 @@ The editorial concept remains: warm paper, quiet botanical accents, high-contras
 | Error `--danger`           | `#9c2736` | `#ffb5bb` |
 | Focus `--focus`            | `#145fb5` | `#9ecaff` |
 
-Headings, body and controls use self-hosted variable Montserrat with system sans-serif fallbacks. SIL OFL files and licenses ship offline. The historical `--serif` token now resolves to the same family. An original skincare still life, subtle grain, glass and bounded parallax support the calendar. Reduced motion disables movement.
+Headings, body and controls use self-hosted Poppins for functional UI, Cormorant Garamond Regular for editorial headings and quotes, and sparing Pinyon Script Regular for nonessential decorative words. SIL OFL files and licenses ship offline. The `--sans` and `--serif` tokens now map to Poppins and Cormorant Garamond respectively. Script is never used for labels, navigation or essential instructions. Active navigation labels use Poppins 600. The generated hero and artificial grain are no longer rendered; a quiet editorial layout stands in until approved photography is supplied. Reduced motion disables movement.
 
 Spacing scale: 4, 8, 12, 16, 24 and 32 px. Cards use 12 px radii; inputs/buttons use 6 px. Content max width: 1280 px shell, 1140 px header/main including gutters. Gutter/card padding is 24 px, reducing to 16 px below 600 px. Grids use `minmax(0,1fr)`; product/form grids collapse to one column below 600 px. The calendar and selected day share two columns above 900 px and stack below that breakpoint. Seven calendar columns persist on mobile. Long strings wrap anywhere instead of widening the document.
 

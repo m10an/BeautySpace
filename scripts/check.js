@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { validateInspirations } from "../lib/inspiration.js";
 import { validateDatabase } from "../lib/domain.js";
 for (const folder of [
   ".",
@@ -19,6 +20,7 @@ for (const folder of [
 validateDatabase(JSON.parse(readFileSync("ingredients-db.json", "utf8")));
 for (const name of ["inspiration.json", "manifest.webmanifest", "package.json"])
   JSON.parse(readFileSync(name, "utf8"));
+validateInspirations(JSON.parse(readFileSync("inspiration.json", "utf8")));
 console.log("Syntax, JSON and ingredient evidence contract passed.");
 // Required resource check from the supplied workflow (CI must fail on missing files).
 for (const file of [

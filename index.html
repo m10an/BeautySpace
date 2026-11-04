@@ -14,13 +14,13 @@
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
     <link href="./icon-192.png" rel="icon" type="image/png" />
-    <link href="./style.css?v=26" rel="stylesheet" />
+    <link href="./style.css?v=27" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
       content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
     />
-    <script src="./theme.js?v=26"></script>
+    <script src="./theme.js?v=27"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -52,7 +52,22 @@
             <path d="M4 8h16M4 16h11" />
           </svg>
         </button>
-        <span class="wordmark">The Beauty <em>Journal</em></span>
+        <a
+          class="wordmark"
+          id="homeLink"
+          href="#calendar"
+          aria-label="TheBeauty Journal — Home"
+          >TheBeauty <em>Journal</em></a
+        >
+        <button
+          id="helpButton"
+          class="help-launcher"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="helpDialog"
+        >
+          Help
+        </button>
         <button
           id="themeToggle"
           class="icon-button"
@@ -178,13 +193,6 @@
             <div>
               <h1>Your daily <em>edit.</em></h1>
               <p>Small rituals. A little time for you.</p>
-            </div>
-            <div class="editorial-detail" aria-hidden="true">
-              <img
-                src="./assets/serum-editorial.jpg"
-                alt=""
-                data-depth-image=""
-              />
             </div>
           </div>
           <div class="calendar-layout">
@@ -341,7 +349,7 @@
             <div class="eyebrow">DAILY RITUAL</div>
             <h2>My daily edit</h2>
             <label class="field"
-              >Date <input id="dayPicker" type="date"
+              >Date <input id="dayPicker" type="date" required
             /></label>
             <div id="todayRoutine"></div>
           </div>
@@ -363,6 +371,7 @@
                 >Name
                 <input
                   id="customName"
+                  required
                   maxlength="90"
                   placeholder="e.g. Hydrating mask" /></label
               ><label class="field"
@@ -429,7 +438,8 @@
           <div class="panel">
             <div class="eyebrow">SKIN MOOD</div>
             <h2>How does your skin feel?</h2>
-            <label class="field">Date <input id="moodDate" type="date" /></label
+            <label class="field"
+              >Date <input id="moodDate" type="date" required /></label
             ><label class="field"
               >Inflammation
               <select id="inflamed">
@@ -508,7 +518,8 @@
             <div class="eyebrow">PERSONAL EDIT</div>
             <h2>Your routine</h2>
             <label class="field"
-              >Routine start date <input id="startDate" type="date" /></label
+              >Routine start date
+              <input id="startDate" type="date" required /></label
             ><label class="toggle"
               ><input id="useNia" type="checkbox" /> Niacinamide on
               Fridays</label
@@ -552,10 +563,6 @@
         </section>
         <section class="screen hidden" id="hair">
           <div class="hair-hero">
-            <img
-              alt="Original editorial still life of serum, cream and botanical glass"
-              src="./assets/serum-editorial.jpg"
-            />
             <div class="hair-overlay">
               <span class="overline">THE HAIR EDIT</span>
               <h2>Good hair,<br /><em>good rituals.</em></h2>
@@ -575,7 +582,7 @@
               <span class="overline">YOUR HAIR ROUTINE</span>
               <h3 id="hairDateTitle">Selected day</h3>
               <label class="field"
-                >Date<input id="hairDayPicker" type="date"
+                >Date<input id="hairDayPicker" type="date" required
               /></label>
               <div id="hairTasks"></div>
             </div>
@@ -585,6 +592,7 @@
               <label
                 >Name<input
                   id="hairName"
+                  required
                   maxlength="90"
                   placeholder="e.g. Nourishing mask" /></label
               ><label
@@ -614,39 +622,27 @@
         <section class="screen hidden" id="inspiration">
           <div class="inspiration-cover">
             <div class="inspiration-kicker">THE INNER EDIT · VOL. 01</div>
-            <h2>Stillness is<br /><em>a luxury.</em></h2>
-            <p>A PRIVATE COLLECTION OF THOUGHTS</p>
+            <h2>A daily<br /><em>reading.</em></h2>
+            <p>READINGS FROM THE APPROVED PDF ONLY</p>
           </div>
           <div class="inspiration-content">
             <div class="eyebrow">A MOMENT FOR YOURSELF</div>
             <h2>Something to<br /><em>think about.</em></h2>
-            <div class="quote-filter">
-              <label for="quoteCategory">Explore reflections</label
-              ><select id="quoteCategory">
-                <option value="all">All reflections</option>
-                <option value="calm">Calm &amp; stillness</option>
-                <option value="boundaries">Boundaries &amp; confidence</option>
-                <option value="self">Self-worth &amp; self-care</option>
-                <option value="growth">Growth &amp; renewal</option>
-              </select>
-            </div>
             <div class="quote-paper">
-              <div class="quote-index" id="quoteIndex">
-                REFLECTION 001 / 1000
-              </div>
-              <blockquote aria-live="polite" id="inspirationQuote">
-                You are allowed to move at your own pace.
-              </blockquote>
-              <div class="quote-signature">THE BEAUTY JOURNAL</div>
+              <div id="quoteIndex" class="quote-index">DAILY READING</div>
+              <blockquote id="inspirationQuote" aria-live="polite"></blockquote>
+              <p id="quoteAttribution"></p>
+              <p id="inspirationStatus" role="status">
+                The approved PDF collection has not been supplied yet.
+              </p>
             </div>
-            <button class="primary inspiration-next" id="nextInspiration">
-              Something to think about ↗</button
-            ><button class="subtle" id="copyInspiration">
-              Copy reflection
+            <button id="copyInspiration" class="subtle" disabled>
+              Copy daily excerpt
             </button>
             <p class="muted">
-              1000 short reflections on calm, boundaries, self-care and inner
-              strength. Available offline.
+              Exclusive source: Buddhism Quotes (2755 quotes).pdf. Only its
+              visible, reviewed short excerpts may appear here; Goodreads
+              attributions are not verified historical authorship.
             </p>
           </div>
         </section>
@@ -740,9 +736,7 @@
           </div>
           <div class="panel">
             <label class="field"
-              >Choose your intention<label for="promptCategory"
-                >Prompt category</label
-              ><select id="promptCategory">
+              >Choose your intention<select id="promptCategory">
                 <option value="all">Surprise me ✧</option>
                 <option value="self">Self-connection</option>
                 <option value="feminine">Feminine energy</option>
@@ -766,9 +760,11 @@
             <p class="muted">
               Your writing stays in this browser on this device.
             </p>
+            <label for="promptAnswer">Your private reflection</label>
             <textarea
               maxlength="10000"
               id="promptAnswer"
+              required
               placeholder="Begin wherever you are…"
               rows="7"
             ></textarea
@@ -791,6 +787,9 @@
           <div class="panel">
             <h3 id="productFormTitle">Add a product</h3>
             <form id="productForm">
+              <p class="required-note">
+                Fields marked * are required. Other fields are optional.
+              </p>
               <div class="form-grid">
                 <label class="field"
                   >Product name<input
@@ -973,7 +972,10 @@
       aria-labelledby="aiTitle"
     >
       <div class="tool-heading">
-        <h2 id="aiTitle">Beauty AI consultant</h2>
+        <h2 id="aiTitle">Beauty routine consultant</h2>
+        <a href="#calendar" data-home aria-label="TheBeauty Journal — Home"
+          >Home</a
+        >
         <button
           type="button"
           class="icon-button"
@@ -983,149 +985,218 @@
           ×
         </button>
       </div>
-      <p class="muted">
-        Cosmetic planning support, not a diagnosis or a dermatologist. No
-        calendar changes happen until you review and confirm a proposal.
-      </p>
-      <p id="aiStatus" role="status"></p>
-      <button id="aiManual" class="subtle" type="button">
-        Use manual Routine Builder
-      </button>
-      <button id="iplAIEntry" type="button" class="subtle">
-        Plan my IPL routine
-      </button>
-      <form id="aiForm">
-        <div class="form-grid">
+      <div class="dialog-content" id="aiContent">
+        <p class="muted">
+          Cosmetic planning support, not a diagnosis or a dermatologist. No
+          calendar changes happen until you review and confirm a proposal.
+        </p>
+        <p id="aiStatus" role="status"></p>
+        <button id="aiManual" class="subtle" type="button">
+          Use manual Routine Builder
+        </button>
+        <button id="iplAIEntry" type="button" class="subtle">
+          Plan my IPL routine
+        </button>
+        <label class="field"
+          >Consultant mode<select id="aiMode">
+            <option value="local">Free local guide · rule-based</option>
+            <option value="hosted">
+              Optional hosted AI · disabled by default
+            </option>
+          </select></label
+        >
+        <form id="aiForm">
+          <p class="required-note">
+            Fields marked * are required. Other questions are optional.
+          </p>
+          <p>
+            For the free local review, your selected calendar week is read on
+            this device; nothing is transmitted. Optional product names below
+            make the basic-care draft your own. Leave blank for editable generic
+            steps. No new active treatments are recommended.
+          </p>
           <label class="field"
-            >Skin type<select id="aiSkin">
-              <option value="unsure">Unsure</option>
-              <option value="dry">Dry</option>
-              <option value="oily">Oily</option>
-              <option value="combination">Combination</option>
-              <option value="normal">Normal</option>
-            </select></label
-          ><label class="field"
-            >Sensitivity<select id="aiSensitivity">
-              <option value="moderate">Moderate</option>
-              <option value="low">Low</option>
-              <option value="high">High</option>
-            </select></label
-          >
-        </div>
-        <fieldset>
-          <legend>Your goals</legend>
-          <div id="aiGoals" class="weekdaychoices">
-            <label><input type="checkbox" value="hydration" />Hydration</label
-            ><label
-              ><input type="checkbox" value="barrier" />Barrier comfort</label
-            ><label><input type="checkbox" value="texture" />Texture</label
-            ><label><input type="checkbox" value="tone" />Even tone</label
-            ><label
-              ><input type="checkbox" value="breakouts" />Breakout
-              support</label
+            >Your usual cleanser<input
+              id="aiCleanser"
+              maxlength="70"
+              placeholder="e.g. My gentle cleanser"
+          /></label>
+          <label class="field"
+            >Your usual moisturizer<input
+              id="aiMoisturizer"
+              maxlength="70"
+              placeholder="e.g. My fragrance-free cream"
+          /></label>
+          <label class="field"
+            >Your sunscreen<input
+              id="aiSunscreen"
+              maxlength="70"
+              placeholder="e.g. My daily sunscreen"
+          /></label>
+          <div class="form-grid">
+            <label class="field"
+              >Skin type<select id="aiSkin">
+                <option value="unsure">Unsure</option>
+                <option value="dry">Dry</option>
+                <option value="oily">Oily</option>
+                <option value="combination">Combination</option>
+                <option value="normal">Normal</option>
+              </select></label
+            ><label class="field"
+              >Sensitivity<select id="aiSensitivity">
+                <option value="moderate">Moderate</option>
+                <option value="low">Low</option>
+                <option value="high">High</option>
+              </select></label
             >
           </div>
-        </fieldset>
-        <details>
-          <summary>Choose text from your saved products</summary>
-          <div id="aiCollection"></div>
-          <button id="aiCopyProducts" type="button" class="subtle">
-            Copy selected names and INCI
-          </button>
-        </details>
-        <label class="field"
-          >Current products and full INCI<textarea
-            id="aiCurrent"
-            maxlength="8000"
-            rows="4"
-          ></textarea></label
-        ><label class="field"
-          >Other active ingredients you use<textarea
-            id="aiActives"
-            maxlength="1000"
-            rows="2"
-          ></textarea>
-        </label>
-        <h3 class="local-review-title">
-          Local active overlap check · rule-based, not AI
-        </h3>
-        <div id="aiLocal" class="muted" aria-live="polite"></div>
-        <button id="aiCopySchedule" class="subtle" type="button">
-          Copy this week’s routine into the interview
-        </button>
-        <div class="form-grid">
+          <fieldset>
+            <legend>Your goals</legend>
+            <div id="aiGoals" class="weekdaychoices">
+              <label><input type="checkbox" value="hydration" />Hydration</label
+              ><label
+                ><input type="checkbox" value="barrier" />Barrier comfort</label
+              ><label><input type="checkbox" value="texture" />Texture</label
+              ><label><input type="checkbox" value="tone" />Even tone</label
+              ><label
+                ><input type="checkbox" value="breakouts" />Breakout
+                support</label
+              >
+            </div>
+          </fieldset>
+          <details>
+            <summary>Choose text from your saved products</summary>
+            <div id="aiCollection"></div>
+            <button id="aiCopyProducts" type="button" class="subtle">
+              Copy selected names and INCI
+            </button>
+          </details>
           <label class="field"
-            >Morning habits<textarea
-              id="aiMorning"
-              maxlength="1600"
-              rows="2"
+            >Current products and full INCI<textarea
+              id="aiCurrent"
+              maxlength="8000"
+              rows="4"
             ></textarea></label
           ><label class="field"
-            >Evening habits<textarea
-              id="aiEvening"
-              maxlength="1600"
+            >Other active ingredients you use<textarea
+              id="aiActives"
+              maxlength="1000"
               rows="2"
             ></textarea>
           </label>
-        </div>
-        <label class="field"
-          >Relevant limitations<textarea
-            id="aiConstraints"
-            maxlength="1200"
-            rows="2"
-            placeholder="Relevant sensitivities or products you need to avoid; omit personal identifiers."
-          ></textarea></label
-        ><label class="field"
-          >Preferences<textarea
-            id="aiPreferences"
-            maxlength="1200"
-            rows="2"
-          ></textarea></label
-        ><label class="field"
-          >Plan start date<input id="aiStart" type="date"
-        /></label>
+          <h3 class="local-review-title">
+            Local active overlap check · rule-based, not AI
+          </h3>
+          <div id="aiLocal" class="muted" aria-live="polite"></div>
+          <button id="aiCopySchedule" class="subtle" type="button">
+            Copy this week’s routine into the interview
+          </button>
+          <div class="form-grid">
+            <label class="field"
+              >Morning habits<textarea
+                id="aiMorning"
+                maxlength="1600"
+                rows="2"
+              ></textarea></label
+            ><label class="field"
+              >Evening habits<textarea
+                id="aiEvening"
+                maxlength="1600"
+                rows="2"
+              ></textarea>
+            </label>
+          </div>
+          <label class="field"
+            >Relevant limitations<textarea
+              id="aiConstraints"
+              maxlength="1200"
+              rows="2"
+              placeholder="Relevant sensitivities or products you need to avoid; omit personal identifiers."
+            ></textarea></label
+          ><label class="field"
+            >Preferences<textarea
+              id="aiPreferences"
+              maxlength="1200"
+              rows="2"
+            ></textarea></label
+          ><label class="field"
+            >Plan start date<input id="aiStart" type="date" required
+          /></label>
+          <label class="toggle"
+            ><input id="aiAlarm" type="checkbox" />I have severe or worsening
+            symptoms, such as swelling, blistering, severe pain or breathing
+            trouble.</label
+          >
+          <p id="aiMedical" role="alert" hidden>
+            For breathing trouble or sudden swelling, seek urgent medical care.
+            For blistering, severe pain or rapidly worsening irritation, contact
+            a clinician. AI planning is paused.
+          </p>
+          <div id="aiHosted" hidden>
+            <label class="toggle"
+              ><input id="aiConsent" type="checkbox" />I consent to sending the
+              interview text shown here to OpenAI through the configured backend
+              and using Cloudflare human verification. Photos, journal entries
+              and contact details are not included.</label
+            >
+            <p class="muted">
+              One request per click, no automatic retries; server limits and a
+              2,000 output-token cap apply. Avoid names, addresses and full
+              medical histories.
+            </p>
+            <div id="aiChallenge"></div>
+          </div>
+          <button id="aiSend" type="button" class="primary" disabled>
+            Create free local preview
+          </button>
+        </form>
+        <div id="aiPreview"></div>
         <label class="toggle"
-          ><input id="aiAlarm" type="checkbox" />I have severe or worsening
-          symptoms, such as swelling, blistering, severe pain or breathing
-          trouble.</label
-        >
-        <p id="aiMedical" role="alert" hidden>
-          For breathing trouble or sudden swelling, seek urgent medical care.
-          For blistering, severe pain or rapidly worsening irritation, contact a
-          clinician. AI planning is paused.
-        </p>
-        <label class="toggle"
-          ><input id="aiConsent" type="checkbox" />I consent to sending the
-          interview text shown here to OpenAI through the configured backend and
-          using Cloudflare human verification. Photos, journal entries and
-          contact details are not included.</label
-        >
-        <p class="muted">
-          One request per click, no automatic retries; server limits and a 2,000
-          output-token cap apply. Avoid names, addresses and full medical
-          histories.
-        </p>
-        <div id="aiChallenge"></div>
-        <button id="aiSend" type="button" class="primary" disabled>
-          Request an AI proposal
+          ><input id="aiReview" type="checkbox" />I reviewed the edited
+          proposal. Add these steps without deleting existing care.</label
+        ><button id="aiSave" type="button" class="primary" disabled>
+          Add reviewed proposal to calendar
         </button>
-      </form>
-      <div id="aiPreview"></div>
-      <label class="toggle"
-        ><input id="aiReview" type="checkbox" />I reviewed the edited proposal.
-        Add these steps without deleting existing care.</label
-      ><button id="aiSave" type="button" class="primary" disabled>
-        Add reviewed proposal to calendar
-      </button>
+      </div>
     </dialog>
-    <script type="module" src="./ai-client.js?v=26"></script>
-    <script type="module" src="./builder.js?v=26"></script>
-    <script type="module" src="./app.js?v=26"></script>
-    <script type="module" src="./ingredients.js?v=26"></script>
-    <script defer="" src="./motion.js?v=26"></script>
-    <script defer="" src="./prompts.js?v=26"></script>
-    <script type="module" src="./products.js?v=26"></script>
-    <script type="module" src="./shell.js?v=26"></script>
-    <script type="module" src="./ipl.js?v=26"></script>
+
+    <dialog id="helpDialog" class="tool-dialog" aria-labelledby="helpTitle">
+      <div class="tool-heading">
+        <h2 id="helpTitle">Welcome to the journal</h2>
+        <button
+          type="button"
+          class="icon-button"
+          data-close
+          aria-label="Close tutorial"
+        >
+          ×
+        </button>
+      </div>
+      <p id="helpProgress" role="status"></p>
+      <div id="helpContent"></div>
+      <div class="preset-row">
+        <button
+          id="helpPrevious"
+          type="button"
+          aria-label="Previous tutorial step"
+        >
+          ←</button
+        ><button id="helpNext" type="button" aria-label="Next tutorial step">
+          →</button
+        ><button id="helpSkip" type="button">Skip tutorial</button>
+      </div>
+    </dialog>
+    <script type="module" src="./help.js?v=27"></script>
+    <script type="module" src="./inspiration.js?v=27"></script>
+    <script type="module" src="./forms.js?v=27"></script>
+    <script type="module" src="./ai-client.js?v=27"></script>
+    <script type="module" src="./builder.js?v=27"></script>
+    <script type="module" src="./app.js?v=27"></script>
+    <script type="module" src="./ingredients.js?v=27"></script>
+    <script defer="" src="./motion.js?v=27"></script>
+    <script defer="" src="./prompts.js?v=27"></script>
+    <script type="module" src="./products.js?v=27"></script>
+    <script type="module" src="./shell.js?v=27"></script>
+    <script type="module" src="./ipl.js?v=27"></script>
   </body>
 </html>

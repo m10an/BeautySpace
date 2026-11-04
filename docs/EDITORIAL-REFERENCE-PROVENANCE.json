@@ -1,0 +1,50 @@
+{
+  "use": "visual reference only; publication rights unconfirmed",
+  "images": [
+    {
+      "attachment": "2-Photo-2.jpg",
+      "sha256": "d3e30293ee91a556d1c7eb4db10d2ea715f0177917042a386f2916ab283e6737",
+      "notes": "Sage product still life; branded claims are not app evidence"
+    },
+    {
+      "attachment": "3-Photo-3.jpg",
+      "sha256": "e394044fc8835421f32275cb93c3977dd57ba7526a1ab2732f1d65738439aa96",
+      "notes": "Monochrome cream/editorial board; credit is not a publication license"
+    },
+    {
+      "attachment": "4-Photo-4.jpg",
+      "sha256": "6a260f461b3c1edead361b0eecdd2899584295ab1abba943bd7b44e8511c23b0",
+      "notes": "Ivory cream macro, organic ridges"
+    },
+    {
+      "attachment": "5-Photo-5.jpg",
+      "sha256": "0ad0868d0fe7c9f65868f64ec85754fb080cf1b71b007002d7c7375a9487de67",
+      "notes": "Foam macro, warm shadows"
+    },
+    {
+      "attachment": "6-Photo-6.jpg",
+      "sha256": "c1a267cfab295250e0579154d9f964136090d311213ac79975aa43c0e42cf1b8",
+      "notes": "Soft-focus botanical stems, muted warm accents"
+    },
+    {
+      "attachment": "7-Photo-7.jpg",
+      "sha256": "0c32d0c536c620af4b0a7ee38ae2c0fb481bc5a90ed5284202494e1bd4007e33",
+      "notes": "Candid close crop, natural skin and movement"
+    },
+    {
+      "attachment": "8-Photo-8.jpg",
+      "sha256": "6f5edee01b95421d7634fe96fe5e64471047a084dc5fe9c9ab8a44cf85c60933",
+      "notes": "Rear portrait crop, organic movement"
+    },
+    {
+      "attachment": "9-Photo-9.jpg",
+      "sha256": "0c0c098d50834fc6afa9631188203336ddff92b54414ff2978d03efd9236ed92",
+      "notes": "Textile texture and imperfect monochrome framing"
+    },
+    {
+      "attachment": "10-Photo-10.jpg",
+      "sha256": "f5b5248b6fa04083f3a670721d4b4ba190e974d057f28131a5dfc333cc73739b",
+      "notes": "Black-and-white grain, dramatic shadow and restrained crop"
+    }
+  ]
+}

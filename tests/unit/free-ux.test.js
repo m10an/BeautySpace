@@ -115,11 +115,22 @@ test("inspiration gate rejects unrelated sources, missing PDF hash, bad pages an
   ])
     assert.throws(() => validateInspirations({ ...fixture, ...patch }));
 });
-test("live dataset publishes no invented PDF excerpts while the attachment is absent", () => {
+test("live dataset publishes only the reviewed selection from the supplied PDF", () => {
   const data = JSON.parse(readFileSync("inspiration.json"));
   validateInspirations(data);
-  assert.equal(data.source.status, "awaiting-user-pdf");
-  assert.equal(dailyInspiration(data, "2026-11-04"), null);
+  assert.equal(data.source.status, "reviewed");
+  assert.equal(data.source.pageCount, 6);
+  assert.equal(
+    data.source.sha256,
+    "5a52e15ff66cc10f4cd4069f3c0a60e0e1a4da7602241655109d0eaf373de804",
+  );
+  const selection = JSON.parse(readFileSync("data/inspiration-selection.json"));
+  assert.equal(selection.length, 10);
+  assert.deepEqual(
+    data.quotes,
+    selection.map((row) => ({ ...row, sourceSha256: data.source.sha256 })),
+  );
+  assert.ok(data.quotes.includes(dailyInspiration(data, "2026-11-04")));
 });
 test("hosted billing integration is explicitly disabled in shipped public configuration", () => {
   const config = JSON.parse(readFileSync("runtime-config.json"));

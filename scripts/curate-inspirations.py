@@ -15,7 +15,7 @@ def compact(value):
     return re.sub(r'\s+', ' ', value).strip()
 
 def curate(pdf, selection):
-    raw = subprocess.check_output(['pdftotext', '-layout', str(pdf), '-'])
+    raw = subprocess.check_output(['pdftotext', '-raw', str(pdf), '-'])
     pages = raw.decode('utf-8').split('\f')
     if not pages[-1].strip():
         pages.pop()

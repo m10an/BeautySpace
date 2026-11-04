@@ -1,0 +1,72 @@
+[
+  {
+    "id": "pdf-earth-steps",
+    "text": "Walk as if you are kissing the Earth with your feet.",
+    "attributedAuthor": "Thich Nhat Hanh",
+    "sourcePage": 2,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-walk-the-path",
+    "text": "No one saves us but ourselves.",
+    "attributedAuthor": "Gautama Buddha",
+    "sourcePage": 2,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-seriousness",
+    "text": "Man suffers only because he takes seriously what the gods made for fun.",
+    "attributedAuthor": "Alan Wilson Watts",
+    "sourcePage": 3,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-life-touched",
+    "text": "Life should be touched, not strangled.",
+    "attributedAuthor": "Ray Bradbury",
+    "sourcePage": 3,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-clinging",
+    "text": "You only lose what you cling to.",
+    "attributedAuthor": "Guatama Buddha",
+    "sourcePage": 3,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-letting-go",
+    "text": "Letting go gives us freedom, and freedom is the only condition for happiness.",
+    "attributedAuthor": "Thich Nhat Hanh",
+    "sourcePage": 3,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-aperture",
+    "text": "You are an aperture through which the universe is looking at and exploring itself.",
+    "attributedAuthor": "Alan Watts",
+    "sourcePage": 4,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-spiral-path",
+    "text": "We are not going in circles, we are going upwards.",
+    "attributedAuthor": "Hermann Hesse",
+    "sourcePage": 4,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-open-hearts",
+    "text": "If we learn to open our hearts, anyone, including the people who drive us crazy, can be our teacher.",
+    "attributedAuthor": "Pema Chodron",
+    "sourcePage": 4,
+    "reviewed": true
+  },
+  {
+    "id": "pdf-conquer-yourself",
+    "text": "Better to conquer yourself than others.",
+    "attributedAuthor": "Buddha",
+    "sourcePage": 5,
+    "reviewed": true
+  }
+]

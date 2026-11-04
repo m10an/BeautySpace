@@ -14,7 +14,7 @@
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
     <link href="./icon-192.png" rel="icon" type="image/png" />
-    <link href="./style.css?v=27" rel="stylesheet" />
+    <link href="./style.css?v=28" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
@@ -626,24 +626,40 @@
             <p>READINGS FROM THE APPROVED PDF ONLY</p>
           </div>
           <div class="inspiration-content">
-            <div class="eyebrow">A MOMENT FOR YOURSELF</div>
-            <h2>Something to<br /><em>think about.</em></h2>
-            <div class="quote-paper">
+            <div class="eyebrow">FROM THE SUPPLIED GOODREADS PDF</div>
+            <figure class="quote-paper" aria-label="Today's short reading">
               <div id="quoteIndex" class="quote-index">DAILY READING</div>
               <blockquote id="inspirationQuote" aria-live="polite"></blockquote>
-              <p id="quoteAttribution"></p>
-              <p id="inspirationStatus" role="status">
-                The approved PDF collection has not been supplied yet.
-              </p>
-            </div>
+              <figcaption>
+                <p id="quoteAttribution"></p>
+                <p id="quoteCitation" class="muted"></p>
+              </figcaption>
+            </figure>
+            <p id="inspirationStatus" class="muted" role="status">
+              Loading the source-checked reading collection…
+            </p>
             <button id="copyInspiration" class="subtle" disabled>
               Copy daily excerpt
             </button>
-            <p class="muted">
-              Exclusive source: Buddhism Quotes (2755 quotes).pdf. Only its
-              visible, reviewed short excerpts may appear here; Goodreads
-              attributions are not verified historical authorship.
-            </p>
+            <details class="reading-source">
+              <summary>Source &amp; attribution</summary>
+              <p>
+                Ten short excerpts from the six visible pages of
+                <cite>Buddhism Quotes (2755 quotes).pdf</cite>. The title does
+                not mean 2,755 quotations are included in this PDF.
+              </p>
+              <p>
+                Wording and attributed names are reproduced as printed,
+                including spelling. The Goodreads attributions are not
+                independently verified historical authorship or a guarantee of
+                canonical Buddhist teachings.
+              </p>
+              <p>
+                Every day uses the same local date-based selection, including
+                offline after caching. After ten readings, rotation continues
+                only within this collection.
+              </p>
+            </details>
           </div>
         </section>
         <section
@@ -1187,7 +1203,7 @@
       </div>
     </dialog>
     <script type="module" src="./help.js?v=27"></script>
-    <script type="module" src="./inspiration.js?v=27"></script>
+    <script type="module" src="./inspiration.js?v=28"></script>
     <script type="module" src="./forms.js?v=27"></script>
     <script type="module" src="./ai-client.js?v=27"></script>
     <script type="module" src="./builder.js?v=27"></script>

@@ -1,5 +1,5 @@
 /* Versioned same-origin shell. Never cache user data or third-party requests. */
-const CACHE = "beautycalendar-v2-free-guide-1";
+const CACHE = "beautycalendar-v2-pdf-readings-1";
 const ASSETS = [
   "./ipl.js?v=27",
   "./lib/ipl.js",
@@ -9,10 +9,10 @@ const ASSETS = [
   "./assets/CormorantGaramond.woff2",
   "./forms.js?v=27",
   "./help.js?v=27",
-  "./inspiration.js?v=27",
+  "./inspiration.js?v=28",
   "./lib/form-rules.js",
   "./lib/free-consultant.js",
-  "./lib/inspiration.js",
+  "./lib/inspiration.js?v=28",
   "./data/ingredient-names.json",
   "./data/comedogenicity.json",
   "./lib/inci-reference.js",
@@ -24,7 +24,7 @@ const ASSETS = [
   "./runtime-config.json",
   "./",
   "./index.html",
-  "./style.css?v=27",
+  "./style.css?v=28",
   "./app.js?v=27",
   "./ingredients.js?v=27",
   "./motion.js?v=27",
@@ -37,6 +37,7 @@ const ASSETS = [
   "./lib/storage.js",
   "./ingredients-db.json",
   "./inspiration.json",
+  "./inspiration.json?v=28",
   "./skin-editorial.jpg",
   "./hair-editorial.jpg",
   "./manifest.webmanifest",

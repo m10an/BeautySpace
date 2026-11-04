@@ -26,7 +26,7 @@ Manufacturer-specific automatic IPL scheduling remains unavailable. Unknown guid
 
 ## E. Return → Review → Update
 
-Calendar opens without resetting records. Choose a day and review AM/PM tasks and any IPL records. Complete skincare/Hair steps using existing controls; use IPL → Edit to update session status/reaction. Existing completion/history, products and journal entries persist in their original stores. Theme preference remains device-local. Current daily Inspiration is derived from the local calendar date and the approved dataset, without random Next/category changes; while the requested PDF is missing the source-specific empty state is shown.
+Calendar opens without resetting records. Choose a day and review AM/PM tasks and any IPL records. Complete skincare/Hair steps using existing controls; use IPL → Edit to update session status/reaction. Existing completion/history, products and journal entries persist in their original stores. Theme preference remains device-local. Current daily Inspiration is derived from the local calendar date and the approved dataset, without random Next/category changes; the ten approved short PDF excerpts rotate daily, with a source-specific error state if the collection cannot be loaded.
 
 ## F. Errors, offline, recovery and cancellation
 

@@ -1716,3 +1716,51 @@ details:not([open]) > :not(summary) {
 #aiPreview {
   padding-top: 1rem;
 }
+
+/* Supplied references: ivory paper, muted olive and quiet editorial framing.
+   Reference photographs are not published without confirmed usage rights. */
+#inspiration .inspiration-cover {
+  background: var(--paper);
+  border-radius: 0;
+  border-block: 1px solid var(--line);
+}
+#inspiration .inspiration-content {
+  max-width: 760px;
+  margin-inline: auto;
+}
+#inspiration .quote-paper {
+  margin: 0;
+  background: var(--paper);
+  padding: clamp(1.25rem, 5vw, 3rem);
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+#inspirationQuote {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.25;
+  max-width: 28ch;
+  margin: 1.5rem 0 2rem;
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+}
+#quoteAttribution,
+#quoteCitation {
+  font-family: var(--sans);
+  line-height: 1.7;
+  font-size: 0.875rem;
+}
+#quoteAttribution {
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+#quoteCitation {
+  margin-top: 0;
+}
+.reading-source {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+#inspirationStatus {
+  font-size: 0.875rem;
+}

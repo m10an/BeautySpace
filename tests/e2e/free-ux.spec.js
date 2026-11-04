@@ -166,6 +166,9 @@ test("inspirations display exclusively the approved dataset or a truthful empty 
     await expect(page.locator("#inspirationQuote")).toBeEmpty();
     await expect(page.locator("#copyInspiration")).toBeDisabled();
   } else {
+    await expect(page.locator("#inspirationStatus")).toContainText(
+      "source-checked excerpts",
+    );
     const text = await page.locator("#inspirationQuote").textContent();
     expect(data.quotes.some((q) => q.text === text)).toBe(true);
   }

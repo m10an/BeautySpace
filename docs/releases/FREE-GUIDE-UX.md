@@ -40,3 +40,9 @@ WebKit installation was attempted with `npx playwright install webkit` and faile
 The last cosmetic Help-border/preview-gap refinement also passed its focused 3/3 browser checks. [Complete changed-file list](FREE-GUIDE-CHANGED-FILES.txt).
 
 Principal changed files: `ai-client.js`, `lib/free-consultant.js`, `lib/ai-plan.js` (reused), `lib/routine-plan.js`, `lib/form-rules.js`, `forms.js`, `help.js`, `lib/dialog.js`, `index.html`, `shell.js`, `style.css`, `app.js`, `inspiration.js`, `lib/inspiration.js`, `inspiration.json`, `scripts/curate-inspirations.py`, font/license files, server enable gate, build/SW asset revisions and unit/E2E tests. `package.json`, production dependencies, IndexedDB schemas, user storage keys and CI/CD workflows are unchanged.
+
+## Publication
+
+Code commit `c098695` was pushed to `feature/free-consultant-editorial-ux`. Creating the requested draft PR was actually attempted with `gh pr create`; GitHub returned `Post "https://api.github.com/graphql": Forbidden`. No PR is claimed created, and no merge or direct main change was made.
+
+[Create the PR manually against main](https://github.com/m10an/BeautySpace/compare/main...feature/free-consultant-editorial-ux?expand=1). Suggested title: **Add free consultant, stable mobile dialogs and editorial UX**. Keep the missing source-PDF curation clearly marked as pending review; this branch does not contain fabricated quotations or a claim of completed PDF extraction.

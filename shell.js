@@ -1,4 +1,4 @@
-import { activateSection } from "./app.js?v=26";
+import { activateSection } from "./app.js?v=27";
 import "./archive.js";
 const $ = (id) => document.getElementById(id);
 const toggle = $("menuToggle"),
@@ -153,3 +153,35 @@ if (window.Telegram?.WebApp) {
   window.Telegram.WebApp.ready();
   window.Telegram.WebApp.expand();
 }
+
+function goHome(event) {
+  event.preventDefault();
+  if (dialog.open) closeMenu(true);
+  for (const modal of document.querySelectorAll("dialog[open]"))
+    if (modal !== dialog) modal.dispatchEvent(new Event("beauty:close-dialog"));
+  activateSection("calendar");
+  syncTabs();
+  document.title = "Calendar · Beautycalendar";
+  main.setAttribute("aria-label", "Calendar");
+  setTimeout(() => {
+    main.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, 0);
+}
+document.addEventListener("click", (event) => {
+  if (event.target.closest("#homeLink,[data-home]")) goHome(event);
+});
+function visualHeight() {
+  const viewport = window.visualViewport;
+  document.documentElement.style.setProperty(
+    "--visual-height",
+    `${viewport?.height || innerHeight}px`,
+  );
+  document.documentElement.style.setProperty(
+    "--visual-top",
+    `${viewport?.offsetTop || 0}px`,
+  );
+}
+visualHeight();
+window.visualViewport?.addEventListener("resize", visualHeight);
+window.visualViewport?.addEventListener("scroll", visualHeight);

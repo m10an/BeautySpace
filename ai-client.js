@@ -1,4 +1,6 @@
-import { getRoutineInterviewSummary } from "./app.js?v=26";
+import { freeRoutine } from "./lib/free-consultant.js";
+import { validateFields, showFieldError } from "./forms.js?v=27";
+import { getRoutineInterviewSummary } from "./app.js?v=27";
 import { toolModal } from "./lib/dialog.js";
 import { validateAIPlan, reviewActives, aiSteps } from "./lib/ai-plan.js";
 import {
@@ -33,13 +35,25 @@ function endpoint(value) {
   return url;
 }
 async function availability() {
+  if ($("aiMode").value === "local") {
+    available = false;
+    status(
+      "Free local guide ready. Rule-based, not generative AI. No data leaves this device; no billing or API key is required.",
+    );
+    $("aiSend").disabled = false;
+    return;
+  }
   try {
     const response = await fetch("./runtime-config.json", {
       cache: "no-store",
     });
     if (!response.ok) throw Error();
     config = await response.json();
-    if (!config.aiEndpoint || !config.turnstileSiteKey)
+    if (
+      config.enableHostedAI !== true ||
+      !config.aiEndpoint ||
+      !config.turnstileSiteKey
+    )
       throw Error("AI is not configured. Manual Routine Builder is available.");
     const url = endpoint(config.aiEndpoint);
     const health = await fetch(new URL("/health", url), {
@@ -135,11 +149,14 @@ $("aiLauncher").onclick = async () => {
   $("aiPreview").replaceChildren();
   $("aiReview").checked = false;
   $("aiSave").disabled = true;
+  $("aiMode").value = "local";
+  $("aiHosted").hidden = true;
   $("aiConsent").checked = false;
   $("aiStart").value = localDate();
   available = false;
   $("aiSend").disabled = true;
   status("Checking AI availability…");
+  $("aiSend").textContent = "Create free local preview";
   modal.open();
   updateLocal();
   try {
@@ -207,8 +224,52 @@ function interview() {
   };
 }
 $("aiForm").addEventListener("submit", (e) => e.preventDefault());
+$("aiMode").onchange = () => {
+  $("aiHosted").hidden = $("aiMode").value !== "hosted";
+  $("aiConsent").checked = false;
+  token = "";
+  $("aiSend").textContent =
+    $("aiMode").value === "local"
+      ? "Create free local preview"
+      : "Request optional hosted AI";
+  availability();
+};
 $("aiSend").onclick = async () => {
-  if (busy || !available) return;
+  if (busy) return;
+  if (!validateFields($("aiForm"))) return;
+  if ($("aiMode").value === "local") {
+    try {
+      const week = getRoutineInterviewSummary($("aiStart").value);
+      draft = freeRoutine({
+        calendarSummary: week.am + "\n" + week.pm,
+        ...interview(),
+        cleanser: $("aiCleanser").value,
+        moisturizer: $("aiMoisturizer").value,
+        sunscreen: $("aiSunscreen").value,
+      });
+      $("aiReview").checked = false;
+      $("aiSave").disabled = true;
+      renderPlan();
+      status(
+        draft.recommendMedical
+          ? "Planning paused. Follow the medical guidance shown above."
+          : "Free rule-based preview ready. Nothing was sent or saved. Review, edit or reject it.",
+      );
+    } catch (error) {
+      const field = {
+        cleanser: "aiCleanser",
+        moisturizer: "aiMoisturizer",
+        sunscreen: "aiSunscreen",
+      }[error.field];
+      if (field) {
+        showFieldError($(field), error.message);
+        $(field).focus();
+      }
+      status(error.message);
+    }
+    return;
+  }
+  if (!available) return;
   if ($("aiAlarm").checked) {
     updateLocal();
     status("Planning paused. Please follow the medical guidance above.");
@@ -267,7 +328,7 @@ $("aiSend").onclick = async () => {
       );
   } finally {
     busy = false;
-    $("aiSend").disabled = !available;
+    $("aiSend").disabled = $("aiMode").value === "hosted" && !available;
     token = "";
     if (window.turnstile && widget !== undefined)
       window.turnstile.reset(widget);
@@ -284,6 +345,7 @@ function renderPlan() {
   root.replaceChildren();
   const heading = document.createElement("h3");
   heading.textContent = "Your proposed plan";
+  heading.tabIndex = -1;
   const summary = document.createElement("p");
   summary.textContent = draft.summary;
   root.append(heading, summary);
@@ -311,6 +373,7 @@ function renderPlan() {
     name.dataset.field = "name";
     name.value = item.name;
     name.maxLength = 70;
+    name.required = true;
     card.append(label("Product / care name", name));
     for (const [key, options] of [
       ["step", aiSteps],
@@ -352,6 +415,7 @@ function renderPlan() {
     for (const key of ["from", "until"]) {
       const date = document.createElement("input");
       date.type = "date";
+      date.required = key === "from";
       date.dataset.field = key;
       date.value = item[key] || "";
       card.append(
@@ -377,6 +441,9 @@ function renderPlan() {
     });
     root.append(card);
   });
+  window.dispatchEvent(new Event("beauty:form-refresh"));
+  heading.focus({ preventScroll: true });
+  heading.scrollIntoView({ block: "start", behavior: "auto" });
 }
 $("aiReview").onchange = () => {
   $("aiSave").disabled =
@@ -384,6 +451,15 @@ $("aiReview").onchange = () => {
 };
 $("aiSave").onclick = () => {
   if (!$("aiReview").checked || !draft || draft.recommendMedical) return;
+  if (!validateFields($("aiPreview"))) return;
+  for (const card of $("aiPreview").querySelectorAll("[data-ai-row]")) {
+    if (!card.querySelector("[data-weekday]:checked")) {
+      const first = card.querySelector("[data-weekday]");
+      showFieldError(first, "Choose at least one weekday.");
+      first.focus();
+      return;
+    }
+  }
   try {
     const edited = structuredClone(draft);
     edited.items = [...$("aiPreview").querySelectorAll("[data-ai-row]")].map(
@@ -414,7 +490,7 @@ $("aiSave").onclick = () => {
     $("aiSave").disabled = true;
     draft = null;
     $("appStatus").textContent =
-      "Reviewed AI proposal added. Existing procedures were not removed.";
+      "Reviewed routine added. Existing procedures were not removed.";
     modal.close();
   } catch (error) {
     status(`Plan not saved: ${error.message}`);

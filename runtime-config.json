@@ -1,4 +1,1 @@
-{
-  "aiEndpoint": "",
-  "turnstileSiteKey": ""
-}
+{ "enableHostedAI": false, "aiEndpoint": "", "turnstileSiteKey": "" }

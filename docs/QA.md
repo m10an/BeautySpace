@@ -1,3 +1,7 @@
+# Current UX/free-guide verification
+
+See [FREE-GUIDE-UX.md](releases/FREE-GUIDE-UX.md) for this feature branch. The reports below are retained as historical runs, not current counts or visual direction.
+
 # Current release verification
 
 See [the current delivery report](releases/DELIVERY.md) for the luxury/INCI/builder/AI/IPL changes and actual results. The following report is retained as the historical editorial-redesign run. Its counts and original imagery description do not describe the current build.

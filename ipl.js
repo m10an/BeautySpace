@@ -1,6 +1,6 @@
 import { readIPL, saveIPL, sessionStatus, planIPL } from "./lib/ipl.js";
 import { localDate } from "./lib/domain.js";
-import { getSelectedCalendarDate } from "./app.js?v=26";
+import { getSelectedCalendarDate } from "./app.js?v=27";
 const $ = (id) => document.getElementById(id);
 let editing = "",
   proposal = null;

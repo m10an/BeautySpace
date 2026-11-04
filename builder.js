@@ -57,6 +57,7 @@ function next() {
     show();
   } catch (e) {
     $("rbStatus").textContent = e.message;
+    fields[step].querySelector("input,select")?.focus();
   }
 }
 $("openBuilder").onclick = async () => {

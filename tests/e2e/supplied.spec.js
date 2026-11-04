@@ -194,15 +194,15 @@ test.describe("Supplied scenarios adapted to v2", () => {
       await page
         .locator("body")
         .evaluate((el) => getComputedStyle(el).fontFamily),
-    ).toContain("Montserrat");
+    ).toContain("Poppins");
     expect(
       await page
         .locator(".ingredient-hero h2")
         .evaluate((el) => getComputedStyle(el).fontFamily),
-    ).toContain("Montserrat");
+    ).toContain("Cormorant Garamond");
     await page.evaluate(() => document.fonts.ready);
     expect(
-      await page.evaluate(() => document.fonts.check("16px Montserrat")),
+      await page.evaluate(() => document.fonts.check("16px Poppins")),
     ).toBe(true);
   });
   for (const width of [320, 390, 768, 1440])

@@ -1,0 +1,925 @@
+{
+  "profile": "fresh disposable browser; values not recorded",
+  "fields": [
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Gentle cleansing (as needed)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Manyo Bifida toner",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Purito moisturizer",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "SPF 50",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Gentle cleansing",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Manyo Bifida toner (if comfortable)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Purito moisturizer",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "iplbrand",
+      "type": "text",
+      "label": "Device brand *",
+      "required": true,
+      "maxLength": 1000,
+      "placeholder": "e.g. Brand printed on your device"
+    },
+    {
+      "id": "iplmodel",
+      "type": "text",
+      "label": "Exact model *",
+      "required": true,
+      "maxLength": 1000,
+      "placeholder": "e.g. Exact model code on the device label"
+    },
+    {
+      "id": "iplinstructions",
+      "type": "text",
+      "label": "Manufacturer instructions URL / edition",
+      "required": false,
+      "maxLength": 1000,
+      "placeholder": "e.g. Official manual URL and edition"
+    },
+    {
+      "id": "ipldate",
+      "type": "date",
+      "label": "Date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "iplarea",
+      "type": "text",
+      "label": "Treatment area *",
+      "required": true,
+      "maxLength": 2000,
+      "placeholder": "e.g. Lower legs"
+    },
+    {
+      "id": "iplsettings",
+      "type": "text",
+      "label": "Settings used (record only)",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": "e.g. Setting recorded from your session; not advice"
+    },
+    {
+      "id": "iplreaction",
+      "type": "textarea",
+      "label": "Skin reactions",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": "e.g. What you noticed after the session"
+    },
+    {
+      "id": "iplnotes",
+      "type": "textarea",
+      "label": "Notes",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": "e.g. Area details or a reason for postponing"
+    },
+    {
+      "id": "iplstatus",
+      "type": "select-one",
+      "label": "Status Planned Completed Cancelled",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "field-1",
+      "type": "textarea",
+      "label": "Areas, session history and last treatment date",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": ""
+    },
+    {
+      "id": "field-2",
+      "type": "textarea",
+      "label": "Relevant skin / hair characteristics",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": ""
+    },
+    {
+      "id": "field-3",
+      "type": "textarea",
+      "label": "Recent tanning, irritation, photosensitizing products / medications and possible contraindications",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": ""
+    },
+    {
+      "id": "field-4",
+      "type": "textarea",
+      "label": "Manufacturer restrictions and existing skincare routine",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": ""
+    },
+    {
+      "id": "iplImport",
+      "type": "file",
+      "label": "Restore IPL archive",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "dayPicker",
+      "type": "date",
+      "label": "Date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Gentle cleansing (as needed)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Manyo Bifida toner",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Purito moisturizer",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "SPF 50",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Gentle cleansing",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Manyo Bifida toner (if comfortable)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Purito moisturizer",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "customName",
+      "type": "text",
+      "label": "Name *",
+      "required": true,
+      "maxLength": 90,
+      "placeholder": "e.g. Hydrating mask"
+    },
+    {
+      "id": "customTime",
+      "type": "select-one",
+      "label": "When to use Morning Evening",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "customMode",
+      "type": "select-one",
+      "label": "Schedule By weekday On a specific date Every day",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "field-5",
+      "type": "checkbox",
+      "label": "Mon",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-6",
+      "type": "checkbox",
+      "label": "Tue",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-7",
+      "type": "checkbox",
+      "label": "Wed",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-8",
+      "type": "checkbox",
+      "label": "Thu",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-9",
+      "type": "checkbox",
+      "label": "Fri",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-10",
+      "type": "checkbox",
+      "label": "Sat",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-11",
+      "type": "checkbox",
+      "label": "Sun",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "customOnce",
+      "type": "date",
+      "label": "Date",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "customFrom",
+      "type": "date",
+      "label": "Start date (recurring steps)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "customUntil",
+      "type": "date",
+      "label": "End date (optional)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Adapalene",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Azelaic acid 15%",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Niacinamide",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Bepanthen Baby",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "moodDate",
+      "type": "date",
+      "label": "Date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "inflamed",
+      "type": "select-one",
+      "label": "Inflammation None A little Moderate A lot",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "comedones",
+      "type": "select-one",
+      "label": "Comedones None A little Moderate A lot",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "dryness",
+      "type": "select-one",
+      "label": "Dryness None Mild Moderate Severe",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "irritation",
+      "type": "select-one",
+      "label": "Irritation None Mild Moderate Severe",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "moodNote",
+      "type": "textarea",
+      "label": "Notes",
+      "required": false,
+      "maxLength": 2000,
+      "placeholder": "What did you notice today?"
+    },
+    {
+      "id": "photoInput",
+      "type": "file",
+      "label": "Add photo",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "insightPeriod",
+      "type": "select-one",
+      "label": "Period Last 30 days Last 90 days All time",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "startDate",
+      "type": "date",
+      "label": "Routine start date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "useNia",
+      "type": "checkbox",
+      "label": "Niacinamide on Fridays",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "useBep",
+      "type": "checkbox",
+      "label": "Bepanthen Baby on Sundays if skin is dry",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "dailyAz",
+      "type": "checkbox",
+      "label": "After week 8, use azelaic acid more often (if tolerated)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "importFile",
+      "type": "file",
+      "label": "Import backup",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "hairDayPicker",
+      "type": "date",
+      "label": "Date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "hairName",
+      "type": "text",
+      "label": "Name *",
+      "required": true,
+      "maxLength": 90,
+      "placeholder": "e.g. Nourishing mask"
+    },
+    {
+      "id": "hairTime",
+      "type": "select-one",
+      "label": "Time Morning Evening",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "hairFreq",
+      "type": "select-one",
+      "label": "Schedule Selected date only Every day By weekday",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Mon",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Tue",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Wed",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Thu",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Fri",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Sat",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "",
+      "type": "checkbox",
+      "label": "Sun",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "inciInput",
+      "type": "textarea",
+      "label": "Full INCI list or ingredient name",
+      "required": false,
+      "maxLength": 20000,
+      "placeholder": "Aqua, Glycerin, Niacinamide, Panthenol, ..."
+    },
+    {
+      "id": "promptCategory",
+      "type": "select-one",
+      "label": "Choose your intention Surprise me ✧ Self-connection Feminine energy Confidence & boundaries Softness & rest Growth & dreams",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "promptAnswer",
+      "type": "textarea",
+      "label": "Your private reflection *",
+      "required": true,
+      "maxLength": 10000,
+      "placeholder": "Begin wherever you are…"
+    },
+    {
+      "id": "productName",
+      "type": "text",
+      "label": "Product name *",
+      "required": true,
+      "maxLength": 120,
+      "placeholder": "e.g. Daily moisturizer"
+    },
+    {
+      "id": "productBrand",
+      "type": "text",
+      "label": "Brand",
+      "required": false,
+      "maxLength": 120,
+      "placeholder": "e.g. The brand on your label"
+    },
+    {
+      "id": "productCategory",
+      "type": "select-one",
+      "label": "Category Skin Hair Body Other",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "productPhoto",
+      "type": "file",
+      "label": "Photo (JPEG, PNG or WebP, up to 10 MB)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "productInci",
+      "type": "textarea",
+      "label": "INCI ingredients",
+      "required": false,
+      "maxLength": 20000,
+      "placeholder": "Aqua, Glycerin, …"
+    },
+    {
+      "id": "productRemovePhoto",
+      "type": "checkbox",
+      "label": "Remove saved photo",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "productSearch",
+      "type": "search",
+      "label": "Search my saved products",
+      "required": false,
+      "maxLength": 200,
+      "placeholder": "Name, brand, category or ingredient"
+    },
+    {
+      "id": "rbCollection",
+      "type": "select-one",
+      "label": "Saved collection Choose a saved product…",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "rbProduct",
+      "type": "text",
+      "label": "Product name *",
+      "required": true,
+      "maxLength": 70,
+      "placeholder": "e.g. My daily moisturizer"
+    },
+    {
+      "id": "rbCopy",
+      "type": "select-one",
+      "label": "Reuse a schedule Copy a recurring schedule…",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "rbStep",
+      "type": "select-one",
+      "label": "Care step Cleanse Tone Moisturize Treatment SPF Other care",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "field-12",
+      "type": "checkbox",
+      "label": "Mon",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-13",
+      "type": "checkbox",
+      "label": "Tue",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-14",
+      "type": "checkbox",
+      "label": "Wed",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-15",
+      "type": "checkbox",
+      "label": "Thu",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-16",
+      "type": "checkbox",
+      "label": "Fri",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-17",
+      "type": "checkbox",
+      "label": "Sat",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-18",
+      "type": "checkbox",
+      "label": "Sun",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "rbFrom",
+      "type": "date",
+      "label": "Start date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "rbUntil",
+      "type": "date",
+      "label": "End date (optional)",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "rbTime",
+      "type": "select-one",
+      "label": "Time of day Morning Evening",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "aiMode",
+      "type": "select-one",
+      "label": "Consultant mode Free local guide · rule-based Optional hosted AI · disabled by default",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "aiCleanser",
+      "type": "text",
+      "label": "Your usual cleanser",
+      "required": false,
+      "maxLength": 70,
+      "placeholder": "e.g. My gentle cleanser"
+    },
+    {
+      "id": "aiMoisturizer",
+      "type": "text",
+      "label": "Your usual moisturizer",
+      "required": false,
+      "maxLength": 70,
+      "placeholder": "e.g. My fragrance-free cream"
+    },
+    {
+      "id": "aiSunscreen",
+      "type": "text",
+      "label": "Your sunscreen",
+      "required": false,
+      "maxLength": 70,
+      "placeholder": "e.g. My daily sunscreen"
+    },
+    {
+      "id": "aiSkin",
+      "type": "select-one",
+      "label": "Skin type Unsure Dry Oily Combination Normal",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "aiSensitivity",
+      "type": "select-one",
+      "label": "Sensitivity Moderate Low High",
+      "required": false,
+      "maxLength": null,
+      "placeholder": ""
+    },
+    {
+      "id": "field-19",
+      "type": "checkbox",
+      "label": "Hydration",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-20",
+      "type": "checkbox",
+      "label": "Barrier comfort",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-21",
+      "type": "checkbox",
+      "label": "Texture",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-22",
+      "type": "checkbox",
+      "label": "Even tone",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "field-23",
+      "type": "checkbox",
+      "label": "Breakout support",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "aiCurrent",
+      "type": "textarea",
+      "label": "Current products and full INCI",
+      "required": false,
+      "maxLength": 8000,
+      "placeholder": "e.g. Product name: Aqua, Glycerin, …"
+    },
+    {
+      "id": "aiActives",
+      "type": "textarea",
+      "label": "Other active ingredients you use",
+      "required": false,
+      "maxLength": 1000,
+      "placeholder": "e.g. Retinol, glycolic acid; leave blank if unsure"
+    },
+    {
+      "id": "aiMorning",
+      "type": "textarea",
+      "label": "Morning habits",
+      "required": false,
+      "maxLength": 1600,
+      "placeholder": "e.g. Cleanser, moisturizer, sunscreen"
+    },
+    {
+      "id": "aiEvening",
+      "type": "textarea",
+      "label": "Evening habits",
+      "required": false,
+      "maxLength": 1600,
+      "placeholder": "e.g. Cleanser, moisturizer"
+    },
+    {
+      "id": "aiConstraints",
+      "type": "textarea",
+      "label": "Relevant limitations",
+      "required": false,
+      "maxLength": 1200,
+      "placeholder": "Relevant sensitivities or products you need to avoid; omit personal identifiers."
+    },
+    {
+      "id": "aiPreferences",
+      "type": "textarea",
+      "label": "Preferences",
+      "required": false,
+      "maxLength": 1200,
+      "placeholder": "e.g. Fragrance-free; keep the routine short"
+    },
+    {
+      "id": "aiStart",
+      "type": "date",
+      "label": "Plan start date *",
+      "required": true,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "aiAlarm",
+      "type": "checkbox",
+      "label": "I have severe or worsening symptoms, such as swelling, blistering, severe pain or breathing trouble.",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "aiConsent",
+      "type": "checkbox",
+      "label": "I consent to sending the interview text shown here to OpenAI through the configured backend and using Cloudflare human verification. Photos, journal entries and contact details are not included.",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    },
+    {
+      "id": "aiReview",
+      "type": "checkbox",
+      "label": "I reviewed the edited proposal. Add these steps without deleting existing care.",
+      "required": false,
+      "maxLength": -1,
+      "placeholder": ""
+    }
+  ]
+}

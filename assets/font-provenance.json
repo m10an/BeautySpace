@@ -1,0 +1,67 @@
+{
+  "retrieved": "2026-11-04",
+  "license": "SIL OFL 1.1; see retained per-family license",
+  "files": [
+    {
+      "file": "Poppins-Regular.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf",
+      "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba"
+    },
+    {
+      "file": "Poppins-SemiBold.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-SemiBold.ttf",
+      "sha256": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286"
+    },
+    {
+      "file": "Poppins-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/OFL.txt",
+      "sha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573"
+    },
+    {
+      "file": "PinyonScript-Regular.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/pinyonscript/PinyonScript-Regular.ttf",
+      "sha256": "4aab130a6ed27f8b8117738c84a5602edf9300cdcc0651a9a65bf96f451ac29a"
+    },
+    {
+      "file": "PinyonScript-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/pinyonscript/OFL.txt",
+      "sha256": "61d07cb0eaa943943648df2b11d0c2210e772053c192871e13f680b53fe0b77e"
+    },
+    {
+      "file": "CormorantGaramond.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/CormorantGaramond%5Bwght%5D.ttf",
+      "sha256": "b20b7d9626dd956b2c5e558692ad328b1f19e3275e2782db4fa07670d83f35e0"
+    },
+    {
+      "file": "CormorantGaramond-OFL.txt",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.txt",
+      "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+    }
+  ],
+  "webFonts": [
+    {
+      "file": "Poppins-Regular.woff2",
+      "derivedFrom": "Poppins-Regular.ttf",
+      "conversion": "WOFF2 encoding; Cormorant wght instantiated at 400",
+      "sha256": "4b90eb028d3a64205b540ee60e962a8726cef2fcec2e12be8a57db037bf032bf"
+    },
+    {
+      "file": "Poppins-SemiBold.woff2",
+      "derivedFrom": "Poppins-SemiBold.ttf",
+      "conversion": "WOFF2 encoding; Cormorant wght instantiated at 400",
+      "sha256": "6c9274c9a2bc5d0fad64dc69f93297ac3e71b44bfd3f0c9a0f327e0f50fa7920"
+    },
+    {
+      "file": "PinyonScript-Regular.woff2",
+      "derivedFrom": "PinyonScript-Regular.ttf",
+      "conversion": "WOFF2 encoding; Cormorant wght instantiated at 400",
+      "sha256": "4b404e3f2dd104b2684839ed213f32a52a39c08e25386eaa6f7c65cdc9e61b98"
+    },
+    {
+      "file": "CormorantGaramond.woff2",
+      "derivedFrom": "CormorantGaramond.ttf",
+      "conversion": "WOFF2 encoding; Cormorant wght instantiated at 400",
+      "sha256": "10a6c1301b80266e563636f877fcfafbc7fdf8d84f6476f8d8bdef5b23ad99d2"
+    }
+  ]
+}

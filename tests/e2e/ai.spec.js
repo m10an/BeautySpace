@@ -8,13 +8,16 @@ async function open(page) {
   await page.goto("/");
   await page.locator("#aiLauncher").click();
   await expect(page.locator("#aiDialog")).toBeVisible();
+  if (page.hostedFixture) await page.locator("#aiMode").selectOption("hosted");
 }
 async function mocks(page, plan = fixture, status = 200) {
+  page.hostedFixture = true;
   let requests = 0;
   const payloads = [];
   await page.route("**/runtime-config.json", (r) =>
     r.fulfill({
       json: {
+        enableHostedAI: true,
         aiEndpoint: "https://ai.test.example/v1/routine-plan",
         turnstileSiteKey: "public-test-fixture",
       },
@@ -66,12 +69,12 @@ async function mocks(page, plan = fixture, status = 200) {
   count.payloads = payloads;
   return count;
 }
-test("unconfigured AI is honest and manual builder remains usable", async ({
+test("free local guide is default and manual builder remains usable", async ({
   page,
 }) => {
   await open(page);
-  await expect(page.locator("#aiStatus")).toContainText("not configured");
-  await expect(page.locator("#aiSend")).toBeDisabled();
+  await expect(page.locator("#aiStatus")).toContainText("Free local");
+  await expect(page.locator("#aiSend")).toBeEnabled();
   await page.locator("#aiManual").click();
   await expect(page.locator("#routineBuilder")).toBeVisible();
 });
@@ -165,7 +168,7 @@ for (const theme of ["light", "dark"])
     await page.goto("/");
     await setTheme(page, theme);
     await page.locator("#aiLauncher").click();
-    await expect(page.locator("#aiStatus")).toContainText("not configured");
+    await expect(page.locator("#aiStatus")).toContainText("Free local");
     const result = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
       .analyze();

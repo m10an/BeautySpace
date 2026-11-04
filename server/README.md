@@ -1,3 +1,9 @@
+# Free by default; optional paid adapter is disabled
+
+The default consultant now works entirely locally using explicitly labeled rules. No server, account, API key, billing or Turnstile is required for that flow. It does not pretend to be an LLM. No free hosted LLM is integrated or claimed.
+
+The retained OpenAI adapter below is optional and can incur provider fees. It requires an explicit owner decision: set server `AI_ENABLE_PAID_PROVIDER=true` **and** public `enableHostedAI:true`, then configure credentials/endpoints and obtain the existing per-request consent/verification. Both switches ship off. Configured keys alone cannot activate the server. This task has not enabled billing, deployed a backend or made a live provider request. The free guide remains available if hosted mode is unavailable.
+
 # Optional Beauty AI server
 
 GitHub Pages serves only the static application. Deploy this separate Node.js 24 backend behind HTTPS; no server or provider account has been deployed by this change.

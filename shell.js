@@ -1,4 +1,4 @@
-import { activateSection } from "./app.js?v=21";
+import { activateSection } from "./app.js?v=22";
 import "./archive.js";
 const $ = (id) => document.getElementById(id);
 const toggle = $("menuToggle"),

@@ -1,4 +1,4 @@
-import { mkdirSync, copyFileSync, rmSync } from "node:fs";
+import { mkdirSync, copyFileSync, rmSync, cpSync } from "node:fs";
 const files = [
   "index.html",
   "style.css",
@@ -24,6 +24,7 @@ const files = [
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist/lib", { recursive: true });
 for (const name of files) copyFileSync(name, `dist/${name}`);
+cpSync("assets", "dist/assets", { recursive: true });
 console.log(
   `Built ${files.length} static assets in dist/; no runtime dependencies.`,
 );

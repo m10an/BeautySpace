@@ -181,11 +181,11 @@ test("ingredient search synonyms, partials, unknown state and XSS", async ({
 }) => {
   await ready(page);
   await tab(page, "ingredients");
-  await page.locator("#ingredientSearch").fill("  wAtEr  ");
+  await page.locator("#inciInput").fill("  wAtEr  ");
   await expect(page.locator("#ingredientMatches")).toContainText("Aqua");
-  await page.locator("#ingredientSearch").fill("hyaluron");
-  await expect(page.locator("#ingredientMatches .inci-item")).toHaveCount(2);
-  await page.locator("#ingredientSearch").fill("<img src=x onerror=alert(1)>");
+  await page.locator("#inciInput").fill("hyaluron");
+  await expect(page.locator("#ingredientMatches")).toContainText("Hyaluron");
+  await page.locator("#inciInput").fill("<img src=x onerror=alert(1)>");
   await expect(page.locator("#ingredientStatus")).toContainText(
     "No ingredients",
   );

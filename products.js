@@ -1,6 +1,10 @@
-import { normalize, validateProduct, analyzeInci } from "./lib/domain.js";
+import { normalize, validateProduct } from "./lib/domain.js";
 import { readCollection, writeCollection } from "./lib/storage.js";
-import { referenceReady, analysisHtml } from "./ingredients.js?v=22";
+import {
+  referenceReady,
+  analysisHtml,
+  analyzeReference,
+} from "./ingredients.js?v=23";
 const $ = (id) => document.getElementById(id);
 let products = [],
   editing = null,
@@ -107,7 +111,7 @@ async function render() {
       if (!details.open || analysis.childNodes.length) return;
       try {
         const db = await referenceReady;
-        analysis.innerHTML = analysisHtml(analyzeInci(product.inci, db));
+        analysis.innerHTML = analysisHtml(analyzeReference(product.inci, db));
       } catch {
         analysis.textContent =
           "Ingredient reference unavailable. Your saved product is retained.";

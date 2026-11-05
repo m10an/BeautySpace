@@ -1,4 +1,4 @@
-import { activateSection } from "./app.js?v=27";
+import { activateSection } from "./app.js?v=29";
 import "./archive.js";
 const $ = (id) => document.getElementById(id);
 const toggle = $("menuToggle"),
@@ -10,6 +10,11 @@ let closing = false,
   closeTimer,
   savedScroll = 0;
 function syncTabs() {
+  const id = document.querySelector("#nav .tab.active")?.dataset.tab;
+  for (const link of document.querySelectorAll("[data-route]")) {
+    if (link.dataset.route === id) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  }
   for (const tab of tabs) {
     const active = tab.classList.contains("active");
     tab.setAttribute("aria-pressed", String(active));
@@ -107,13 +112,34 @@ for (const tab of tabs)
     const label = tab.querySelector("span:nth-child(2)").textContent;
     activateSection(tab.dataset.tab);
     syncTabs();
-    document.title = `${label} · Beautycalendar`;
+    document.title = `${label} · TheBeauty Journal`;
     main.setAttribute("aria-label", label);
     closeMenu(true);
   });
+activateSection("home");
 syncTabs();
-document.title = "Calendar · Beautycalendar";
-main.setAttribute("aria-label", "Calendar");
+document.title = "Home · TheBeauty Journal";
+main.setAttribute("aria-label", "Home");
+window.addEventListener("beauty:section-changed", (event) => {
+  syncTabs();
+  const tab = tabs.find((x) => x.dataset.tab === event.detail);
+  const label =
+    tab?.querySelector("span:nth-child(2)")?.textContent || event.detail;
+  document.title = `${label} · TheBeauty Journal`;
+  main.setAttribute("aria-label", label);
+});
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("[data-route]");
+  if (!link) return;
+  event.preventDefault();
+  activateSection(link.dataset.route);
+  main.focus({ preventScroll: true });
+  window.scrollTo({ top: 0, behavior: "auto" });
+});
+$("mobileMore").addEventListener("click", openMenu);
+document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-help]")) $("helpButton").click();
+});
 const theme = $("themeToggle"),
   systemTheme = matchMedia("(prefers-color-scheme: dark)");
 function currentTheme() {
@@ -129,8 +155,8 @@ function syncTheme() {
   );
   theme.setAttribute("aria-pressed", String(dark));
   document.querySelector('meta[name="theme-color"]').content = dark
-    ? "#241e1a"
-    : "#f6f0e7";
+    ? "#232426"
+    : "#f8f8f3";
 }
 theme.addEventListener("click", () => {
   const next = currentTheme() === "dark" ? "light" : "dark";
@@ -159,10 +185,10 @@ function goHome(event) {
   if (dialog.open) closeMenu(true);
   for (const modal of document.querySelectorAll("dialog[open]"))
     if (modal !== dialog) modal.dispatchEvent(new Event("beauty:close-dialog"));
-  activateSection("calendar");
+  activateSection("home");
   syncTabs();
-  document.title = "Calendar · Beautycalendar";
-  main.setAttribute("aria-label", "Calendar");
+  document.title = "Home · TheBeauty Journal";
+  main.setAttribute("aria-label", "Home");
   setTimeout(() => {
     main.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "auto" });

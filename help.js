@@ -4,11 +4,11 @@ const $ = (id) => document.getElementById(id),
 const steps = [
   [
     "Home & calendar",
-    "Open the brand/title or Menu → Calendar. Choose a date to review AM/PM care and IPL records; mark completed skincare steps. Saved records stay on this device.",
+    "The brand/title opens Home: read today’s excerpt and review real upcoming care. Choose Open today or Menu → Calendar, select a date, then mark completed AM/PM steps or review IPL sessions. Home never resets your records.",
   ],
   [
     "Skincare & Hair",
-    "Find Ritual and Hair in the menu. Use the existing editors for recurring or one-off care. Review dates and weekdays; edits preserve existing history.",
+    "Find My Routine and Hair in the menu. Use the existing editors for recurring or one-off care. Review dates and weekdays; edits preserve existing history.",
   ],
   [
     "Products & INCI",
@@ -16,11 +16,11 @@ const steps = [
   ],
   [
     "Routine builder",
-    "Menu → Ritual → Build a routine. Choose a product, care step, weekdays and AM/PM. Presets and copied schedules are drafts. Only the final confirmation adds care; Close cancels.",
+    "Menu → My Routine → Build a routine. Choose a product, care step, weekdays and AM/PM. Presets and copied schedules are drafts. Only the final confirmation adds care; Close cancels.",
   ],
   [
     "Free consultant",
-    "Use the sparkle Beauty AI button. The free local guide uses explicit rules, not generative AI, and sends nothing. Enter optional products and habits, create a preview, edit or reject it, then explicitly confirm calendar additions. Hosted AI stays disabled unless separately configured and consented to; it may have costs.",
+    "Open Consultant in navigation or use the sparkle Beauty AI button. Follow the five interview steps with Back/Next; optional answers can stay blank. The free local guide uses explicit rules, not generative AI, and sends nothing. Enter optional products and habits, create a preview, edit or reject it, then explicitly confirm calendar additions. Hosted AI stays disabled unless separately configured and consented to; it may have costs.",
   ],
   [
     "IPL tracker",
@@ -28,7 +28,7 @@ const steps = [
   ],
   [
     "Data, privacy & recovery",
-    "Menu → More → Backup & restore exports the journal; IPL has a separate archive in its section. Export both before changing browsers. Offline manual tools keep working after caching. Errors retain entered values; check marked fields and retry. Severe symptoms need medical care, not an app plan.",
+    "Menu → Settings & Privacy → Backup & restore exports the journal; IPL has a separate archive in its section. Export both before changing browsers. Offline manual tools keep working after caching. Errors retain entered values; check marked fields and retry. Severe symptoms need medical care, not an app plan.",
   ],
 ];
 let index = 0;
@@ -37,6 +37,7 @@ function show() {
   $("helpTitle").textContent = title;
   $("helpContent").textContent = text;
   $("helpProgress").textContent = `Step ${index + 1} of ${steps.length}`;
+  $("helpProgressBar").value = index + 1;
   $("helpPrevious").disabled = index === 0;
   $("helpNext").textContent = index === steps.length - 1 ? "Done" : "→";
   $("helpNext").setAttribute(

@@ -3,6 +3,8 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFileSync } from "node:fs";
 const sections = [
+  "home",
+  "consultant",
   "calendar",
   "hair",
   "ritual",
@@ -22,6 +24,7 @@ async function tab(page, name) {
 async function ready(page) {
   await page.goto("/");
   await expect(page.locator("#inciAnalyze")).toBeEnabled();
+  await goTo(page, "calendar");
 }
 for (const width of [320, 375, 390, 430, 768, 1024, 1440])
   for (const theme of ["light", "dark"])
@@ -311,7 +314,9 @@ test("backup export includes all stores; valid restore and invalid rejection", a
   await expect(page.locator("#appStatus")).toContainText("not restored");
 });
 test("keyboard skip link, focus and theme persistence", async ({ page }) => {
-  await ready(page);
+  // Test a fresh arrival, before menu navigation intentionally focuses main.
+  await page.goto("/");
+  await expect(page.locator("#home")).toBeVisible();
   await page.keyboard.press("Tab");
   await expect(page.locator(".skip-link")).toBeFocused();
   await page.keyboard.press("Enter");

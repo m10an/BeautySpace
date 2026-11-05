@@ -1,3 +1,5 @@
+> Historical pre-masterplan design notes. The current approved tokens, typography, responsive shell and component states are documented in [DESIGN-SYSTEM.md](../DESIGN-SYSTEM.md); see [every-page status](../IMPLEMENTATION-CHECKLIST.md). Original notes below are retained for history.
+
 # Design system and accessibility
 
 The editorial concept remains: warm paper, quiet botanical accents, high-contrast serif headlines and original soft imagery. Dense grain overlays, shimmering decoration and conflicting historical theme layers were removed to keep content legible.

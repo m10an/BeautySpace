@@ -2,7 +2,7 @@ import {
   dailyInspiration,
   validateInspirations,
   nextReadingDelay,
-} from "./lib/inspiration.js?v=28";
+} from "./lib/inspiration.js?v=29";
 import { localDate } from "./lib/domain.js";
 const $ = (id) => document.getElementById(id);
 let collection = null,
@@ -17,6 +17,8 @@ function scheduleMidnight() {
 }
 function unavailable(message) {
   current = null;
+  $("homeQuote").textContent = "";
+  $("homeQuoteAttribution").textContent = message;
   $("inspirationQuote").textContent = "";
   $("quoteAttribution").textContent = "";
   $("quoteCitation").textContent = "";
@@ -34,6 +36,9 @@ function render() {
       return;
     }
     $("inspirationQuote").textContent = current.text;
+    $("homeQuote").textContent = current.text;
+    $("homeQuoteAttribution").textContent =
+      `Attributed to ${current.attributedAuthor}`;
     $("quoteAttribution").textContent =
       `Attributed to ${current.attributedAuthor}`;
     $("quoteCitation").textContent =
@@ -47,7 +52,7 @@ function render() {
     );
   }
 }
-fetch("./inspiration.json?v=28")
+fetch("./inspiration.json?v=29")
   .then((response) => {
     if (!response.ok) throw Error("Collection unavailable");
     return response.json();

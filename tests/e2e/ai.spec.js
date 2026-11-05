@@ -1,14 +1,18 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import AxeBuilder from "@axe-core/playwright";
-import { setTheme } from "./navigation.js";
+import { setTheme, interviewStep } from "./navigation.js";
 test.use({ serviceWorkers: "block" });
 const fixture = JSON.parse(readFileSync("tests/fixtures/ai-plan.json"));
 async function open(page) {
   await page.goto("/");
   await page.locator("#aiLauncher").click();
   await expect(page.locator("#aiDialog")).toBeVisible();
-  if (page.hostedFixture) await page.locator("#aiMode").selectOption("hosted");
+  if (page.hostedFixture) {
+    await page.locator("#aiOptions summary").click();
+    await page.locator("#aiMode").selectOption("hosted");
+  }
+  await interviewStep(page);
 }
 async function mocks(page, plan = fixture, status = 200) {
   page.hostedFixture = true;
@@ -75,6 +79,7 @@ test("free local guide is default and manual builder remains usable", async ({
   await open(page);
   await expect(page.locator("#aiStatus")).toContainText("Free local");
   await expect(page.locator("#aiSend")).toBeEnabled();
+  await page.locator("#aiOptions summary").click();
   await page.locator("#aiManual").click();
   await expect(page.locator("#routineBuilder")).toBeVisible();
 });
@@ -84,16 +89,19 @@ test("AI request needs consent; proposal writes only after explicit reviewed con
   const count = await mocks(page);
   await open(page);
   await expect(page.locator("#aiSend")).toBeEnabled();
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiStatus")).toContainText("consent");
   expect(count()).toBe(0);
   const before = await page.evaluate(() =>
     localStorage.getItem("girly-skincare-v1"),
   );
+  await interviewStep(page);
   await page.locator("#aiConsent").check();
   await expect(page.locator("#aiStatus")).toContainText(
     "Verification complete",
   );
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiPreview")).toContainText(
     "Synthetic test proposal",
@@ -123,10 +131,12 @@ test("malformed AI response is rejected without calendar mutation", async ({
   await mocks(page, { summary: "not a valid schema" });
   await open(page);
   await expect(page.locator("#aiSend")).toBeEnabled();
+  await interviewStep(page);
   await page.locator("#aiConsent").check();
   await expect(page.locator("#aiStatus")).toContainText(
     "Verification complete",
   );
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiStatus")).toContainText("schema");
   await expect(page.locator("#aiSave")).toBeDisabled();
@@ -140,12 +150,15 @@ test("red-flag symptoms pause requests; local overlap check is labeled rule-base
   const count = await mocks(page);
   await open(page);
   await expect(page.locator("#aiSend")).toBeEnabled();
+  await interviewStep(page, 2);
   await page.locator("#aiActives").fill("Retinol, Glycolic Acid");
   await expect(page.locator("#aiLocal")).toContainText(
     "may increase irritation",
   );
+  await interviewStep(page, 1);
   await page.locator("#aiAlarm").check();
   await expect(page.locator("#aiMedical")).toBeVisible();
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   expect(count()).toBe(0);
 });
@@ -153,10 +166,12 @@ test("AI server limit is visible and no retry is made", async ({ page }) => {
   const count = await mocks(page, {}, 429);
   await open(page);
   await expect(page.locator("#aiSend")).toBeEnabled();
+  await interviewStep(page);
   await page.locator("#aiConsent").check();
   await expect(page.locator("#aiStatus")).toContainText(
     "Verification complete",
   );
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiStatus")).toContainText("limit reached");
   expect(count()).toBe(1);
@@ -202,12 +217,16 @@ test("copying current care excludes private journal data and does not save the p
   const before = await page.evaluate(() =>
     localStorage.getItem("girly-skincare-v1"),
   );
+  await interviewStep(page, 2);
   await page.locator("#aiCopySchedule").click();
+  await interviewStep(page, 3);
   await expect(page.locator("#aiMorning")).toHaveValue(/SPF/);
+  await interviewStep(page);
   await page.locator("#aiConsent").check();
   await expect(page.locator("#aiStatus")).toContainText(
     "Verification complete",
   );
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiPreview")).toContainText(
     "Synthetic test proposal",

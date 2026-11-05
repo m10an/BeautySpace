@@ -124,6 +124,11 @@ export function validateFields(root, controls) {
     }
   }
   if (first) {
+    first
+      .closest("dialog")
+      ?.dispatchEvent(
+        new CustomEvent("beauty:reveal-field", { detail: first }),
+      );
     first.focus({ preventScroll: true });
     first.scrollIntoView({ block: "nearest", behavior: "auto" });
   }

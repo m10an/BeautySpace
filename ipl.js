@@ -1,6 +1,6 @@
 import { readIPL, saveIPL, sessionStatus, planIPL } from "./lib/ipl.js";
 import { localDate } from "./lib/domain.js";
-import { getSelectedCalendarDate } from "./app.js?v=27";
+import { getSelectedCalendarDate } from "./app.js?v=29";
 const $ = (id) => document.getElementById(id);
 let editing = "",
   proposal = null;
@@ -21,6 +21,13 @@ function render() {
     const root = $("iplSessions");
     root.replaceChildren();
     const areas = new Map();
+    if (!state.sessions.length)
+      root.append(
+        node(
+          "p",
+          "No sessions recorded yet. Your first manual entry will appear here.",
+        ),
+      );
     for (const s of [...state.sessions].sort((a, b) =>
       a.date.localeCompare(b.date),
     )) {
@@ -33,7 +40,7 @@ function render() {
       counts[sessionStatus(s)]++;
       areas.set(s.area, counts);
       const card = node("article", "");
-      card.className = "panel";
+      card.className = "panel ipl-session-card";
       card.append(
         node("h3", s.area + " · " + s.date),
         node("p", sessionStatus(s)),
@@ -62,14 +69,28 @@ function render() {
       root.append(card);
     }
     $("iplProgress").replaceChildren(
-      ...[...areas].map(([area, c]) =>
+      ...[...areas].map(([area, c]) => {
+        const card = node("article", "");
+        card.className = "area-card";
+        card.append(
+          node("h3", area),
+          node(
+            "p",
+            `${c.completed} completed · ${c.planned} upcoming · ${c.missed} missed · ${c.cancelled} cancelled`,
+          ),
+        );
+        return card;
+      }),
+    );
+    if (!areas.size)
+      $("iplProgress").append(
         node(
           "p",
-          `${area}: ${c.completed} completed · ${c.planned} upcoming · ${c.missed} missed · ${c.cancelled} cancelled`,
+          "No areas recorded yet. Enter an area when logging a session.",
         ),
-      ),
-    );
+      );
     renderCalendar();
+    window.dispatchEvent(new Event("beauty:ipl-updated"));
   } catch (e) {
     tell(
       "IPL data could not be read: " +

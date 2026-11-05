@@ -208,7 +208,7 @@ test.describe("Supplied scenarios adapted to v2", () => {
     ).toContain("Poppins");
     expect(
       await page
-        .locator(".ingredient-hero h2")
+        .locator(".ingredient-hero h1")
         .evaluate((el) => getComputedStyle(el).fontFamily),
     ).toContain("Cormorant Garamond");
     await page.evaluate(() => document.fonts.ready);

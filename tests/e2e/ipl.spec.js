@@ -76,6 +76,7 @@ test("unknown manufacturer guidance blocks IPL automation and AI entry opens loc
   await start(page);
   await goTo(page, "calendar");
   await page.locator("#aiLauncher").click();
+  await page.locator("#aiOptions summary").click();
   await page.locator("#iplAIEntry").click();
   await expect(page.locator("#aiDialog")).not.toBeVisible();
   await expect(page.locator("#iplPlanning")).toHaveAttribute("open", "");

@@ -1,6 +1,6 @@
 import { freeRoutine } from "./lib/free-consultant.js";
-import { validateFields, showFieldError } from "./forms.js?v=27";
-import { getRoutineInterviewSummary } from "./app.js?v=27";
+import { validateFields, showFieldError } from "./forms.js?v=29";
+import { getRoutineInterviewSummary } from "./app.js?v=29";
 import { toolModal } from "./lib/dialog.js";
 import { validateAIPlan, reviewActives, aiSteps } from "./lib/ai-plan.js";
 import {
@@ -22,6 +22,105 @@ let config,
   widget,
   scriptPromise;
 const status = (text) => ($("aiStatus").textContent = text);
+// Presentation only: original interview fields, validation and plan schema remain authoritative.
+const interviewSteps = [
+  "Your goals",
+  "Your skin",
+  "Your products",
+  "Your habits",
+  "Your plan",
+];
+let interviewStep = 0;
+const aiForm = $("aiForm");
+const options = document.createElement("details");
+options.id = "aiOptions";
+const optionsTitle = document.createElement("summary");
+optionsTitle.textContent = "Other tools & optional hosted AI";
+options.append(optionsTitle);
+$("aiContent").insertBefore(options, aiForm);
+options.append($("aiManual"), $("iplAIEntry"), $("aiMode").closest("label"));
+aiForm.querySelector("p:not(.required-note)").textContent =
+  "Choose any goals, or continue for a simple basic-care plan. Answers stay on this device in free mode.";
+
+const groups = interviewSteps.map((title, index) => {
+  const section = document.createElement("section");
+  section.className = "interview-step";
+  section.dataset.interviewStep = String(index);
+  const heading = document.createElement("h3");
+  heading.textContent = title;
+  section.append(heading);
+  aiForm.append(section);
+  return section;
+});
+function moveField(index, id) {
+  groups[index].append($(id).closest("label"));
+}
+groups[0].append($("aiGoals").closest("fieldset"));
+groups[1].append($("aiSkin").closest(".form-grid"));
+moveField(1, "aiAlarm");
+$("aiContent").insertBefore($("aiMedical"), aiForm);
+for (const id of ["aiCleanser", "aiMoisturizer", "aiSunscreen"])
+  moveField(2, id);
+groups[2].append($("aiCollection").closest("details"));
+for (const id of ["aiCurrent", "aiActives"]) moveField(2, id);
+groups[2].append(
+  dialog.querySelector(".local-review-title"),
+  $("aiLocal"),
+  $("aiCopySchedule"),
+);
+groups[3].append($("aiMorning").closest(".form-grid"));
+for (const id of ["aiConstraints", "aiPreferences"]) moveField(3, id);
+const reviewIntro = document.createElement("p");
+reviewIntro.id = "aiInterviewSummary";
+groups[4].append(reviewIntro);
+moveField(4, "aiStart");
+groups[4].append($("aiHosted"), $("aiSend"));
+function showInterviewStep(index, focus = true) {
+  interviewStep = Math.max(0, Math.min(4, index));
+  groups.forEach((node, i) => (node.hidden = i !== interviewStep));
+  $("aiProgress").textContent =
+    `Step ${interviewStep + 1} of 5 · ${interviewSteps[interviewStep]}`;
+  $("aiProgressBar").value = interviewStep + 1;
+  $("aiBack").hidden = interviewStep === 0;
+  $("aiNext").hidden = interviewStep === 4;
+  $("aiReject").hidden = !draft || interviewStep !== 4;
+  $("aiPreview").hidden = interviewStep !== 4;
+  $("aiReview").closest("label").hidden = interviewStep !== 4 || !draft;
+  $("aiSave").hidden = interviewStep !== 4 || !draft;
+  const goals = [...$("aiGoals").querySelectorAll("input:checked")].map((x) =>
+    x.closest("label").textContent.trim(),
+  );
+  reviewIntro.textContent = `Review: ${$("aiSkin").selectedOptions[0].text}, ${$("aiSensitivity").value} sensitivity. Goals: ${goals.join(", ") || "a simple basic-care routine"}. Product names and habits are optional; your draft will be editable.`;
+  $("aiContent").scrollTop = 0;
+  if (focus) {
+    const heading = groups[interviewStep].querySelector("h3");
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+  }
+}
+function revealInvalidField(field) {
+  const section = field?.closest("[data-interview-step]");
+  if (section) showInterviewStep(Number(section.dataset.interviewStep), false);
+}
+$("aiNext").onclick = () => {
+  if (!validateFields(groups[interviewStep])) return;
+  showInterviewStep(interviewStep + 1);
+};
+$("aiBack").onclick = () => showInterviewStep(interviewStep - 1);
+$("aiReject").onclick = () => {
+  draft = null;
+  $("aiPreview").replaceChildren();
+  $("aiReview").checked = false;
+  $("aiSave").disabled = true;
+  showInterviewStep(4);
+  status(
+    "Proposal rejected. No calendar entries were changed. You can edit your answers or create another preview.",
+  );
+};
+dialog.addEventListener("beauty:reveal-field", (e) =>
+  revealInvalidField(e.detail),
+);
+
 function endpoint(value) {
   const url = new URL(value, location.href);
   if (
@@ -150,6 +249,7 @@ $("aiLauncher").onclick = async () => {
   $("aiReview").checked = false;
   $("aiSave").disabled = true;
   $("aiMode").value = "local";
+  $("aiOptions").open = false;
   $("aiHosted").hidden = true;
   $("aiConsent").checked = false;
   $("aiStart").value = localDate();
@@ -158,6 +258,7 @@ $("aiLauncher").onclick = async () => {
   status("Checking AI availability…");
   $("aiSend").textContent = "Create free local preview";
   modal.open();
+  showInterviewStep(0);
   updateLocal();
   try {
     const products = await readCollection();
@@ -194,6 +295,7 @@ $("aiCopyProducts").onclick = () => {
     );
     return;
   }
+  invalidateInterviewPlan();
   $("aiCurrent").value = text;
   updateLocal();
 };
@@ -225,6 +327,7 @@ function interview() {
 }
 $("aiForm").addEventListener("submit", (e) => e.preventDefault());
 $("aiMode").onchange = () => {
+  invalidateInterviewPlan();
   $("aiHosted").hidden = $("aiMode").value !== "hosted";
   $("aiConsent").checked = false;
   token = "";
@@ -256,12 +359,17 @@ $("aiSend").onclick = async () => {
           : "Free rule-based preview ready. Nothing was sent or saved. Review, edit or reject it.",
       );
     } catch (error) {
+      draft = null;
+      $("aiPreview").replaceChildren();
+      $("aiSave").disabled = true;
+      $("aiReview").checked = false;
       const field = {
         cleanser: "aiCleanser",
         moisturizer: "aiMoisturizer",
         sunscreen: "aiSunscreen",
       }[error.field];
       if (field) {
+        revealInvalidField($(field));
         showFieldError($(field), error.message);
         $(field).focus();
       }
@@ -341,6 +449,7 @@ function label(text, control) {
   return node;
 }
 function renderPlan() {
+  showInterviewStep(4, false);
   const root = $("aiPreview");
   root.replaceChildren();
   const heading = document.createElement("h3");
@@ -349,18 +458,75 @@ function renderPlan() {
   const summary = document.createElement("p");
   summary.textContent = draft.summary;
   root.append(heading, summary);
-  for (const text of [...draft.concerns, ...draft.limitations]) {
+  for (const text of draft.concerns) {
     const p = document.createElement("p");
     p.className = "muted";
     p.textContent = text;
     root.append(p);
   }
+  const limits = document.createElement("details");
+  limits.className = "plan-limits";
+  const limitsTitle = document.createElement("summary");
+  limitsTitle.textContent = "How this guide works & limits";
+  limits.append(limitsTitle);
+  for (const text of draft.limitations) {
+    const p = document.createElement("p");
+    p.className = "muted";
+    p.textContent = text;
+    limits.append(p);
+  }
+  root.append(limits);
   if (draft.recommendMedical) {
     const p = document.createElement("p");
     p.textContent =
       "Medical review is recommended. This proposal cannot be added automatically.";
     root.append(p);
     return;
+  }
+  const outline = document.createElement("div");
+  outline.className = "plan-outline";
+  outline.id = "aiPlanOutline";
+  root.append(outline);
+  const editTitle = document.createElement("h3");
+  editTitle.textContent = "Edit proposed steps";
+  root.append(editTitle);
+  function refreshOutline() {
+    outline.replaceChildren();
+    const rows = [...root.querySelectorAll("[data-ai-row]")];
+    for (const [time, title] of [
+      ["am", "Morning"],
+      ["pm", "Evening"],
+    ]) {
+      const section = document.createElement("section");
+      const heading = document.createElement("h4");
+      heading.textContent = title;
+      const list = document.createElement("ul");
+      for (const row of rows.filter(
+        (r) => r.querySelector('[data-field="time"]').value === time,
+      )) {
+        const read = (key) => row.querySelector(`[data-field="${key}"]`).value;
+        const item = document.createElement("li");
+        const name = document.createElement("strong");
+        name.textContent = read("name").trim() || "Name needed";
+        const details = document.createElement("small");
+        const days = [...row.querySelectorAll("[data-weekday]:checked")].map(
+          (x) =>
+            ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][
+              Number(x.dataset.weekday)
+            ],
+        );
+        details.textContent = `${careSteps[read("step")]} · ${days.length === 7 ? "Every day" : days.join(", ") || "Choose weekdays"} · ${read("from") || "Choose start date"}${read("until") ? ` — ${read("until")}` : ""}`;
+        item.append(name, details);
+        list.append(item);
+      }
+      if (!list.children.length) {
+        const empty = document.createElement("li");
+        empty.textContent = "No proposed steps.";
+        list.append(empty);
+      }
+      section.append(heading, list);
+      outline.append(section);
+    }
   }
   draft.items.forEach((item, i) => {
     const card = document.createElement("fieldset");
@@ -431,16 +597,19 @@ function renderPlan() {
     remove.textContent = "Remove proposed step";
     remove.onclick = () => {
       card.remove();
+      refreshOutline();
       $("aiReview").checked = false;
       $("aiSave").disabled = true;
     };
     card.append(reason, remove);
     card.addEventListener("input", () => {
+      refreshOutline();
       $("aiReview").checked = false;
       $("aiSave").disabled = true;
     });
     root.append(card);
   });
+  refreshOutline();
   window.dispatchEvent(new Event("beauty:form-refresh"));
   heading.focus({ preventScroll: true });
   heading.scrollIntoView({ block: "start", behavior: "auto" });
@@ -506,6 +675,7 @@ $("aiCopySchedule").onclick = () => {
       throw Error(
         "The weekly summary is too long; enter only relevant steps manually.",
       );
+    invalidateInterviewPlan();
     $("aiMorning").value = text.am;
     $("aiEvening").value = text.pm;
     updateLocal();
@@ -516,3 +686,26 @@ $("aiCopySchedule").onclick = () => {
     status(error.message);
   }
 };
+
+// Changing interview answers invalidates the old proposal; editing preview rows is independent.
+function invalidateInterviewPlan() {
+  if (busy) {
+    controller?.abort();
+    status(
+      "Answers changed. The previous request was cancelled; create a new preview when ready.",
+    );
+  }
+  if (!draft) return;
+  draft = null;
+  $("aiPreview").replaceChildren();
+  $("aiReview").checked = false;
+  $("aiSave").disabled = true;
+  $("aiReview").closest("label").hidden = true;
+  $("aiSave").hidden = true;
+  $("aiReject").hidden = true;
+  status(
+    "Answers changed. Create a new preview before confirming any calendar additions.",
+  );
+}
+aiForm.addEventListener("input", invalidateInterviewPlan);
+aiForm.addEventListener("change", invalidateInterviewPlan);

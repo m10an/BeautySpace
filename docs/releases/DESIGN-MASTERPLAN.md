@@ -55,7 +55,7 @@ Local environment: managed Debian Linux, Node 24, Python 3.12, Playwright 1.58.2
 
 ## Delivery
 
-[Compare branch / create PR](https://github.com/m10an/BeautySpace/compare/main...feature/design-masterplan-editorial?expand=1). Actual push and PR-creation outcomes are reported in the task response. A merge/release is a separate owner decision; no automatic merge is performed.
+Implementation commit `14552e5` was pushed successfully to `origin/feature/design-masterplan-editorial`. Pull-request creation was attempted with `gh pr create --base main --head feature/design-masterplan-editorial --draft --body-file ...`; GitHub returned `Post "https://api.github.com/graphql": Forbidden`. No PR was created by this attempt. [Create the review PR manually](https://github.com/m10an/BeautySpace/compare/main...feature/design-masterplan-editorial?expand=1), using [the prepared description](DESIGN-MASTERPLAN-PR.md). The branch is remote and reviewable; main was not committed to or merged. Remote Actions success and a production Pages release are not established by the local checks. A merge/release remains a separate owner decision.
 
 ## Changed files
 

@@ -78,6 +78,41 @@ for (const width of sizes)
       expect(controls[0].width).toBeGreaterThanOrEqual(44);
       expect(controls[1].height).toBeGreaterThanOrEqual(44);
       expect(controls[0].right).toBeLessThan(controls[1].left);
+      if (width < 1100) {
+        const labels = await page
+          .locator(".mobile-navigation a,.mobile-navigation button")
+          .evaluateAll((items) =>
+            items.map((item) => {
+              const range = document.createRange();
+              range.selectNodeContents(item);
+              const lines = [...range.getClientRects()];
+              const box = item.getBoundingClientRect();
+              return {
+                width: box.width,
+                height: box.height,
+                lines: lines.length,
+                fits: lines.every(
+                  (r) => r.left >= box.left && r.right <= box.right,
+                ),
+              };
+            }),
+          );
+        for (const label of labels) {
+          expect(label.width).toBeGreaterThanOrEqual(44);
+          expect(label.height).toBeGreaterThanOrEqual(44);
+          expect(label.lines).toBe(1);
+          expect(label.fits).toBe(true);
+        }
+      }
+      const views = await page
+        .locator(".calendar-toolbar .segmented")
+        .boundingBox();
+      const edit = await page
+        .locator(".calendar-toolbar .text-link")
+        .boundingBox();
+      expect(views.y).toBe(edit.y);
+      expect(views.x + views.width).toBeLessThan(edit.x);
+      expect(edit.height).toBeGreaterThanOrEqual(44);
       const calendar = await page.locator("#monthGrid").boundingBox();
       expect(calendar.y).toBeLessThan(400);
       expect(

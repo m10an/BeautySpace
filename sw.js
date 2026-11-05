@@ -1,5 +1,5 @@
 /* Versioned same-origin shell. Never cache user data or third-party requests. */
-const CACHE = "beautycalendar-v2-masterplan-1";
+const CACHE = "beautycalendar-v2-masterplan-2";
 const ASSETS = [
   "./editorial.js?v=29",
   "./lib/editorial.js",
@@ -27,7 +27,7 @@ const ASSETS = [
   "./runtime-config.json",
   "./",
   "./index.html",
-  "./style.css?v=29",
+  "./style.css?v=30",
   "./app.js?v=29",
   "./ingredients.js?v=29",
   "./motion.js?v=29",

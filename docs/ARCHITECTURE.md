@@ -4,21 +4,25 @@
 
 Static HTML, CSS and browser ES modules, without a bundler or runtime dependency. A small explicit-allowlist build copies allowlisted frontend files and the licensed assets/data directories to `dist/`, preserving relative paths so GitHub Pages repository subpaths work.
 
-| Module                     | Responsibility                                                                                                                            |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `app.js`                   | Preserved skincare/hair schedules, observations, photos, inspiration and existing task identities; incremental legacy controller refactor |
-| `lib/domain.js`            | Pure validation, local date representation, recurrence, safe encoding, ingredient lookup/analysis and backup migration                    |
-| `lib/storage.js`           | Atomic product-collection writes in IndexedDB                                                                                             |
-| `ingredients.js`           | Validated offline reference, search, analysis and accessible coverage visualization                                                       |
-| `products.js`              | Product CRUD, compressed raster photos, local search and on-demand reports                                                                |
-| `archive.js`               | Allowlisted version 3/4 import, all-store validation and rollback handling                                                                |
-| `theme.js` / `shell.js`    | Prepaint theme, section state, optional Telegram-host hook                                                                                |
-| `prompts.js` / `motion.js` | Retained reflection feature and reduced-motion-aware controller                                                                           |
-| `sw.js`                    | Versioned same-origin shell cache, network-first document navigation, waiting updates                                                     |
+| Module                                  | Responsibility                                                                                                               |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `editorial.js` / `lib/editorial.js`     | Read-only Home/routine/agenda presentation over original task and IPL state; no additional user-data store                   |
+| `inspiration.js` / `lib/inspiration.js` | Validated PDF-only daily reading shared by Home and Inspirations, with offline midnight rotation                             |
+| `app.js`                                | Preserved skincare/hair schedules, observations, photos and existing task identities; incremental legacy controller refactor |
+| `lib/domain.js`                         | Pure validation, local date representation, recurrence, safe encoding, ingredient lookup/analysis and backup migration       |
+| `lib/storage.js`                        | Atomic product-collection writes in IndexedDB                                                                                |
+| `ingredients.js`                        | Validated offline reference, search, analysis and accessible coverage visualization                                          |
+| `products.js`                           | Product CRUD, compressed raster photos, local search and on-demand reports                                                   |
+| `archive.js`                            | Allowlisted version 3/4 import, all-store validation and rollback handling                                                   |
+| `theme.js` / `shell.js`                 | Prepaint theme, section state, optional Telegram-host hook                                                                   |
+| `prompts.js` / `motion.js`              | Retained reflection feature and reduced-motion-aware controller                                                              |
+| `sw.js`                                 | Versioned same-origin shell cache, network-first document navigation, waiting updates                                        |
 
 Calendar days are `YYYY-MM-DD` strings; local noon is used for weekday/calendar operations and UTC day differences for elapsed intervals, avoiding UTC-midnight date shifts and 23/25-hour DST arithmetic. One-off care dates are independent of recurring start bounds. Procedure edits retain IDs and completion history. Deletes remove future schedule entries but retain historical checkmarks for backups. There is no timezone-based reminder delivery.
 
 Products are stored as a single collection record in IndexedDB with compressed JPEG photos (maximum input 10 MB, longest side 1000 px). Progress photos remain in the original database, capped at 1400 px. Native storage errors are reported rather than claimed saved. Backups span localStorage and two IndexedDB databases; these cannot share a browser transaction. Imports validate first, write included stores, atomically merge photos within their store, and attempt rollback on error. A crash mid-import is not fully transactional; keep an exported backup. Multiple simultaneous tabs do not provide conflict resolution or cross-device synchronization.
+
+The optional builder draft uses the separately versioned `beautyjournal-builder-draft-v1` UI record (`lib/builder-draft.js`), outside existing confirmed-care archives. It never schedules care; final confirmation still uses the original routine validator and duplicate guard. Confirmed display-order changes preserve custom-item IDs, dates and checkmarks.
 
 On the same origin, old skincare keys/photos remain accessible. Storage belongs to the browser origin, not to GitHub. Changing origin, browser or Telegram WebView requires backup export/import. There is no analytics, account system, automatic data upload or remote image proxy.
 
@@ -52,7 +56,7 @@ A release as a Mini App needs an HTTPS URL configured in BotFather, an official 
 
 `Quality` runs on branch pushes and pull requests. `Deploy Pages` runs all checks and creates an artifact, then deploys only `main` with minimal Pages/OIDC permissions. Enable GitHub Actions as the Pages source in repository settings. CI needs normal npm/Playwright/Ubuntu package-download access. No application secret is required. The remote Actions run and production URL must be checked after push; local tests alone are not a deployment result.
 
-Montserrat is self-hosted; no external font request is required. No network policy change is necessary for core functionality. Keep TLS and artifact verification enabled. For rollback, redeploy a prior known-good commit; never clear browser data or downgrade/import backups blindly. Bump the service-worker cache name and asset query version together when shipping new shell files, then close all app tabs to activate the waiting worker.
+Poppins, Cormorant Garamond Regular and Pinyon Script are licensed and self-hosted; no external font request is required. No network policy change is necessary for core functionality. Keep TLS and artifact verification enabled. For rollback, redeploy a prior known-good commit; never clear browser data or downgrade/import backups blindly. Bump the service-worker cache name and asset query version together when shipping new shell files, then close all app tabs to activate the waiting worker.
 
 ## Optional AI backend
 

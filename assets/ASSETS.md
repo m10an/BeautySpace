@@ -1,3 +1,7 @@
+# Masterplan asset status
+
+The eight-page Design Masterplan and complete visual board are now the primary design specification. Its six exact reference colors and Poppins/Cormorant/Pinyon typography are implemented across the app. The nine photographs and images embedded in the design PDFs/board remain internal references: no publication license/author confirmation has been supplied. No original reference image, portrait, logo, marketing percentage or generated replacement is shipped. The Home cover therefore uses the explicitly documented restrained typographic fallback; an authentic matching licensed photographic hero remains pending, not claimed complete. [Source inventory](../docs/MASTERPLAN-PROVENANCE.json), [audit](../DESIGN-AUDIT.md).
+
 # Current editorial assets
 
 Nine user-supplied photographs are now available as visual references (4 November 2026), but their publication rights have not been confirmed. They are not copied into the public application or the build. The current reading-sheet layout uses their ivory/olive palette, restrained framing and typographic hierarchy without fake grain or imitation photography. See [reference inventory and use](../docs/EDITORIAL-REFERENCES.md). The prior generated serum hero and legacy decorative photographs remain unrendered; original files/provenance are retained below for history. User-uploaded product/progress photographs are unchanged.

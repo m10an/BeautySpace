@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
-import { goTo } from "./navigation.js";
+import { goTo, interviewStep } from "./navigation.js";
 test("Help is always available, has all real topics, closes with Escape and restores focus", async ({
   page,
 }) => {
@@ -27,6 +27,9 @@ test("brand returns home from every section, including the consultant, without c
   await page.goto("/");
   await page.evaluate(() => localStorage.setItem("keep-sentinel", "private"));
   for (const screen of [
+    "home",
+    "calendar",
+    "consultant",
     "hair",
     "ritual",
     "journal",
@@ -40,12 +43,12 @@ test("brand returns home from every section, including the consultant, without c
   ]) {
     await goTo(page, screen);
     await page.locator("#homeLink").click();
-    await expect(page.locator("#calendar")).toBeVisible();
+    await expect(page.locator("#home")).toBeVisible();
   }
   await page.locator("#aiLauncher").click();
   await page.locator("#aiDialog [data-home]").click();
   await expect(page.locator("#aiDialog")).not.toBeVisible();
-  await expect(page.locator("#calendar")).toBeVisible();
+  await expect(page.locator("#home")).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem("keep-sentinel"))).toBe(
     "private",
   );
@@ -63,7 +66,9 @@ test("free consultant works offline without requests, previews edits and confirm
   await page.locator("#aiLauncher").click();
   await expect(page.locator("#aiStatus")).toContainText("Free local");
   await context.setOffline(true);
+  await interviewStep(page, 2);
   await page.locator("#aiMoisturizer").fill("My existing cream");
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiPreview")).toContainText(
     "Free local routine draft",
@@ -74,6 +79,9 @@ test("free consultant works offline without requests, previews edits and confirm
   await page
     .locator('[data-ai-row="0"] [data-field="name"]')
     .fill("My edited cleanser");
+  await expect(page.locator("#aiPlanOutline")).toContainText(
+    "My edited cleanser",
+  );
   await page.locator("#aiReview").check();
   await page.locator("#aiSave").click();
   await expect(page.locator("#aiDialog")).not.toBeVisible();
@@ -102,7 +110,9 @@ test("required and whitespace-only fields produce inline errors, retain values a
     page.locator("label").filter({ has: page.locator("#productName") }),
   ).toContainText("*");
   await page.locator("#aiLauncher").click();
+  await interviewStep(page);
   await page.locator("#aiStart").fill("");
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiStart")).toBeFocused();
   await expect(page.locator("#aiPreview")).toBeEmpty();
@@ -112,7 +122,9 @@ test("medical symptoms pause free planning and recommendations cannot be saved",
 }) => {
   await page.goto("/");
   await page.locator("#aiLauncher").click();
+  await interviewStep(page, 1);
   await page.locator("#aiAlarm").check();
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiPreview")).toContainText("medical");
   await expect(page.locator("#aiSave")).toBeDisabled();
@@ -135,6 +147,7 @@ test("mobile consultant has one scroll container and stable heading through keyb
   expect(await page.locator("#aiDialog").evaluate((el) => el.scrollTop)).toBe(
     0,
   );
+  await interviewStep(page, 3);
   await page.setViewportSize({ width: 390, height: 440 });
   await page.locator("#aiPreferences").focus();
   await expect
@@ -207,6 +220,7 @@ test("free guide rejects a second overlapping calendar addition and does not rep
   await page.goto("/");
   for (let i = 0; i < 2; i++) {
     await page.locator("#aiLauncher").click();
+    await interviewStep(page);
     await page.locator("#aiSend").click();
     await expect(page.locator("#aiPreview")).toContainText("Free local");
     await page.locator("#aiReview").check();
@@ -227,7 +241,9 @@ test("free guide refuses to turn a named active treatment into a daily moisturiz
 }) => {
   await page.goto("/");
   await page.locator("#aiLauncher").click();
+  await interviewStep(page, 2);
   await page.locator("#aiMoisturizer").fill("Retinol cream");
+  await interviewStep(page);
   await page.locator("#aiSend").click();
   await expect(page.locator("#aiMoisturizer-error")).toContainText(
     "active treatment",

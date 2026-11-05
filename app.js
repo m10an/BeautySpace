@@ -1,4 +1,4 @@
-import { showFieldError } from "./forms.js?v=27";
+import { showFieldError } from "./forms.js?v=29";
 import { duplicateSchedule } from "./lib/form-rules.js";
 import {
   escapeHtml as safeHtml,
@@ -171,12 +171,13 @@ function routineHtml(date) {
     ["MORNING", t.am],
     ["EVENING", t.pm],
   ]) {
-    html += `<div class="routine-title">${title}</div>`;
+    html += `<div class="routine-group" data-time="${title === "MORNING" ? "am" : "pm"}"><div class="routine-title">${title}</div>`;
     for (const [id, label] of items) {
       const key = `${date}|${id}`,
         checked = !!state.checks[key];
       html += `<label class="task ${checked ? "checked" : ""}"><input type="checkbox" data-key="${safeHtml(key)}" ${checked ? "checked" : ""}><span>${safeHtml(label)}</span></label>`;
     }
+    html += "</div>";
   }
   return (
     html +
@@ -301,6 +302,9 @@ export function activateSection(id) {
   }
   if (id === "insights") renderStats();
   render();
+  window.dispatchEvent(
+    new CustomEvent("beauty:section-changed", { detail: id }),
+  );
 }
 $("saveDay").onclick = () => {
   const a = [...$("activeEditor").querySelectorAll("input:checked")].map(
@@ -395,6 +399,48 @@ function renderCustom() {
           $("customName").focus();
         }),
     );
+  for (const row of $("customList").querySelectorAll(".custom-row")) {
+    const id = row.querySelector("[data-edit]").dataset.edit;
+    const index = state.customItems.findIndex((x) => x.id === id),
+      item = state.customItems[index];
+    const peers = state.customItems
+        .map((x, i) => (x.time === item.time ? i : -1))
+        .filter((i) => i >= 0),
+      place = peers.indexOf(index);
+    for (const [name, direction] of [
+      ["Move earlier", -1],
+      ["Move later", 1],
+    ]) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "small";
+      b.textContent = name;
+      b.setAttribute("aria-label", `${name}: ${item.name}`);
+      b.disabled = peers[place + direction] === undefined;
+      b.onclick = () => {
+        if (
+          !confirm(
+            `${name}: ${item.name}? This changes the default display order only; dates, frequency and completion history stay the same.`,
+          )
+        )
+          return;
+        const target = peers[place + direction];
+        [state.customItems[index], state.customItems[target]] = [
+          state.customItems[target],
+          state.customItems[index],
+        ];
+        if (!save()) return;
+        render();
+        $("customList")
+          .querySelector(`[data-edit="${CSS.escape(id)}"]`)
+          ?.focus({ preventScroll: true });
+      };
+      row.append(b);
+    }
+  }
+  $("reorderHelp").hidden = !["am", "pm"].some(
+    (time) => state.customItems.filter((item) => item.time === time).length > 1,
+  );
   const active = customFor(selected);
   $("customDayEditor").innerHTML = state.customItems.length
     ? state.customItems
@@ -537,6 +583,7 @@ $("saveMood").onclick = () => {
     note: $("moodNote").value.slice(0, 2000),
   };
   if (!save()) return;
+  window.dispatchEvent(new Event("beauty:observation-saved"));
   alert("Observation saved.");
 };
 // IndexedDB is used for photos to avoid localStorage size limits.
@@ -1040,4 +1087,32 @@ export function getRoutineInterviewSummary(start) {
 
 export function getSelectedCalendarDate() {
   return selected;
+}
+
+// Read-only presentation model. Original task IDs, storage and scheduling remain authoritative.
+export function getEditorialSnapshot(date = localDate()) {
+  if (!validDate(date)) throw Error("Choose a valid calendar date.");
+  const routine = tasks(date);
+  return {
+    date,
+    am: routine.am.map(([id, name]) => ({
+      id,
+      name,
+      done: !!state.checks[`${date}|${id}`],
+    })),
+    pm: routine.pm.map(([id, name]) => ({
+      id,
+      name,
+      done: !!state.checks[`${date}|${id}`],
+    })),
+    observations: Object.entries(state.moods)
+      .sort(([a], [b]) => b.localeCompare(a))
+      .map(([date, value]) => ({ date, ...value })),
+  };
+}
+export function selectCalendarDate(date) {
+  if (!validDate(date)) throw Error("Choose a valid calendar date.");
+  selected = date;
+  month = new Date(parse(date).getFullYear(), parse(date).getMonth(), 1);
+  render();
 }

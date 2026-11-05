@@ -29,9 +29,9 @@ Convenience commands: `npm run test:all` runs the complete current gate; `test:u
 
 ## Features
 
-- Calendar opens first, with a compact header, frosted off-canvas navigation and a round theme control.
+- Home opens first with an editorial daily overview, approved reading and Open today action. Calendar remains a dedicated month/week/list destination. Desktop section rail, mobile shortcuts and the full frosted drawer share active states.
 - Independent skin/hair calendars; create, edit, delete, schedule and complete care steps.
-- Personal product shelf: name, brand, category, INCI, compressed photo, edit/delete and local search.
+- My Routine has AM/PM views and actual completion progress using original checkmarks. Personal product shelf supports name, brand, category, INCI, uploaded photo, edit/delete, local search and category filters.
 - Case-insensitive, whitespace-normalized partial INCI/synonym search in a pinned MIT-licensed catalog of 28,353 distinct ingredient/common names.
 - INCI recognition and accessible reference-coverage charts. **No verified numeric comedogenicity ratings are present in the source data.** Unknown evidence is displayed explicitly, never as a zero score. Fragrance sensitivity is separate from comedogenicity.
 - Device-local observations, progress photos, reflections, insights and a versioned backup covering all stores.
@@ -42,7 +42,7 @@ The product search covers **your own collection**, not a global catalog. See [ar
 
 ## Data and upgrades
 
-Export **everything, including photos** in **Menu → More → Backup & restore** before deploying an update or changing browser/origin. Version 4 exports include skin state, hair state, reflections, products and photos. Version 3 skincare/photo archives are still accepted. Missing stores in older archives are left unchanged. Restore validates before writing; included stores are replaced and progress photos merged by ID. Failed restore attempts rollback, with an explicit warning if rollback also fails. Avoid concurrent edits in other tabs while restoring.
+Export **everything, including photos** in **Menu → Settings & Privacy → Backup & restore** before deploying an update or changing browser/origin. Version 4 exports include skin state, hair state, reflections, products and photos. Version 3 skincare/photo archives are still accepted. Missing stores in older archives are left unchanged. Restore validates before writing; included stores are replaced and progress photos merged by ID. Failed restore attempts rollback, with an explicit warning if rollback also fails. Avoid concurrent edits in other tabs while restoring.
 
 Existing storage keys are retained: `girly-skincare-v1`, `beautycalendar-hair-v1`, `beautyjournal-private-prompts-v1`, and IndexedDB `beautycalendar-private-photos`. The new product collection uses separate IndexedDB `beautycalendar-v2`. Corrupt skincare state is not silently overwritten by routine edits. Browser storage is not encrypted or cloud synced; backups are sensitive, unencrypted JSON files. Moving between GitHub Pages origins, Telegram and browsers requires explicit backup transfer.
 
@@ -68,10 +68,21 @@ No license was present in the inspected source; this change does not invent or g
 
 ## Current additions
 
-Original skincare photography, one-input INCI analysis, five-step manual routine builder and an optional AI interview with strict server/client validation and editable confirmation. Numeric comedogenicity evidence is intentionally empty: ungraded ingredients show «Недостаточно данных». See [delivery](docs/releases/DELIVERY.md) and [AI configuration](server/README.md).
+One-input INCI analysis, five-step manual routine builder and an optional AI interview with strict server/client validation and editable confirmation. Numeric comedogenicity evidence is intentionally empty: ungraded ingredients show «Недостаточно данных». See [delivery](docs/releases/DELIVERY.md) and [AI configuration](server/README.md).
 
 ## Free guide, Help and editorial UX
 
 The current visual direction is a restrained typographic layout while publication rights for the supplied photo references are unconfirmed; generated header imagery is no longer shown. Help explains the actual seven-part app structure. The consultant defaults to a working local rule-based guide, clearly distinguished from generative AI, with editable previews and explicit calendar confirmation. Both public and server paid-provider switches are off by default. Inspirations now rotates ten source-checked short excerpts from the six-page supplied Buddhism PDF, retaining printed attributions and physical page numbers. The daily reading survives offline reload and changes at local midnight; unavailable source data never produces an unrelated fallback. See [current UX delivery](docs/releases/FREE-GUIDE-UX.md), [journeys/field audit](docs/USER-JOURNEYS.md) and [PDF curation](docs/INSPIRATIONS-SOURCE.md).
 
 The actual PDF curation and editorial-reference update is documented in [PDF Inspirations delivery](docs/releases/PDF-INSPIRATIONS.md).
+
+## Approved design masterplan implementation
+
+The current feature branch implements the supplied eight-page masterplan: exact reference palette, shared components, Home, a desktop rail/mobile shortcuts, original calendar with additional read-only views, AM/PM progress, saved builder drafts and confirmed added-step ordering, shelf filters, five-stage free consultant and cohesive IPL/Help/writing/privacy screens. Consultant answers changing after a preview invalidate the previous proposal; no calendar changes happen without reviewed confirmation.
+
+- [Design audit](DESIGN-AUDIT.md)
+- [Design system](DESIGN-SYSTEM.md)
+- [Every-page checklist and remaining gaps](IMPLEMENTATION-CHECKLIST.md)
+- [Actual QA and before/after screenshot index](docs/releases/DESIGN-MASTERPLAN.md)
+
+Publication rights for the supplied photos remain unconfirmed. The masterplan itself requires verification, so they remain references; no generated imitation or unrelated stock image is substituted. The photographic hero remains a visible delivery gap pending a suitable licensed asset. This does not block working local care, INCI, the free guide or offline readings.

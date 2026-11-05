@@ -4,12 +4,13 @@ import {
   referenceReady,
   analysisHtml,
   analyzeReference,
-} from "./ingredients.js?v=27";
+} from "./ingredients.js?v=29";
 const $ = (id) => document.getElementById(id);
 let products = [],
   editing = null,
   busy = false,
-  available = false;
+  available = false,
+  category = "all";
 function message(text) {
   $("productFormStatus").textContent = text;
 }
@@ -30,19 +31,24 @@ function button(text, action) {
 }
 async function render() {
   const term = normalize($("productSearch").value);
-  const visible = products.filter((p) =>
-    normalize([p.name, p.brand, p.category, p.inci].join(" ")).includes(term),
+  const visible = products.filter(
+    (p) =>
+      (category === "all" || p.category === category) &&
+      normalize([p.name, p.brand, p.category, p.inci].join(" ")).includes(term),
   );
   $("productCount").textContent = available
     ? `${visible.length} of ${products.length} saved products`
     : "Collection unavailable.";
   const list = $("productList");
   list.replaceChildren();
+  list.classList.toggle("is-empty", !visible.length);
   if (!visible.length) {
     list.textContent = available
       ? term
         ? "No saved products match your search."
-        : "Your shelf is empty. Add your first product above."
+        : category !== "all"
+          ? "No saved products in this category."
+          : "Your shelf is empty. Add your first product below."
       : "Could not open local storage. No data has been removed.";
     return;
   }
@@ -54,6 +60,13 @@ async function render() {
     const brand = document.createElement("p");
     brand.className = "muted";
     brand.textContent = `${product.brand || "No brand"} · ${product.category}`;
+    const media = document.createElement("div");
+    media.className = "product-media";
+    card.append(media);
+    const number = document.createElement("span");
+    number.className = "product-number";
+    number.textContent = String(products.indexOf(product) + 1).padStart(2, "0");
+    media.append(number);
     card.append(title, brand);
     if (product.photo) {
       const img = document.createElement("img");
@@ -61,7 +74,14 @@ async function render() {
       img.alt = `${product.name} product photo`;
       img.className = "product-photo";
       img.loading = "lazy";
-      card.append(img);
+      img.width = 480;
+      img.height = 480;
+      media.append(img);
+    } else {
+      const empty = document.createElement("p");
+      empty.className = "product-photo-empty";
+      empty.textContent = "Your product, here.";
+      media.append(empty);
     }
     const actions = document.createElement("div");
     actions.className = "product-actions";
@@ -192,3 +212,16 @@ readCollection()
     $("productSave").disabled = true;
     render();
   });
+
+for (const button of document.querySelectorAll("[data-product-filter]"))
+  button.addEventListener("click", () => {
+    category = button.dataset.productFilter;
+    document
+      .querySelectorAll("[data-product-filter]")
+      .forEach((x) => x.setAttribute("aria-pressed", String(x === button)));
+    render();
+  });
+$("addProductLink").addEventListener("click", (e) => {
+  e.preventDefault();
+  $("productName").focus();
+});

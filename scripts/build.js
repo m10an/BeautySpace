@@ -1,5 +1,8 @@
 import { mkdirSync, copyFileSync, rmSync, cpSync } from "node:fs";
 const files = [
+  "editorial.js",
+  "lib/editorial.js",
+  "lib/builder-draft.js",
   "forms.js",
   "help.js",
   "inspiration.js",

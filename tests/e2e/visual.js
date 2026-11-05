@@ -47,9 +47,10 @@ export async function visualDifference(page, first, second) {
 
 /**
  * A full-page capture can prime/rebuild Chromium's raster cache. Wait for four
- * consecutive identical captures before measuring repeat-render stability, as screenshot
+ * consecutive stable captures before measuring repeat-render stability, as screenshot
  * assertions do. Keep this bounded: genuine continuous motion must still fail.
- * The measured pair and its pixel tolerances are unchanged by this readiness step.
+ * Sparse one-level raster rounding uses the exact existing measured-pair contract,
+ * not PNG byte identity. The measured pair and its tolerances remain unchanged.
  */
 export async function settleScreenshotPaint(page, options, maxCaptures = 12) {
   let previous = await page.screenshot(options);
@@ -62,7 +63,15 @@ export async function settleScreenshotPaint(page, options, maxCaptures = 12) {
         ),
     );
     const current = await page.screenshot(options);
-    identical = previous.equals(current) ? identical + 1 : 0;
+    let stable = previous.equals(current);
+    if (!stable) {
+      const difference = await visualDifference(page, previous, current);
+      stable =
+        difference.sameSize &&
+        difference.maxChannelDelta <= 1 &&
+        difference.changedRatio <= 0.0001;
+    }
+    identical = stable ? identical + 1 : 0;
     if (identical === 3) return;
     previous = current;
   }

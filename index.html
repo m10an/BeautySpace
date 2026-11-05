@@ -14,13 +14,13 @@
     <link href="./manifest.webmanifest" rel="manifest" />
     <link href="./icon-192.png" rel="apple-touch-icon" />
     <link href="./icon-192.png" rel="icon" type="image/png" />
-    <link href="./style.css?v=28" rel="stylesheet" />
+    <link href="./style.css?v=30" rel="stylesheet" />
     <title>THE BEAUTY JOURNAL · Skin &amp; Hair</title>
     <meta
       name="description"
       content="Your private, offline beauty journal. Plan care, save products and explore ingredients."
     />
-    <script src="./theme.js?v=27"></script>
+    <script src="./theme.js?v=29"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -55,7 +55,7 @@
         <a
           class="wordmark"
           id="homeLink"
-          href="#calendar"
+          href="#home"
           aria-label="TheBeauty Journal — Home"
           >TheBeauty <em>Journal</em></a
         >
@@ -129,71 +129,307 @@
           </button>
         </div>
         <nav id="nav" aria-label="Journal sections">
-          <button type="button" class="tab active" data-tab="calendar">
+          <button type="button" class="tab active" data-tab="home">
             <span class="menu-index" aria-hidden="true">01</span
-            ><span>Calendar</span
+            ><span>Home</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
-          <button type="button" class="tab" data-tab="hair">
+          <button type="button" class="tab" data-tab="calendar">
             <span class="menu-index" aria-hidden="true">02</span
-            ><span>Hair</span
+            ><span>Calendar</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
           <button type="button" class="tab" data-tab="ritual">
             <span class="menu-index" aria-hidden="true">03</span
-            ><span>Ritual</span
-            ><span class="menu-current" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="tab" data-tab="journal">
-            <span class="menu-index" aria-hidden="true">04</span
-            ><span>Journal</span
-            ><span class="menu-current" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="tab" data-tab="insights">
-            <span class="menu-index" aria-hidden="true">05</span
-            ><span>Insights</span
-            ><span class="menu-current" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="tab" data-tab="inspiration">
-            <span class="menu-index" aria-hidden="true">06</span
-            ><span>Inspiration</span
-            ><span class="menu-current" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="tab" data-tab="prompts">
-            <span class="menu-index" aria-hidden="true">07</span
-            ><span>Journal Prompts</span
+            ><span>My Routine</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
           <button type="button" class="tab" data-tab="products">
-            <span class="menu-index" aria-hidden="true">08</span
+            <span class="menu-index" aria-hidden="true">04</span
             ><span>My Products</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
           <button type="button" class="tab" data-tab="ingredients">
-            <span class="menu-index" aria-hidden="true">09</span
+            <span class="menu-index" aria-hidden="true">05</span
             ><span>Ingredient Check</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
+          <button type="button" class="tab" data-tab="consultant">
+            <span class="menu-index" aria-hidden="true">06</span
+            ><span>Consultant</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
           <button type="button" class="tab" data-tab="ipl">
-            <span class="menu-index" aria-hidden="true">10</span
+            <span class="menu-index" aria-hidden="true">07</span
             ><span>IPL Tracker</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
-          <button type="button" class="tab" data-tab="settings">
+          <button type="button" class="tab" data-tab="journal">
+            <span class="menu-index" aria-hidden="true">08</span
+            ><span>Journal</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="hair">
+            <span class="menu-index" aria-hidden="true">09</span
+            ><span>Hair</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="insights">
             <span class="menu-index" aria-hidden="true">10</span
-            ><span>More</span
+            ><span>Insights</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="inspiration">
+            <span class="menu-index" aria-hidden="true">11</span
+            ><span>Inspiration</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="prompts">
+            <span class="menu-index" aria-hidden="true">12</span
+            ><span>Journal Prompts</span
+            ><span class="menu-current" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="tab" data-tab="settings">
+            <span class="menu-index" aria-hidden="true">13</span
+            ><span>Settings &amp; Privacy</span
             ><span class="menu-current" aria-hidden="true"></span>
           </button>
         </nav>
-        <p class="menu-note">A little time, just for you.</p>
+        <p class="menu-note">Your ritual.</p>
       </dialog>
+      <nav class="section-rail" aria-label="Primary navigation">
+        <p class="rail-caption">A private ritual.</p>
+        <a href="#home" data-route="home">Home</a
+        ><a href="#calendar" data-route="calendar">Calendar</a
+        ><a href="#ritual" data-route="ritual">My Routine</a
+        ><a href="#products" data-route="products">Products &amp; INCI</a
+        ><a href="#consultant" data-route="consultant">Consultant</a
+        ><a href="#ipl" data-route="ipl">IPL Tracker</a
+        ><a href="#journal" data-route="journal">Journal</a>
+        <div class="rail-divider"></div>
+        <a href="#inspiration" data-route="inspiration">Daily reading</a
+        ><a href="#hair" data-route="hair">Hair</a
+        ><a href="#insights" data-route="insights">Insights</a
+        ><a href="#prompts" data-route="prompts">Writing prompts</a
+        ><a href="#settings" data-route="settings">Settings &amp; Privacy</a>
+        <button type="button" class="rail-help" data-help>
+          Help &amp; guide
+          <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 19 19 5M5 5h14v14" />
+          </svg>
+        </button>
+      </nav>
+      <nav class="mobile-navigation" aria-label="Quick navigation">
+        <a href="#home" data-route="home">Home</a
+        ><a href="#calendar" data-route="calendar">Calendar</a
+        ><a href="#ritual" data-route="ritual">Routine</a
+        ><a href="#products" data-route="products">Products</a
+        ><button
+          type="button"
+          id="mobileMore"
+          aria-haspopup="dialog"
+          aria-controls="navigationDialog"
+        >
+          More
+        </button>
+      </nav>
       <main id="main" tabindex="-1">
-        <section class="screen" id="calendar" aria-label="Calendar">
+        <section class="screen" id="home" aria-label="Home">
+          <div class="home-hero">
+            <div class="home-hero-copy">
+              <p class="eyebrow" id="homeDate"></p>
+              <h1>TheBeauty<br /><span>Journal</span></h1>
+              <p class="home-deck">
+                A personal space for<br />conscious beauty rituals.
+              </p>
+              <button class="primary" type="button" data-open-today>
+                Open today
+                <span aria-hidden="true"
+                  ><svg
+                    class="arrow-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 19 19 5M5 5h14v14" /></svg
+                ></span>
+              </button>
+              <p class="hero-signature" aria-hidden="true">Your ritual.</p>
+            </div>
+            <div class="hero-editorial-note">
+              <span class="eyebrow">THE DAILY EDIT</span>
+              <p>Less hurry.<br />More ritual.</p>
+              <span>Skin · Hair · Self-care</span>
+            </div>
+          </div>
+          <figure class="home-reading">
+            <div>
+              <span class="eyebrow">DAILY INSPIRATION</span>
+              <blockquote id="homeQuote" aria-live="polite"></blockquote>
+              <figcaption id="homeQuoteAttribution"></figcaption>
+            </div>
+            <a href="#inspiration" data-route="inspiration" class="text-link"
+              >Read today's excerpt
+              <span aria-hidden="true"
+                ><svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg></span
+            ></a>
+          </figure>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">YOUR DAY, AT A GLANCE</p>
+              <h2>Small rituals. Real life.</h2>
+            </div>
+            <a href="#calendar" data-route="calendar" class="text-link"
+              >View calendar
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg
+            ></a>
+          </div>
+          <div id="homeCare" class="home-care-grid"></div>
+          <div class="home-secondary-grid">
+            <article class="panel">
+              <p class="eyebrow">UPCOMING IPL</p>
+              <h3>At your own pace.</h3>
+              <div id="homeIPL"></div>
+              <a href="#ipl" data-route="ipl" class="text-link"
+                >Open tracker
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg
+              ></a>
+            </article>
+            <article class="panel">
+              <p class="eyebrow">FROM YOUR JOURNAL</p>
+              <h3>Notice the little things.</h3>
+              <div id="homeObservation"></div>
+              <a href="#journal" data-route="journal" class="text-link"
+                >Write an observation
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg
+              ></a>
+            </article>
+          </div>
+          <div class="discovery-strip">
+            <div>
+              <p class="eyebrow">MAKE IT YOURS</p>
+              <h3>A gentler way to plan.</h3>
+              <p>
+                A free local guide and your own products. You stay in control.
+              </p>
+            </div>
+            <a href="#consultant" data-route="consultant" class="text-link"
+              >Meet the consultant
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg></a
+            ><a href="#products" data-route="products" class="text-link"
+              >Explore your shelf
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg></a
+            ><button class="subtle" type="button" data-help>
+              Take the tour
+            </button>
+          </div>
+        </section>
+        <section
+          class="screen hidden"
+          id="consultant"
+          aria-label="Beauty consultant"
+        >
+          <div class="page-heading">
+            <p class="eyebrow">YOUR CARE, CONSIDERED</p>
+            <h1>Beauty Consultant</h1>
+            <p>Personal guidance. A little less guesswork.</p>
+          </div>
+          <div class="consultant-cover">
+            <div class="consultant-intro">
+              <span class="status-pill">Free · Local · Rule-based</span>
+              <h2>A routine that<br />fits your life.</h2>
+              <p>
+                Reflect on your skin, the products you already use and the
+                rhythm of your days. Build a cautious, editable plan with
+                transparent local rules.
+              </p>
+              <button id="startConsultant" class="primary" type="button">
+                Start interview <span aria-hidden="true">→</span>
+              </button>
+              <p class="muted">
+                No API key, billing or data transfer. This is not generative AI
+                or medical advice.
+              </p>
+            </div>
+            <ol class="interview-outline">
+              <li>
+                <span>01</span>
+                <div>Your goals<small>What you want from your care</small></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>Your skin<small>Type, sensitivity and comfort</small></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>Your products<small>Use what you already own</small></div>
+              </li>
+              <li>
+                <span>04</span>
+                <div>
+                  Your habits<small>Morning, evening and preferences</small>
+                </div>
+              </li>
+              <li>
+                <span>05</span>
+                <div>Your plan<small>Review, edit, then confirm</small></div>
+              </li>
+            </ol>
+          </div>
+          <div class="panel">
+            <h3>You have the final word.</h3>
+            <p>
+              Nothing changes your calendar until you explicitly confirm the
+              edited preview. You can close the interview, reject a proposal or
+              use the manual builder instead.
+            </p>
+            <a href="#ritual" data-route="ritual" class="text-link"
+              >Open My Routine
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg
+            ></a>
+          </div>
+        </section>
+        <section class="screen hidden" id="calendar" aria-label="Calendar">
           <div class="calendar-intro">
             <div>
-              <h1>Your daily <em>edit.</em></h1>
-              <p>Small rituals. A little time for you.</p>
+              <p class="eyebrow">YOUR CARE, IN TIME</p>
+              <h1>Calendar</h1>
+              <p>A little structure. Space for yourself.</p>
             </div>
+          </div>
+          <div class="calendar-toolbar">
+            <div class="segmented" role="group" aria-label="Calendar view">
+              <button
+                type="button"
+                data-calendar-view="month"
+                aria-pressed="true"
+              >
+                Month</button
+              ><button
+                type="button"
+                data-calendar-view="week"
+                aria-pressed="false"
+              >
+                Week</button
+              ><button
+                type="button"
+                data-calendar-view="list"
+                aria-pressed="false"
+              >
+                List
+              </button>
+            </div>
+            <a class="text-link" href="#ritual" data-route="ritual"
+              >Add / edit care
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg
+            ></a>
           </div>
           <div class="calendar-layout">
             <div class="calendar-sheet">
@@ -207,10 +443,12 @@
                 ><span>Fri</span><span>Sat</span><span>Sun</span>
               </div>
               <div class="monthgrid" id="monthGrid"></div>
+              <div id="calendarAgenda" hidden></div>
               <div class="legend">
                 <span><i class="dot adap"></i> Adapalene</span
                 ><span><i class="dot azel"></i> Azelaic acid</span
-                ><span><i class="dot nia"></i> Niacinamide</span>
+                ><span><i class="dot nia"></i> Niacinamide</span
+                ><span><i class="dot ipl-mark"></i> IPL</span>
               </div>
             </div>
             <div class="panel day-panel">
@@ -224,76 +462,90 @@
           </div>
         </section>
         <section class="screen hidden" id="ipl">
-          <div class="panel">
-            <h2>IPL Tracker</h2>
-            <p>
-              Private device and session journal. Follow your exact manufacturer
-              instructions. This tracker does not recommend treatment settings
-              or universal intervals.
-            </p>
-            <form id="iplDevice">
-              <label class="field"
-                >Device brand<input
-                  id="iplbrand"
-                  maxlength="1000"
-                  required /></label
-              ><label class="field"
-                >Exact model<input
-                  id="iplmodel"
-                  maxlength="1000"
-                  required /></label
-              ><label class="field"
-                >Manufacturer instructions URL / edition<input
-                  id="iplinstructions"
-                  maxlength="1000" /></label
-              ><button class="primary">Save device locally</button>
-            </form>
+          <div class="page-heading">
+            <p class="eyebrow">THE TREATMENT JOURNAL</p>
+            <h1>IPL Tracker</h1>
+            <p>Your device. Your areas. A clear history.</p>
+          </div>
+          <div class="ipl-workspace">
+            <div class="panel ipl-device-panel">
+              <p class="eyebrow">01 / YOUR DEVICE</p>
+              <h2>Device details</h2>
+              <p>
+                Private device and session journal. Follow your exact
+                manufacturer instructions. This tracker does not recommend
+                treatment settings or universal intervals.
+              </p>
+              <form id="iplDevice">
+                <label class="field"
+                  >Device brand<input
+                    id="iplbrand"
+                    maxlength="1000"
+                    required /></label
+                ><label class="field"
+                  >Exact model<input
+                    id="iplmodel"
+                    maxlength="1000"
+                    required /></label
+                ><label class="field"
+                  >Manufacturer instructions URL / edition<input
+                    id="iplinstructions"
+                    maxlength="1000" /></label
+                ><button class="primary">Save device locally</button>
+              </form>
+            </div>
+            <div class="panel">
+              <p class="eyebrow">02 / MANUAL ENTRY</p>
+              <h2>Session log</h2>
+              <button id="iplNew" type="button">New session</button>
+              <form id="iplForm">
+                <label class="field"
+                  >Date<input type="date" id="ipldate" required /></label
+                ><label class="field"
+                  >Treatment area<input
+                    id="iplarea"
+                    maxlength="2000"
+                    required
+                    placeholder="e.g. Lower legs" /></label
+                ><label class="field"
+                  >Settings used (record only)<input
+                    id="iplsettings"
+                    maxlength="2000" /></label
+                ><label class="field"
+                  >Skin reactions<textarea
+                    id="iplreaction"
+                    maxlength="2000"
+                  ></textarea></label
+                ><label class="field"
+                  >Notes<textarea
+                    id="iplnotes"
+                    maxlength="2000"
+                  ></textarea></label
+                ><label class="field"
+                  >Status<select id="iplstatus">
+                    <option value="planned">Planned</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select></label
+                ><button class="primary">Preview session</button>
+              </form>
+              <p id="iplPreview"></p>
+              <button id="iplConfirm" class="primary" hidden>
+                Confirm &amp; Add to Calendar
+              </button>
+              <p id="iplStatus" role="status"></p>
+            </div>
           </div>
           <div class="panel">
-            <h3>Session log</h3>
-            <button id="iplNew" type="button">New session</button>
-            <form id="iplForm">
-              <label class="field"
-                >Date<input type="date" id="ipldate" required /></label
-              ><label class="field"
-                >Treatment area<input
-                  id="iplarea"
-                  maxlength="2000"
-                  required
-                  placeholder="e.g. Lower legs" /></label
-              ><label class="field"
-                >Settings used (record only)<input
-                  id="iplsettings"
-                  maxlength="2000" /></label
-              ><label class="field"
-                >Skin reactions<textarea
-                  id="iplreaction"
-                  maxlength="2000"
-                ></textarea></label
-              ><label class="field"
-                >Notes<textarea
-                  id="iplnotes"
-                  maxlength="2000"
-                ></textarea></label
-              ><label class="field"
-                >Status<select id="iplstatus">
-                  <option value="planned">Planned</option>
-                  <option value="completed">Completed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select></label
-              ><button class="primary">Preview session</button>
-            </form>
-            <p id="iplPreview"></p>
-            <button id="iplConfirm" class="primary" hidden>
-              Confirm &amp; Add to Calendar
-            </button>
-            <p id="iplStatus" role="status"></p>
-          </div>
-          <div class="panel">
-            <h3>Progress by area</h3>
+            <p class="eyebrow">YOUR TREATMENT AREAS</p>
+            <h2>Progress by area</h2>
             <div id="iplProgress"></div>
           </div>
-          <div id="iplSessions"></div>
+          <div class="section-heading">
+            <h2>Session history</h2>
+            <p class="muted">Edit a session to postpone or cancel.</p>
+          </div>
+          <div id="iplSessions" class="session-grid"></div>
           <details id="iplPlanning" class="panel">
             <summary>Plan my IPL routine</summary>
             <p>
@@ -345,13 +597,67 @@
           </div>
         </section>
         <section class="screen hidden" id="ritual">
-          <div class="panel">
-            <div class="eyebrow">DAILY RITUAL</div>
-            <h2>My daily edit</h2>
-            <label class="field"
-              >Date <input id="dayPicker" type="date" required
-            /></label>
-            <div id="todayRoutine"></div>
+          <div class="page-heading">
+            <p class="eyebrow">MAKE SPACE FOR THE EVERYDAY</p>
+            <h1>My Routine</h1>
+            <p>Your morning and evening, thoughtfully arranged.</p>
+          </div>
+          <div class="routine-workspace">
+            <div class="panel routine-today">
+              <div class="eyebrow">DAILY RITUAL</div>
+              <h2>Today's steps</h2>
+              <label class="field"
+                >Date <input id="dayPicker" type="date" required
+              /></label>
+              <div class="segmented" role="group" aria-label="Routine time">
+                <button
+                  type="button"
+                  data-routine-time="am"
+                  aria-pressed="true"
+                >
+                  Morning</button
+                ><button
+                  type="button"
+                  data-routine-time="pm"
+                  aria-pressed="false"
+                >
+                  Evening
+                </button>
+              </div>
+              <div id="todayRoutine" data-time="am"></div>
+            </div>
+            <aside class="panel routine-consistency">
+              <p class="eyebrow">CONSISTENCY, GENTLY</p>
+              <h2>One step at a time.</h2>
+              <svg
+                class="progress-ring"
+                width="128"
+                height="128"
+                viewBox="0 0 128 128"
+                role="img"
+                aria-labelledby="routineProgressLabel"
+              >
+                <title id="routineProgressLabel">Selected-day completion</title>
+                <circle class="ring-track" cx="64" cy="64" r="54" />
+                <circle id="routineProgressRing" cx="64" cy="64" r="54" />
+                <text
+                  x="64"
+                  y="70"
+                  text-anchor="middle"
+                  id="routineProgressPercent"
+                >
+                  0%
+                </text>
+              </svg>
+              <p id="routineProgressText" role="status"></p>
+              <p class="muted">
+                For the selected day; care consistency, not treatment
+                effectiveness.
+              </p>
+              <button class="subtle" type="button" id="routineBuildShortcut">
+                Build or copy a routine →
+              </button>
+            </aside>
           </div>
           <div class="panel">
             <div class="eyebrow">YOUR PERSONAL COLLECTION</div>
@@ -359,6 +665,12 @@
             <p class="muted">
               Add any skincare steps and choose when they appear in your
               calendar. New products are never scheduled automatically.
+            </p>
+            <p id="reorderHelp" class="muted" hidden>
+              Use Move earlier / later to order your added steps within Morning
+              or Evening. Each move asks for confirmation; dates, frequency and
+              checkmarks stay the same. Dates with a separate day override
+              retain their saved sequence.
             </p>
             <div id="customList"></div>
             <button class="primary" id="openBuilder" type="button">
@@ -435,6 +747,11 @@
           </div>
         </section>
         <section class="screen hidden" id="journal">
+          <div class="page-heading">
+            <p class="eyebrow">YOUR PRIVATE PAGES</p>
+            <h1>Journal</h1>
+            <p>Keep a record of how you feel, without a score to chase.</p>
+          </div>
           <div class="panel">
             <div class="eyebrow">SKIN MOOD</div>
             <h2>How does your skin feel?</h2>
@@ -495,6 +812,11 @@
           </div>
         </section>
         <section class="screen hidden" id="insights">
+          <div class="page-heading">
+            <p class="eyebrow">THE LONG VIEW</p>
+            <h1>Insights</h1>
+            <p>Patterns from your own care history.</p>
+          </div>
           <div class="panel">
             <div class="eyebrow">THE SKIN REPORT</div>
             <h2>Your progress</h2>
@@ -514,6 +836,21 @@
           </div>
         </section>
         <section class="screen hidden" id="settings">
+          <div class="page-heading">
+            <p class="eyebrow">PRIVATE BY DESIGN</p>
+            <h1>Settings &amp; Privacy</h1>
+            <p>Your data stays yours.</p>
+          </div>
+          <div class="panel">
+            <h2>On this device.</h2>
+            <p>
+              Journal entries, routines, checkmarks and photos stay in this
+              browser. The product shelf is included in the full backup; IPL has
+              a separate archive in its tracker. Export both before switching
+              devices. The free consultant works locally; hosted AI is optional
+              and disabled by default.
+            </p>
+          </div>
           <div class="panel">
             <div class="eyebrow">PERSONAL EDIT</div>
             <h2>Your routine</h2>
@@ -562,11 +899,10 @@
           </div>
         </section>
         <section class="screen hidden" id="hair">
-          <div class="hair-hero">
-            <div class="hair-overlay">
-              <span class="overline">THE HAIR EDIT</span>
-              <h2>Good hair,<br /><em>good rituals.</em></h2>
-            </div>
+          <div class="page-heading">
+            <p class="eyebrow">THE HAIR EDIT</p>
+            <h1>Hair rituals</h1>
+            <p>A rhythm of care, all your own.</p>
           </div>
           <div class="hair-body">
             <p class="muted">
@@ -621,12 +957,12 @@
         </section>
         <section class="screen hidden" id="inspiration">
           <div class="inspiration-cover">
-            <div class="inspiration-kicker">THE INNER EDIT · VOL. 01</div>
-            <h2>A daily<br /><em>reading.</em></h2>
-            <p>READINGS FROM THE APPROVED PDF ONLY</p>
+            <div class="inspiration-kicker">THE INNER EDIT</div>
+            <h1>A daily<br /><em>reading.</em></h1>
+            <p>A quiet moment, once a day.</p>
           </div>
           <div class="inspiration-content">
-            <div class="eyebrow">FROM THE SUPPLIED GOODREADS PDF</div>
+            <div class="eyebrow">TODAY'S READING</div>
             <figure class="quote-paper" aria-label="Today's short reading">
               <div id="quoteIndex" class="quote-index">DAILY READING</div>
               <blockquote id="inspirationQuote" aria-live="polite"></blockquote>
@@ -668,8 +1004,8 @@
           aria-label="Ingredient reference"
         >
           <div class="ingredient-hero">
-            <div class="eyebrow">THE BEAUTY JOURNAL · THE FORMULA EDIT ✧</div>
-            <h2>Ingredient <em>Check.</em></h2>
+            <div class="eyebrow">THE FORMULA EDIT</div>
+            <h1>Ingredient <em>Check.</em></h1>
             <p>Understand your formula, not just a rating.</p>
           </div>
           <div class="panel ingredient-panel">
@@ -714,18 +1050,24 @@
                 href="https://cosmileeurope.eu/"
                 rel="noopener noreferrer"
                 target="_blank"
-                >COSMILE Europe ↗</a
+                >COSMILE Europe
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg></a
               ><a
                 href="https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en"
                 rel="noopener noreferrer"
                 target="_blank"
-                >EU CosIng ↗</a
+                >EU CosIng
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg></a
               ><a
                 href="https://incidecoder.com/"
                 rel="noopener noreferrer"
                 target="_blank"
-                >INCIDecoder ↗</a
-              >
+                >INCIDecoder
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg
+              ></a>
             </div>
             <p class="muted">
               Name catalog:
@@ -743,8 +1085,8 @@
         </section>
         <section class="screen hidden" id="prompts">
           <div class="prompts-hero">
-            <div class="eyebrow">THE INNER JOURNAL ✧</div>
-            <h2>Come home <em>to yourself.</em></h2>
+            <div class="eyebrow">THE INNER JOURNAL</div>
+            <h1>Come home <em>to yourself.</em></h1>
             <p>
               Gentle writing prompts for feminine energy, self-connection and
               reflection.
@@ -776,7 +1118,9 @@
             <p class="muted">
               Your writing stays in this browser on this device.
             </p>
-            <label for="promptAnswer">Your private reflection</label>
+            <label class="field" for="promptAnswer"
+              >Your private reflection</label
+            >
             <textarea
               maxlength="10000"
               id="promptAnswer"
@@ -794,12 +1138,64 @@
         <section class="screen hidden" id="products" aria-label="My products">
           <div class="section-intro">
             <div class="eyebrow">YOUR PERSONAL SHELF</div>
-            <h2>Care, collected.</h2>
+            <h1>My Products</h1>
+            <a
+              href="#productForm"
+              class="primary text-button"
+              id="addProductLink"
+              >+ Add product</a
+            ><a href="#ingredients" data-route="ingredients" class="text-link"
+              >Ingredient Check
+              <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 19 19 5M5 5h14v14" /></svg
+            ></a>
             <p>
               Only your saved products are searched. No global catalog or
               external product API is connected.
             </p>
           </div>
+          <label class="field"
+            >Search my saved products<input
+              id="productSearch"
+              type="search"
+              maxlength="200"
+              placeholder="Name, brand, category or ingredient"
+          /></label>
+          <div
+            class="segmented product-filters"
+            role="group"
+            aria-label="Filter saved products"
+          >
+            <button type="button" data-product-filter="all" aria-pressed="true">
+              All</button
+            ><button
+              type="button"
+              data-product-filter="skin"
+              aria-pressed="false"
+            >
+              Skincare</button
+            ><button
+              type="button"
+              data-product-filter="hair"
+              aria-pressed="false"
+            >
+              Haircare</button
+            ><button
+              type="button"
+              data-product-filter="body"
+              aria-pressed="false"
+            >
+              Body</button
+            ><button
+              type="button"
+              data-product-filter="other"
+              aria-pressed="false"
+            >
+              Other
+            </button>
+          </div>
+          <p id="productCount" role="status"></p>
+          <div id="productList" class="product-grid"></div>
           <div class="panel">
             <h3 id="productFormTitle">Add a product</h3>
             <form id="productForm">
@@ -847,15 +1243,6 @@
               <p id="productFormStatus" role="status"></p>
             </form>
           </div>
-          <label class="field"
-            >Search my saved products<input
-              id="productSearch"
-              type="search"
-              maxlength="200"
-              placeholder="Name, brand, category or ingredient"
-          /></label>
-          <p id="productCount" role="status"></p>
-          <div id="productList" class="product-grid"></div>
         </section>
       </main>
       <p id="appStatus" class="app-status" role="status" aria-live="polite"></p>
@@ -874,6 +1261,19 @@
         </button>
       </div>
       <p id="rbProgress" role="status">Step 1 of 5</p>
+      <div class="preset-row" role="group" aria-label="Routine draft controls">
+        <button id="rbSaveDraft" class="subtle" type="button">
+          Save draft on this device</button
+        ><button id="rbResumeDraft" class="subtle" type="button" hidden>
+          Resume saved draft</button
+        ><button id="rbDiscardDraft" class="subtle" type="button" hidden>
+          Discard saved draft
+        </button>
+      </div>
+      <p class="muted">
+        Drafts can be incomplete and stay on this device. Adding care still
+        requires a valid review and confirmation.
+      </p>
       <fieldset data-step>
         <legend>1 · Choose your product</legend>
         <div class="preset-row">
@@ -988,10 +1388,8 @@
       aria-labelledby="aiTitle"
     >
       <div class="tool-heading">
-        <h2 id="aiTitle">Beauty routine consultant</h2>
-        <a href="#calendar" data-home aria-label="TheBeauty Journal — Home"
-          >Home</a
-        >
+        <h2 id="aiTitle">Beauty Consultant</h2>
+        <a href="#home" data-home aria-label="TheBeauty Journal — Home">Home</a>
         <button
           type="button"
           class="icon-button"
@@ -1001,10 +1399,19 @@
           ×
         </button>
       </div>
+      <p id="aiProgress" class="interview-progress" role="status">
+        Step 1 of 5 · Your goals
+      </p>
+      <progress
+        id="aiProgressBar"
+        max="5"
+        value="1"
+        aria-label="Interview progress"
+      ></progress>
       <div class="dialog-content" id="aiContent">
         <p class="muted">
-          Cosmetic planning support, not a diagnosis or a dermatologist. No
-          calendar changes happen until you review and confirm a proposal.
+          Local planning support, not medical advice. Nothing changes your
+          calendar until you review and confirm.
         </p>
         <p id="aiStatus" role="status"></p>
         <button id="aiManual" class="subtle" type="button">
@@ -1067,7 +1474,7 @@
             >
           </div>
           <fieldset>
-            <legend>Your goals</legend>
+            <legend>Choose any that matter to you</legend>
             <div id="aiGoals" class="weekdaychoices">
               <label><input type="checkbox" value="hydration" />Hydration</label
               ><label
@@ -1174,6 +1581,13 @@
           Add reviewed proposal to calendar
         </button>
       </div>
+      <div class="interview-footer">
+        <button id="aiBack" type="button" class="subtle" hidden>← Back</button
+        ><button id="aiNext" type="button" class="primary">Next →</button
+        ><button id="aiReject" type="button" class="subtle" hidden>
+          Reject proposal
+        </button>
+      </div>
     </dialog>
 
     <dialog id="helpDialog" class="tool-dialog" aria-labelledby="helpTitle">
@@ -1188,7 +1602,16 @@
           ×
         </button>
       </div>
+      <div class="tutorial-index" aria-hidden="true">
+        THE JOURNAL / A FIELD GUIDE
+      </div>
       <p id="helpProgress" role="status"></p>
+      <progress
+        id="helpProgressBar"
+        max="7"
+        value="1"
+        aria-label="Tutorial progress"
+      ></progress>
       <div id="helpContent"></div>
       <div class="preset-row">
         <button
@@ -1202,17 +1625,18 @@
         ><button id="helpSkip" type="button">Skip tutorial</button>
       </div>
     </dialog>
-    <script type="module" src="./help.js?v=27"></script>
-    <script type="module" src="./inspiration.js?v=28"></script>
-    <script type="module" src="./forms.js?v=27"></script>
-    <script type="module" src="./ai-client.js?v=27"></script>
-    <script type="module" src="./builder.js?v=27"></script>
-    <script type="module" src="./app.js?v=27"></script>
-    <script type="module" src="./ingredients.js?v=27"></script>
-    <script defer="" src="./motion.js?v=27"></script>
-    <script defer="" src="./prompts.js?v=27"></script>
-    <script type="module" src="./products.js?v=27"></script>
-    <script type="module" src="./shell.js?v=27"></script>
-    <script type="module" src="./ipl.js?v=27"></script>
+    <script type="module" src="./editorial.js?v=29"></script>
+    <script type="module" src="./help.js?v=29"></script>
+    <script type="module" src="./inspiration.js?v=29"></script>
+    <script type="module" src="./forms.js?v=29"></script>
+    <script type="module" src="./ai-client.js?v=29"></script>
+    <script type="module" src="./builder.js?v=29"></script>
+    <script type="module" src="./app.js?v=29"></script>
+    <script type="module" src="./ingredients.js?v=29"></script>
+    <script defer="" src="./motion.js?v=29"></script>
+    <script defer="" src="./prompts.js?v=29"></script>
+    <script type="module" src="./products.js?v=29"></script>
+    <script type="module" src="./shell.js?v=29"></script>
+    <script type="module" src="./ipl.js?v=29"></script>
   </body>
 </html>

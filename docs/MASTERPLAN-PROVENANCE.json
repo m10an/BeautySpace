@@ -1,0 +1,25 @@
+{
+  "reviewed": "2026-11-04",
+  "use": "Primary design specification; embedded/reference images are not publication licenses. Originals are not shipped.",
+  "pdfPages": 8,
+  "files": [
+    {
+      "attachment": "B6FA693F-C1E7-40F2-A83E-ADED84E8B498/2-TheBeautyJournal_Design_Masterplan.pdf",
+      "sha256": "74b29fa8fd9da0402c38aa3dbf019cbd0265b8d07739851a4ecb4307ee6b457a"
+    },
+    {
+      "attachment": "B6FA693F-C1E7-40F2-A83E-ADED84E8B498/1-Photo-1.jpg",
+      "sha256": "5c317b7292583f9ff6205ebeabfadb4c532f1536789374fb3c3d499a729a8fc4"
+    },
+    {
+      "attachment": "EC8A8727-7EE5-4F82-AD5A-04C284684B65/1-TheBeautyJournal_Design_Masterplan.pdf",
+      "sha256": "74b29fa8fd9da0402c38aa3dbf019cbd0265b8d07739851a4ecb4307ee6b457a"
+    },
+    {
+      "attachment": "EC8A8727-7EE5-4F82-AD5A-04C284684B65/2-Photo-2.jpg",
+      "sha256": "5c317b7292583f9ff6205ebeabfadb4c532f1536789374fb3c3d499a729a8fc4"
+    }
+  ],
+  "earlierReferences": "EDITORIAL-REFERENCE-PROVENANCE.json",
+  "quoteSource": "INSPIRATIONS-SOURCE.md"
+}

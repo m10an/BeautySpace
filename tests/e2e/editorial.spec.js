@@ -4,6 +4,8 @@ import AxeBuilder from "@axe-core/playwright";
 import { goTo, setTheme } from "./navigation.js";
 const sizes = [320, 375, 390, 430, 768, 1024, 1440];
 const sections = [
+  "home",
+  "consultant",
   "calendar",
   "hair",
   "ritual",
@@ -25,12 +27,34 @@ async function ready(page) {
 }
 for (const width of sizes)
   for (const theme of ["light", "dark"])
-    test(`editorial ${width}px ${theme}: calendar first, menu controls and layout`, async ({
+    test(`editorial ${width}px ${theme}: Home entry, calendar, menu controls and layout`, async ({
       page,
     }, info) => {
       await page.setViewportSize({ width, height: 844 });
       await ready(page);
       await setTheme(page, theme);
+      await expect(page.locator("#home")).toBeVisible();
+      await page.evaluate(() => document.fonts.ready);
+      const brand = await page.locator(".home-hero h1").evaluate((heading) => {
+        const range = document.createRange();
+        const text = [...heading.childNodes].find(
+          (node) =>
+            node.nodeType === Node.TEXT_NODE &&
+            node.textContent.includes("TheBeauty"),
+        );
+        const start = text.textContent.indexOf("TheBeauty");
+        range.setStart(text, start);
+        range.setEnd(text, start + "TheBeauty".length);
+        const lines = [...range.getClientRects()];
+        const box = heading.closest(".home-hero-copy").getBoundingClientRect();
+        return {
+          lines: lines.length,
+          fits: lines.every((r) => r.left >= box.left && r.right <= box.right),
+        };
+      });
+      expect(brand.lines).toBe(1);
+      expect(brand.fits).toBe(true);
+      await goTo(page, "calendar");
       await expect(page.locator("#calendar")).toBeVisible();
       await expect(page.locator(".screen:visible")).toHaveCount(1);
       await expect(page.locator("#navigationDialog")).not.toBeVisible();
@@ -54,6 +78,41 @@ for (const width of sizes)
       expect(controls[0].width).toBeGreaterThanOrEqual(44);
       expect(controls[1].height).toBeGreaterThanOrEqual(44);
       expect(controls[0].right).toBeLessThan(controls[1].left);
+      if (width < 1100) {
+        const labels = await page
+          .locator(".mobile-navigation a,.mobile-navigation button")
+          .evaluateAll((items) =>
+            items.map((item) => {
+              const range = document.createRange();
+              range.selectNodeContents(item);
+              const lines = [...range.getClientRects()];
+              const box = item.getBoundingClientRect();
+              return {
+                width: box.width,
+                height: box.height,
+                lines: lines.length,
+                fits: lines.every(
+                  (r) => r.left >= box.left && r.right <= box.right,
+                ),
+              };
+            }),
+          );
+        for (const label of labels) {
+          expect(label.width).toBeGreaterThanOrEqual(44);
+          expect(label.height).toBeGreaterThanOrEqual(44);
+          expect(label.lines).toBe(1);
+          expect(label.fits).toBe(true);
+        }
+      }
+      const views = await page
+        .locator(".calendar-toolbar .segmented")
+        .boundingBox();
+      const edit = await page
+        .locator(".calendar-toolbar .text-link")
+        .boundingBox();
+      expect(views.y).toBe(edit.y);
+      expect(views.x + views.width).toBeLessThan(edit.x);
+      expect(edit.height).toBeGreaterThanOrEqual(44);
       const calendar = await page.locator("#monthGrid").boundingBox();
       expect(calendar.y).toBeLessThan(400);
       expect(
@@ -73,7 +132,7 @@ for (const width of sizes)
         "aria-expanded",
         "true",
       );
-      await expect(page.locator("#nav .tab")).toHaveCount(11);
+      await expect(page.locator("#nav .tab")).toHaveCount(13);
       const menu = page.locator("#navigationDialog");
       await expect(menu).toHaveClass(/is-open/);
       const menuStyle = await menu.evaluate((el) => {
@@ -136,8 +195,8 @@ test("keyboard focus stays inside modal and every section is reachable", async (
     await expect(page.locator(".screen:visible")).toHaveCount(1);
   }
   await page.reload();
-  await expect(page.locator("#calendar")).toBeVisible();
-  await expect(page).toHaveTitle("Calendar · Beautycalendar");
+  await expect(page.locator("#home")).toBeVisible();
+  await expect(page).toHaveTitle("Home · TheBeauty Journal");
 });
 for (const theme of ["light", "dark"])
   test(`open drawer WCAG audit ${theme}`, async ({ page }, info) => {

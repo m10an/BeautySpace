@@ -1,4 +1,9 @@
 import {
+  readBuilderDraft,
+  saveBuilderDraft,
+  BUILDER_DRAFT_KEY,
+} from "./lib/builder-draft.js";
+import {
   buildRoutineItem,
   appendCalendarItems,
   scheduleText,
@@ -60,6 +65,74 @@ function next() {
     fields[step].querySelector("input,select")?.focus();
   }
 }
+let savedDraft = null;
+function refreshDraft() {
+  try {
+    savedDraft = readBuilderDraft();
+  } catch {
+    savedDraft = null;
+    $("rbStatus").textContent =
+      "The saved draft could not be read. Its original record is retained; your calendar is unchanged.";
+  }
+  $("rbResumeDraft").hidden = !savedDraft;
+  $("rbDiscardDraft").hidden = !savedDraft;
+}
+$("rbSaveDraft").onclick = () => {
+  try {
+    savedDraft = saveBuilderDraft({ version: 1, stage: step, fields: draft() });
+    $("rbResumeDraft").hidden = false;
+    $("rbDiscardDraft").hidden = false;
+    $("rbStatus").textContent =
+      "Draft saved on this device. Nothing was added to your calendar.";
+  } catch (e) {
+    $("rbStatus").textContent = "Draft not saved: " + e.message;
+  }
+};
+$("rbResumeDraft").onclick = () => {
+  if (!savedDraft) return;
+  const f = savedDraft.fields;
+  for (const [id, key] of [
+    ["rbProduct", "product"],
+    ["rbStep", "step"],
+    ["rbTime", "time"],
+    ["rbFrom", "from"],
+    ["rbUntil", "until"],
+  ])
+    $(id).value = f[key];
+  setDays(f.weekdays);
+  step = savedDraft.stage;
+  preview = null;
+  if (step === 4) {
+    try {
+      preview = buildRoutineItem(draft());
+      $("rbPreviewName").textContent = preview.name;
+      $("rbPreviewSchedule").textContent = scheduleText(preview);
+    } catch {
+      step = 0;
+    }
+  }
+  $("rbStatus").textContent =
+    "Saved draft resumed. Review it before adding anything to your calendar.";
+  show();
+};
+$("rbDiscardDraft").onclick = () => {
+  if (
+    !confirm(
+      "Discard the saved builder draft? Current fields and all calendar records will stay in place.",
+    )
+  )
+    return;
+  try {
+    localStorage.removeItem(BUILDER_DRAFT_KEY);
+    savedDraft = null;
+    refreshDraft();
+    $("rbStatus").textContent =
+      "Saved draft discarded. Calendar and current fields are unchanged.";
+  } catch {
+    $("rbStatus").textContent =
+      "Could not discard the draft. The original record is retained.";
+  }
+};
 $("openBuilder").onclick = async () => {
   step = 0;
   preview = null;
@@ -71,6 +144,7 @@ $("openBuilder").onclick = async () => {
   setDays([0, 1, 2, 3, 4, 5, 6]);
   $("rbConfirm").disabled = false;
   $("rbStatus").textContent = "";
+  refreshDraft();
   modal.open();
   show();
   try {

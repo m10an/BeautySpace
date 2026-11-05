@@ -1,3 +1,5 @@
+> Current masterplan implementation: [actual checks, before/after screenshots and remaining gaps](releases/DESIGN-MASTERPLAN.md). The earlier reports below are retained as historical evidence, not the current visual specification.
+
 # Current PDF-readings verification
 
 See [PDF-INSPIRATIONS.md](releases/PDF-INSPIRATIONS.md) for the supplied source PDF, 10 reviewed excerpts, daily/offline behavior, reference-image status and actual checks. Reports below describe earlier stages and are retained as history.

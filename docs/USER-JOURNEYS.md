@@ -1,3 +1,5 @@
+> Current masterplan flows, optional/required inputs, state transitions, cancellation and confirmation are in [IMPLEMENTATION-CHECKLIST.md](../IMPLEMENTATION-CHECKLIST.md#user-journeys). Home is now a separate entry screen; the brand returns Home, while Open today selects the current Calendar date. The consultant is a five-stage interview with preserved answers. Earlier flow details below remain relevant to the original storage and tools.
+
 # TheBeauty Journal — user journeys and field audit
 
 The interface remains local first. Calendar is Home; the header brand returns there, and the consultant has an internal Home control because native modal backgrounds are inert. Help is available from every screen. All existing storage keys and schedule identities are retained. No migration or automatic deletion is introduced.

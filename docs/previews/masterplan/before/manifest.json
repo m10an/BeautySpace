@@ -1,0 +1,237 @@
+{
+  "phase": "before",
+  "date": "2026-11-04",
+  "note": "Fresh disposable profile, no real user data. Missing before Home maps to Calendar; missing Consultant landing maps to existing interview.",
+  "screenshots": [
+    {
+      "page": "home",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/home-desktop.png",
+      "rendered": "calendar",
+      "emptyData": true
+    },
+    {
+      "page": "calendar",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/calendar-desktop.png",
+      "rendered": "calendar",
+      "emptyData": true
+    },
+    {
+      "page": "ritual",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/ritual-desktop.png",
+      "rendered": "ritual",
+      "emptyData": true
+    },
+    {
+      "page": "products",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/products-desktop.png",
+      "rendered": "products",
+      "emptyData": true
+    },
+    {
+      "page": "ingredients",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/ingredients-desktop.png",
+      "rendered": "ingredients",
+      "emptyData": true
+    },
+    {
+      "page": "consultant",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/consultant-desktop.png",
+      "rendered": "Existing launcher dialog; landing route absent",
+      "emptyData": true
+    },
+    {
+      "page": "ipl",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/ipl-desktop.png",
+      "rendered": "ipl",
+      "emptyData": true
+    },
+    {
+      "page": "journal",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/journal-desktop.png",
+      "rendered": "journal",
+      "emptyData": true
+    },
+    {
+      "page": "hair",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/hair-desktop.png",
+      "rendered": "hair",
+      "emptyData": true
+    },
+    {
+      "page": "insights",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/insights-desktop.png",
+      "rendered": "insights",
+      "emptyData": true
+    },
+    {
+      "page": "inspiration",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/inspiration-desktop.png",
+      "rendered": "inspiration",
+      "emptyData": true
+    },
+    {
+      "page": "prompts",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/prompts-desktop.png",
+      "rendered": "prompts",
+      "emptyData": true
+    },
+    {
+      "page": "settings",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/settings-desktop.png",
+      "rendered": "settings",
+      "emptyData": true
+    },
+    {
+      "page": "help",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/help-desktop.png",
+      "emptyData": true
+    },
+    {
+      "page": "builder",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/builder-desktop.png",
+      "emptyData": true
+    },
+    {
+      "page": "interview",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/interview-desktop.png",
+      "emptyData": true
+    },
+    {
+      "page": "recommendation",
+      "device": "desktop",
+      "path": "docs/previews/masterplan/before/recommendation-desktop.png",
+      "emptyData": true
+    },
+    {
+      "page": "home",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/home-mobile.png",
+      "rendered": "calendar",
+      "emptyData": true
+    },
+    {
+      "page": "calendar",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/calendar-mobile.png",
+      "rendered": "calendar",
+      "emptyData": true
+    },
+    {
+      "page": "ritual",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/ritual-mobile.png",
+      "rendered": "ritual",
+      "emptyData": true
+    },
+    {
+      "page": "products",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/products-mobile.png",
+      "rendered": "products",
+      "emptyData": true
+    },
+    {
+      "page": "ingredients",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/ingredients-mobile.png",
+      "rendered": "ingredients",
+      "emptyData": true
+    },
+    {
+      "page": "consultant",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/consultant-mobile.png",
+      "rendered": "Existing launcher dialog; landing route absent",
+      "emptyData": true
+    },
+    {
+      "page": "ipl",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/ipl-mobile.png",
+      "rendered": "ipl",
+      "emptyData": true
+    },
+    {
+      "page": "journal",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/journal-mobile.png",
+      "rendered": "journal",
+      "emptyData": true
+    },
+    {
+      "page": "hair",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/hair-mobile.png",
+      "rendered": "hair",
+      "emptyData": true
+    },
+    {
+      "page": "insights",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/insights-mobile.png",
+      "rendered": "insights",
+      "emptyData": true
+    },
+    {
+      "page": "inspiration",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/inspiration-mobile.png",
+      "rendered": "inspiration",
+      "emptyData": true
+    },
+    {
+      "page": "prompts",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/prompts-mobile.png",
+      "rendered": "prompts",
+      "emptyData": true
+    },
+    {
+      "page": "settings",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/settings-mobile.png",
+      "rendered": "settings",
+      "emptyData": true
+    },
+    {
+      "page": "help",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/help-mobile.png",
+      "emptyData": true
+    },
+    {
+      "page": "builder",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/builder-mobile.png",
+      "emptyData": true
+    },
+    {
+      "page": "interview",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/interview-mobile.png",
+      "emptyData": true
+    },
+    {
+      "page": "recommendation",
+      "device": "mobile",
+      "path": "docs/previews/masterplan/before/recommendation-mobile.png",
+      "emptyData": true
+    }
+  ]
+}
